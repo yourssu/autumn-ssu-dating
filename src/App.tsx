@@ -1,7 +1,23 @@
 import './App.css'
+import { BrowserRouter } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+
+import Explore from './components/Explore'
+import Home from './components/Home'
+import Register from './components/Register'
 
 const App = () => {
-  return <div> 뿌슝이의 동물 SSU개팅</div>
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 
 export default App

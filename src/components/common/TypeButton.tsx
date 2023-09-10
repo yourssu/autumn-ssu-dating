@@ -8,14 +8,16 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const TypeButton = ({ mode = 'white', width = 161, height = 161, children, ...props }: Props) => {
+  const defaultStyle = 'shadow-typeBtn rounded-[20px] flex justify-center items-center font-body2'
+  const modeStyle = {
+    pink: 'bg-pink text-white',
+    white: 'bg-white text-pink',
+  }
+
   return (
     <div
       style={{ width: `${width}px`, height: `${height}px` }}
-      className={
-        mode === 'white'
-          ? 'bg-white text-pink shadow-typeBtn rounded-[20px] flex justify-center items-center font-body2'
-          : 'bg-pink text-white shadow-typeBtn rounded-[20px] flex justify-center items-center font-body2'
-      }
+      className={`${defaultStyle} ${modeStyle[mode]}`}
       {...props}
     >
       {children}

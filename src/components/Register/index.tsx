@@ -1,5 +1,9 @@
 import { FormEvent, useState, useEffect } from 'react'
 
+import AnimalStep from './AnimalStep'
+import GenderStep from './GenderStep'
+import PersonalInfoStep from './PersonalInfoStep'
+
 import useMultistepForm from '../../hooks/useMultistepForm'
 import { FormData } from '../../types/register.type'
 
@@ -14,29 +18,19 @@ const Register = () => {
   })
 
   const { currentStep, next } = useMultistepForm([
-    <div key="gender">
-      성별
-      <br />
-      <input onChange={(e) => updateFields({ gender: e.target.value })} className="border" />
-      <button type="button" onClick={moveNextStep}>
-        다음 단계로
-      </button>
-    </div>,
-    <div key="animal">
-      동물
-      <br />
-      <input onChange={(e) => updateFields({ animal: e.target.value })} className="border" />
-      <button type="button" onClick={moveNextStep}>
-        다음 단계로
-      </button>
-    </div>,
-    <div key="introduce">
-      자기소개
-      <br />
-      <button type="submit" onClick={moveNextStep}>
-        등록하기
-      </button>
-    </div>,
+    <GenderStep
+      key={'성별'}
+      {...formData}
+      updateFields={updateFields}
+      moveNextStep={moveNextStep}
+    />,
+    <AnimalStep
+      key={'동물'}
+      {...formData}
+      updateFields={updateFields}
+      moveNextStep={moveNextStep}
+    />,
+    <PersonalInfoStep key={'자기소개'} {...formData} updateFields={updateFields} />,
   ])
 
   function updateFields(fields: Partial<FormData>) {

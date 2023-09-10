@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import { IsDisabledType, IsLineType, SizeType } from '../../types/BoxButtonType'
+import { IsDisabledType, IsLineType, SizeType } from '../../types/boxButton.type'
 
 interface BoxButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   isDisabled?: IsDisabledType

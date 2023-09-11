@@ -5,14 +5,12 @@ import Chip from '../common/Chip'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
-import TopBar from '../common/TopBar'
 import TypeButton from '../common/TypeButton'
 
 const Explore = () => {
   const [test, setTest] = useState(false)
   return (
     <div className="flex flex-col justify-center items-center">
-      <TopBar backNav="" title="둘러보기" ticketCount={1}></TopBar>
       <Spacing direction="vertical" size={20}></Spacing>
       <div className="w-screen flex flex-row justify-around">
         <TypeButton mode="white">

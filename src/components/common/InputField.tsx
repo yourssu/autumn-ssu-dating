@@ -17,9 +17,7 @@ const InputField = ({ width = 193, height = 48, ...props }: InputFieldProps) => 
         setInputValue(e.target.value)
       }}
       style={{ width: `${width}px`, height: `${height}px` }}
-      className={`px-4 bg-white rounded-xl flex justify-start items-center focus:outline-none text-pink placeholder-gray font-body2 ${
-        inputValue ? null : 'shadow-inputField'
-      }`}
+      className={`px-4 bg-white rounded-xl flex justify-start items-center focus:outline-none text-pink placeholder-gray font-body2 focus:shadow-inputField`}
       {...props}
     ></input>
   )

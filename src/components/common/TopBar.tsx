@@ -35,7 +35,8 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
           onClick={() => navigate(backNav)}
         ></img>
         <Spacing direction="horizontal" size={4} />
-        <span className="text-black font-body2">x </span>
+        <span className="text-black font-body2">x</span>
+        <Spacing direction="horizontal" size={5} />
         <span className="text-pink font-body2">{ticketCount}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>

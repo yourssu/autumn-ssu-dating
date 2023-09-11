@@ -18,7 +18,9 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
           className="border"
         />
 
-        <label>MBTI</label>
+        <label>
+          MBTI <span className="text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
+        </label>
         {mbti}
 
         <label>

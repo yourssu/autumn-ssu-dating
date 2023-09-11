@@ -14,7 +14,10 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
   const navigate = useNavigate()
   return (
-    <div className="w-screen h-[44px] flex flex-row items-center justify-between" {...props}>
+    <div
+      className="w-screen h-[44px] flex flex-row items-center justify-between fixed top-0"
+      {...props}
+    >
       <div className="w-[50px] h-[50px] flex justify-center items-center">
         <img
           src={leftIcon as string}

@@ -7,7 +7,7 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
 
       <div className="grid grid-cols-1 gap-y-2">
         <label>
-          이름 ( <span>{nickname.length}</span> / 10 )
+          이름 ( <span className="text-pink">{nickname.length}</span> / 10 )
         </label>
         <input
           required
@@ -22,7 +22,7 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         {mbti}
 
         <label>
-          본인 매력 어필 ( <span>{appeal.length}</span> / 100 )
+          본인 매력 어필 ( <span className="text-pink">{appeal.length}</span> / 100 )
         </label>
         <textarea
           required

@@ -5,7 +5,7 @@ interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   height?: number
 }
 
-const InputField = ({ width = 193, height = 48, ...props }: Props) => {
+const InputField = ({ width = 193, height = 48, ...props }: InputFieldProps) => {
   // 임의 -> 추후에 수정될 수도 있음
   const [inputValue, setInputValue] = useState('')
 

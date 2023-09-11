@@ -50,7 +50,7 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         />
       </div>
 
-      <p>등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)</p>
+      <p className="text-pink">등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)</p>
       <button type="submit">등록하기</button>
     </>
   )

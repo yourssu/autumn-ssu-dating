@@ -5,13 +5,13 @@ import Spacing from './Spacing'
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
   backNav: string
   title: string
   ticketCount: number
 }
 
-const TopBar = ({ backNav, title, ticketCount, ...props }: Props) => {
+const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
   const navigate = useNavigate()
   return (
     <div className="w-screen h-[44px] flex flex-row items-center justify-between" {...props}>

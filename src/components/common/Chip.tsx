@@ -2,12 +2,12 @@ import { ReactElement } from 'react'
 
 import { IsSelectedType } from '../../types/chip.type'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   isSelected?: IsSelectedType
   children: ReactElement
 }
 
-const Chip = ({ isSelected = 'notSelected', children, ...props }: Props) => {
+const Chip = ({ isSelected = 'notSelected', children, ...props }: ChipProps) => {
   const selectedStyle = {
     selected: 'bg-pink',
     notSelected: 'bg-white border border-lightPink',

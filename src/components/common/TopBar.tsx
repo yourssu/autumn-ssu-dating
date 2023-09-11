@@ -18,7 +18,7 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
       <div className="w-[50px] h-[50px] flex justify-center items-center">
         <img
           src={leftIcon as string}
-          className="w-[24px] h-[24px]"
+          className="w-[24px] h-[24px] cursor-pointer"
           alt="뒤로가기"
           onClick={() => navigate(backNav)}
         ></img>

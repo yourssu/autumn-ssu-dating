@@ -1,16 +1,25 @@
 import Tab from './Tab'
 
-import { SelectedType } from '../../../types/explore.type'
+import { GenderType } from '../../../types/explore.type'
 
 interface TabBarProps {
-  selected: SelectedType
+  currentGenderTab: GenderType
+  handleGenderTab: (gender: GenderType) => void
 }
 
-const TabBar = ({ selected }: TabBarProps) => {
+const TabBar = ({ currentGenderTab, handleGenderTab }: TabBarProps) => {
   return (
-    <div className="w-screen flex">
-      <Tab gender="female" isSelected={selected === 'female' ? 'selected' : 'notSelected'}></Tab>
-      <Tab gender="male" isSelected={selected === 'male' ? 'selected' : 'notSelected'}></Tab>
+    <div className="w-screen flex h-[48px] fixed top-[44px]">
+      <Tab
+        gender="female"
+        isSelected={currentGenderTab === 'female' ? 'selected' : 'notSelected'}
+        onClickHandler={handleGenderTab}
+      ></Tab>
+      <Tab
+        gender="male"
+        isSelected={currentGenderTab === 'male' ? 'selected' : 'notSelected'}
+        onClickHandler={handleGenderTab}
+      ></Tab>
     </div>
   )
 }

@@ -3,9 +3,10 @@ import { GenderType, IsSelectedType } from '../../../types/explore.type'
 interface TabProps {
   isSelected: IsSelectedType
   gender: GenderType
+  onClickHandler: (gender: GenderType) => void
 }
 
-const Tab = ({ isSelected, gender }: TabProps) => {
+const Tab = ({ isSelected, gender, onClickHandler }: TabProps) => {
   const selectedTextStyle = {
     selected: 'text-pink',
     notSelected: 'text-gray',
@@ -17,7 +18,7 @@ const Tab = ({ isSelected, gender }: TabProps) => {
   }
 
   return (
-    <div className="h-[48px] w-1/2">
+    <div className="h-[48px] w-1/2" onClick={() => onClickHandler(gender)}>
       <div
         className={`h-full flex justify-center items-center text-body2 ${selectedTextStyle[isSelected]}`}
       >

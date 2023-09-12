@@ -5,7 +5,9 @@ import InputField from '../common/InputField'
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
   return (
     <>
-      <p className="text-title">아래 정보들을 입력해 본인을 소개해보세요!</p>
+      <p className="text-title whitespace-pre-line">
+        {'아래 정보들을 입력해\n본인을 소개해보세요!'}
+      </p>
 
       <div className="grid grid-cols-1 gap-y-2 text-body2">
         <label>

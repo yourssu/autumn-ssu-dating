@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import AnimalTabBar from './atoms/AnimalTabBar'
-import TabBar from './atoms/GenderTabBar'
+import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 
 import useExploreFilter from '../../hooks/useExploreFilter'
@@ -16,7 +16,10 @@ const Explore = () => {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
-      <TabBar currentGenderTab={currentExploreFilter.gender} handleGenderTab={handleGenderTab} />
+      <GenderTabBar
+        currentGenderTab={currentExploreFilter.gender}
+        handleGenderTab={handleGenderTab}
+      />
       <Spacing direction="vertical" size={48} />
       <div className="h-[calc(100%-44px-48px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
         {currentExploreFilter.gender === 'female' ? (

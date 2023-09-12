@@ -1,8 +1,8 @@
 export type IsSelectedType = 'selected' | 'notSelected'
 export type GenderType = 'male' | 'female'
 
-export type MaleAnimalType = 'fox' | 'cat'
-export type FemaleAnimalType = 'rabbit' | 'dog'
+export type MaleAnimalType = 'dog' | 'fox' | 'wolf' | 'dragon' | 'bear' | 'ppussung'
+export type FemaleAnimalType = 'dog' | 'cat' | 'fox' | 'rabbit' | 'hamster' | 'ppussung'
 
 export type AnimalType = MaleAnimalType | FemaleAnimalType
 

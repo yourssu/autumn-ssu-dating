@@ -2,12 +2,12 @@ import GenderTab from './GenderTab'
 
 import { GenderType } from '../../../types/explore.type'
 
-interface TabBarProps {
+interface GenderTabBarProps {
   currentGenderTab: GenderType
   handleGenderTab: (gender: GenderType) => void
 }
 
-const TabBar = ({ currentGenderTab, handleGenderTab }: TabBarProps) => {
+const GenderTabBar = ({ currentGenderTab, handleGenderTab }: GenderTabBarProps) => {
   return (
     <div className="w-screen flex h-[48px] fixed top-[44px]">
       <GenderTab
@@ -24,4 +24,4 @@ const TabBar = ({ currentGenderTab, handleGenderTab }: TabBarProps) => {
   )
 }
 
-export default TabBar
+export default GenderTabBar

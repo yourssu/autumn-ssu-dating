@@ -1,12 +1,12 @@
 import { GenderType, IsSelectedType } from '../../../types/explore.type'
 
-interface TabProps {
+interface GenderTabProps {
   isSelected: IsSelectedType
   gender: GenderType
   onClickHandler: (gender: GenderType) => void
 }
 
-const Tab = ({ isSelected, gender, onClickHandler }: TabProps) => {
+const GenderTab = ({ isSelected, gender, onClickHandler }: GenderTabProps) => {
   const selectedTextStyle = {
     selected: 'text-pink',
     notSelected: 'text-gray',
@@ -29,4 +29,4 @@ const Tab = ({ isSelected, gender, onClickHandler }: TabProps) => {
   )
 }
 
-export default Tab
+export default GenderTab

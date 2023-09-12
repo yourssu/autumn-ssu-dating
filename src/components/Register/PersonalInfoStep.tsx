@@ -1,4 +1,5 @@
 import { FormStepProps } from '../../types/register.type'
+import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
@@ -55,7 +56,11 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
       <p className="text-caption text-pink">
         등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
       </p>
-      <button type="submit">등록하기</button>
+      <BoxButton isDisabled="abled" isLine="filled" size="large">
+        <button type="submit" className="w-full h-full">
+          등록하기
+        </button>
+      </BoxButton>
     </>
   )
 }

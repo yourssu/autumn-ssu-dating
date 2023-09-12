@@ -1,9 +1,13 @@
 import ImageButton from './ImageButton'
 
-import { FormStepProps } from '../../types/register.type'
+import { FormStepOption, FormStepProps } from '../../types/register.type'
+import TypeButton from '../common/TypeButton'
 
 const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
-  const genderOptions = ['남자', '여자']
+  const genderOptions: FormStepOption[] = [
+    { src: '/src/assets/maleIcon.png', label: '남자' },
+    { src: '/src/assets/femaleIcon.png', label: '여자' },
+  ]
 
   const onClick = (e: React.MouseEvent) => {
     updateFields({
@@ -15,14 +19,16 @@ const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <>
-      <div>당신의 성별은?</div>
-      <div>
+    <div className="grid gap-y-6 w-fit">
+      <p className="text-center text-title">당신의 성별은?</p>
+      <div className="grid grid-cols-2 gap-x-6">
         {genderOptions.map((option) => (
-          <ImageButton key={option} label={option} onClick={onClick} />
+          <TypeButton key={option.label}>
+            <ImageButton src={option.src} label={option.label} onClick={onClick} />
+          </TypeButton>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

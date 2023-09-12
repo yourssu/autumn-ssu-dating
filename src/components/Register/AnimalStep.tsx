@@ -1,12 +1,11 @@
 import ImageButton from './ImageButton'
 
+import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../constant'
 import { FormStepProps } from '../../types/register.type'
+import TypeButton from '../common/TypeButton'
 
 const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
-  const animalOptions =
-    gender === '남자'
-      ? ['강아지', '여우', '늑대', '공룡', '곰', '뿌슝이']
-      : ['강아지', '고양이', '여우', '토끼', '햄스터', '뿌슝이']
+  const animalOptions = gender === '남자' ? ANIMAL_OPTIONS_MALE : ANIMAL_OPTIONS_FEMALE
 
   const onClick = (e: React.MouseEvent) => {
     updateFields({
@@ -18,14 +17,18 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <>
-      <div>자신을 나타내는 동물을 골라주세요.</div>
-      <div>
+    <div className="grid gap-y-6 w-fit">
+      <p className="text-title whitespace-pre-line w-full">
+        {'자신을 나타내는\n동물을 골라주세요.'}
+      </p>
+      <div className="grid grid-cols-2 gap-6">
         {animalOptions.map((option) => (
-          <ImageButton key={option} label={option} onClick={onClick} />
+          <TypeButton key={option.label}>
+            <ImageButton src={option.src} label={option.label} onClick={onClick} />
+          </TypeButton>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

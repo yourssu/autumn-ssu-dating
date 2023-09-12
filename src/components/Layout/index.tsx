@@ -5,8 +5,9 @@ import Spacing from '../common/Spacing'
 import TopBar from '../common/TopBar'
 
 const Layout = () => {
-  const { pathname } = useLocation()
-  const { title, backNav } = LINK_TITLE[pathname]
+  const { pathname, search } = useLocation()
+  const { title, backNav } = LINK_TITLE[pathname + search]
+
   return (
     <div className="bg-[url('/src/assets/bg.png')] w-screen h-screen bg-cover">
       {/* 임시: ticketCount는 임의의 숫자 */}

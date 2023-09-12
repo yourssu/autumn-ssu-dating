@@ -11,3 +11,8 @@ export interface FormStepProps extends FormData {
   updateFields: (fields: Partial<FormData>) => void
   moveNextStep?: () => void
 }
+
+export interface FormStepOption {
+  src: string
+  label: string
+}

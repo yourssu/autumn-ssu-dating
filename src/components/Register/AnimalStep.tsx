@@ -33,16 +33,16 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <>
-      <div>자신을 나타내는 동물을 골라주세요.</div>
-      <div>
+    <div className="flex flex-col justify-center items-center">
+      <p className="text-title">자신을 나타내는 동물을 골라주세요.</p>
+      <div className="grid grid-cols-2 gap-6">
         {animalOptions.map((option) => (
           <TypeButton key={option.label}>
             <ImageButton src={option.src} label={option.label} onClick={onClick} />
           </TypeButton>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

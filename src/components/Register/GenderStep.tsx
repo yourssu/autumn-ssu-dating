@@ -19,16 +19,16 @@ const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <>
-      <div>당신의 성별은?</div>
-      <div>
+    <div className="flex flex-col justify-center items-center">
+      <p className="text-title">당신의 성별은?</p>
+      <div className="grid grid-cols-2 gap-x-6">
         {genderOptions.map((option) => (
           <TypeButton key={option.label}>
             <ImageButton src={option.src} label={option.label} onClick={onClick} />
           </TypeButton>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

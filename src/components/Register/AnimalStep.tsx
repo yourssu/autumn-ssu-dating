@@ -1,10 +1,10 @@
 import ImageButton from './ImageButton'
 
-import { FormStepProps } from '../../types/register.type'
+import { FormStepOption, FormStepProps } from '../../types/register.type'
 import TypeButton from '../common/TypeButton'
 
 const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
-  const animalOptions =
+  const animalOptions: FormStepOption[] =
     gender === '남자'
       ? [
           { src: '/src/assets/dogIcon.png', label: '강아지' },

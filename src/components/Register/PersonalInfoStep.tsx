@@ -11,7 +11,7 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
 
       <div className="grid gap-y-4 text-body2">
         <div>
-          <label>
+          <label className="inline-block w-full flex items-center justify-between">
             이름
             <span className="text-caption text-gray">
               ( <span className="text-pink">{nickname.length}</span> / 10 )
@@ -35,7 +35,7 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         </div>
 
         <div className="grid">
-          <label>
+          <label className="inline-block w-full flex items-center justify-between">
             본인 매력 어필
             <span className="text-caption text-gray">
               ( <span className="text-pink">{appeal.length}</span> / 100 )

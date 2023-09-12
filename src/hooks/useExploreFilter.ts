@@ -1,19 +1,40 @@
 import { useState } from 'react'
 
-import { AnimalType, CurrentExploreFilterType, GenderType } from '../types/explore.type'
+import {
+  CurrentExploreFilterType,
+  FemaleAnimalType,
+  GenderType,
+  MaleAnimalType,
+} from '../types/explore.type'
 
 const useExploreFilter = () => {
   const [currentExploreFilter, setCurrentExploreFilter] = useState<CurrentExploreFilterType>({
     gender: 'female',
-    animal: 'rabbit',
+    femaleAnimal: '전체',
+    maleAnimal: '전체',
   })
 
   function handleGenderTab(gender: GenderType) {
     setCurrentExploreFilter({ ...currentExploreFilter, ['gender']: gender })
   }
 
-  function handleAnimalTab(animal: AnimalType) {
-    setCurrentExploreFilter({ ...currentExploreFilter, ['animal']: animal })
+  function handleAnimalTab({
+    femaleAnimal,
+    maleAnimal,
+  }: {
+    femaleAnimal?: FemaleAnimalType
+    maleAnimal?: MaleAnimalType
+  }) {
+    femaleAnimal &&
+      setCurrentExploreFilter({
+        ...currentExploreFilter,
+        ['femaleAnimal']: femaleAnimal,
+      })
+    maleAnimal &&
+      setCurrentExploreFilter({
+        ...currentExploreFilter,
+        ['maleAnimal']: maleAnimal,
+      })
   }
 
   return {

@@ -13,3 +13,20 @@ export interface CurrentExploreFilterType {
 }
 
 export type AnimalTabMode = 'image' | 'text'
+
+export type MbtiType =
+  | 'ISTJ'
+  | 'ISFJ'
+  | 'INFJ'
+  | 'INTJ'
+  | 'ISTP'
+  | 'ISFP'
+  | 'INFP'
+  | 'INTP'
+  | 'ESTP'
+  | 'ESFP'
+  | 'ENFP'
+  | 'ENTP'
+  | 'ESTJ'
+  | 'ENFJ'
+  | 'ENTJ'

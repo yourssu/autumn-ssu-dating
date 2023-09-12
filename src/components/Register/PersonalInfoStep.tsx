@@ -4,12 +4,12 @@ import InputField from '../common/InputField'
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
   return (
     <>
-      <p>아래 정보들을 입력해 본인을 소개해보세요!</p>
+      <p className="text-title">아래 정보들을 입력해 본인을 소개해보세요!</p>
 
-      <div className="grid grid-cols-1 gap-y-2">
+      <div className="grid grid-cols-1 gap-y-2 text-body2">
         <label>
           이름
-          <span className="text-gray">
+          <span className="text-caption text-gray">
             ( <span className="text-pink">{nickname.length}</span> / 10 )
           </span>
         </label>
@@ -23,13 +23,13 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         />
 
         <label>
-          MBTI <span className="text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
+          MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
         </label>
         {mbti}
 
         <label>
           본인 매력 어필
-          <span className="text-gray">
+          <span className="text-caption text-gray">
             ( <span className="text-pink">{appeal.length}</span> / 100 )
           </span>
         </label>
@@ -52,7 +52,9 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         />
       </div>
 
-      <p className="text-pink">등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)</p>
+      <p className="text-caption text-pink">
+        등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
+      </p>
       <button type="submit">등록하기</button>
     </>
   )

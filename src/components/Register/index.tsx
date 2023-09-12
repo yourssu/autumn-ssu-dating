@@ -1,5 +1,7 @@
 import { FormEvent, useState, useEffect } from 'react'
 
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import AnimalStep from './AnimalStep'
 import GenderStep from './GenderStep'
 import PersonalInfoStep from './PersonalInfoStep'
@@ -17,7 +19,7 @@ const Register = () => {
     tel: '',
   })
 
-  const { currentStep, next } = useMultistepForm([
+  const { currentStepIndex, currentStep, next } = useMultistepForm([
     <GenderStep
       key={'성별'}
       {...formData}
@@ -33,6 +35,15 @@ const Register = () => {
     <PersonalInfoStep key={'자기소개'} {...formData} updateFields={updateFields} />,
   ])
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  function updateStep(stepIndex: number) {
+    const search = new URLSearchParams(location.search)
+    search.set('step', stepIndex.toString())
+    navigate(`${location.pathname}?${search.toString()}`)
+  }
+
   function updateFields(fields: Partial<FormData>) {
     setFormData((prev) => {
       return { ...prev, ...fields }
@@ -40,8 +51,10 @@ const Register = () => {
   }
 
   function moveNextStep() {
+    updateStep(currentStepIndex + 1)
     next()
   }
+
   function onSubmit(e: FormEvent) {
     e.preventDefault()
     alert('등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀')
@@ -50,6 +63,10 @@ const Register = () => {
   useEffect(() => {
     console.log(formData)
   }, [formData, setFormData])
+
+  useEffect(() => {
+    updateStep(0)
+  }, [])
 
   return (
     <div>

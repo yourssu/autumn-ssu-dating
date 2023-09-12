@@ -1,4 +1,5 @@
 import { FormStepProps } from '../../types/register.type'
+import InputField from '../common/InputField'
 
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
   return (
@@ -12,13 +13,13 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
             ( <span className="text-pink">{nickname.length}</span> / 10 )
           </span>
         </label>
-        <input
+        <InputField
           required
+          width={342}
           maxLength={10}
           placeholder="ex. 숭실대 뿌슝이"
           value={nickname}
-          onChange={(e) => updateFields({ nickname: e.target.value })}
-          className="border"
+          onChange={(e) => updateFields({ nickname: (e.target as HTMLInputElement).value })}
         />
 
         <label>
@@ -41,12 +42,13 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
         />
 
         <label>연락처 (인스타그램 ID / 전화번호)</label>
-        <input
+        <InputField
           required
+          width={342}
+          maxLength={10}
           placeholder="ex. @yourssu_official"
           value={tel}
-          onChange={(e) => updateFields({ tel: e.target.value })}
-          className="border"
+          onChange={(e) => updateFields({ tel: (e.target as HTMLInputElement).value })}
         />
       </div>
 

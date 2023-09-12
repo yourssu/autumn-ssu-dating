@@ -6,7 +6,7 @@ import TopBar from '../common/TopBar'
 
 const Layout = () => {
   const { pathname, search } = useLocation()
-  const { title, backNav } = search ? LINK_TITLE[pathname + search] : LINK_TITLE[pathname]
+  const { title, backNav } = LINK_TITLE[pathname + search]
 
   return (
     <div className="bg-[url('/src/assets/bg.png')] w-screen h-screen bg-cover">

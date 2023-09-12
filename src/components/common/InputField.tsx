@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-interface InputFieldProps extends React.HTMLAttributes<HTMLInputElement> {
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: number
   height?: number
 }

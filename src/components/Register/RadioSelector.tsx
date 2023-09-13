@@ -24,7 +24,7 @@ const RadioSelector = ({ labels, updateMbti }: RadioSelectorProps) => {
   }
 
   return (
-    <>
+    <div className="grid grid-cols-1 gap-y-2">
       {labels.map((label, index) => (
         <TypeButton
           key={label}
@@ -34,18 +34,24 @@ const RadioSelector = ({ labels, updateMbti }: RadioSelectorProps) => {
           mode={isCheckedArray[index] ? 'pink' : 'white'}
         >
           <>
-            <label htmlFor={label}>{label}</label>
+            <label
+              htmlFor={label}
+              className="cursor-pointer rounded-[20px] w-full h-full flex items-center justify-center"
+            >
+              {label}
+            </label>
             <input
               type="radio"
               id={label}
               name={radioName}
               value={label}
               onClick={handleInputChange}
+              className="hidden"
             />
           </>
         </TypeButton>
       ))}
-    </>
+    </div>
   )
 }
 

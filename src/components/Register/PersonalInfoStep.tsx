@@ -47,17 +47,19 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
           <label>
             MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
           </label>
-          {mbtiOptions.map((option, index) => (
-            <RadioSelector
-              key={index}
-              labels={option}
-              updateMbti={(value: string) => {
-                setMbtiValueArray((prev) => {
-                  return { ...prev, ...{ [index]: value } }
-                })
-              }}
-            />
-          ))}
+          <div className="flex justify-between">
+            {mbtiOptions.map((option, index) => (
+              <RadioSelector
+                key={index}
+                labels={option}
+                updateMbti={(value: string) => {
+                  setMbtiValueArray((prev) => {
+                    return { ...prev, ...{ [index]: value } }
+                  })
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid">

@@ -36,7 +36,7 @@ const RadioSelector = ({ labels, updateMbti }: RadioSelectorProps) => {
           <>
             <label
               htmlFor={label}
-              className="cursor-pointer rounded-[20px] w-full h-full flex items-center justify-center"
+              className="cursor-pointer rounded-[12px] w-full h-full flex items-center justify-center"
             >
               {label}
             </label>

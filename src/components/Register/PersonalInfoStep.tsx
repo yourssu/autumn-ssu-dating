@@ -1,8 +1,29 @@
+import { useState, useEffect } from 'react'
+
+import RadioSelector from './RadioSelector'
+
+import checkedIcon from '../../assets/checkedIcon.svg'
+import uncheckedIcon from '../../assets/uncheckedIcon.svg'
 import { FormStepProps } from '../../types/register.type'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
+  const [isChecked, setIsChecked] = useState(false)
+  const canRegister = nickname && mbti.length === 4 && appeal && tel && isChecked
+
+  const mbtiOptions = [
+    ['E', 'I'],
+    ['S', 'N'],
+    ['F', 'T'],
+    ['P', 'J'],
+  ]
+  const [mbtiValueArray, setMbtiValueArray] = useState<{ [key: string]: string }>({})
+
+  useEffect(() => {
+    updateFields({ mbti: Object.values(mbtiValueArray).join('') })
+  }, [mbtiValueArray])
+
   return (
     <div className="grid gap-y-6 w-fit">
       <p className="text-title whitespace-pre-line">
@@ -31,7 +52,19 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
           <label>
             MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
           </label>
-          {mbti}
+          <div className="flex justify-between">
+            {mbtiOptions.map((option, index) => (
+              <RadioSelector
+                key={index}
+                labels={option}
+                updateMbti={(value: string) => {
+                  setMbtiValueArray((prev) => {
+                    return { ...prev, ...{ [index]: value } }
+                  })
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid">
@@ -65,11 +98,31 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
       </div>
 
       <div>
-        <p className="text-caption text-pink mb-2">
-          등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
-        </p>
-        <BoxButton isDisabled="abled" isLine="filled" size="large">
-          <button type="submit" className="w-full h-full">
+        <div className="flex justify-center">
+          <img
+            src={isChecked ? (checkedIcon as string) : (uncheckedIcon as string)}
+            onClick={() => {
+              setIsChecked((prev) => !prev)
+            }}
+          />
+          <label className="text-caption text-pink ml-1 my-2">
+            <input
+              type="checkbox"
+              onChange={(e) => {
+                setIsChecked(e.target.checked)
+              }}
+              className="hidden"
+            />
+            등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
+          </label>
+        </div>
+
+        <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
+          <button
+            type="submit"
+            className="w-full h-full disabled:cursor-not-allowed"
+            disabled={!canRegister}
+          >
             등록하기
           </button>
         </BoxButton>

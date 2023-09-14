@@ -30,7 +30,7 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
       <div className="flex flex-row items-center">
         <img
           src={ticket as string}
-          className="h-[22px]"
+          className="h-[22px] w-[22px]"
           alt="티켓 아이콘"
           onClick={() => navigate(backNav)}
         ></img>

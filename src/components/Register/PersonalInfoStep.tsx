@@ -1,8 +1,24 @@
+import { useState, useEffect } from 'react'
+
+import RadioSelector from './RadioSelector'
+
 import { FormStepProps } from '../../types/register.type'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 
 const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormStepProps) => {
+  const mbtiOptions = [
+    ['E', 'I'],
+    ['S', 'N'],
+    ['F', 'T'],
+    ['P', 'J'],
+  ]
+  const [mbtiValueArray, setMbtiValueArray] = useState<{ [key: string]: string }>({})
+
+  useEffect(() => {
+    updateFields({ mbti: Object.values(mbtiValueArray).join('') })
+  }, [mbtiValueArray])
+
   return (
     <div className="grid gap-y-6 w-fit">
       <p className="text-title whitespace-pre-line">
@@ -31,7 +47,19 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
           <label>
             MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
           </label>
-          {mbti}
+          <div className="flex justify-between">
+            {mbtiOptions.map((option, index) => (
+              <RadioSelector
+                key={index}
+                labels={option}
+                updateMbti={(value: string) => {
+                  setMbtiValueArray((prev) => {
+                    return { ...prev, ...{ [index]: value } }
+                  })
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid">

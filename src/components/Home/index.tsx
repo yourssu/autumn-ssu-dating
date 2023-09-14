@@ -38,10 +38,10 @@ const Home = () => {
         </BoxButton>
       </div>
       <div>
-        <div className="grid grid-flow-col gap-x-1 w-fit">
+        <div className="grid grid-flow-col gap-x-1 w-fit text-body2">
           <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
           <p>
-            이용권 x <span>1</span>
+            이용권 x <span className="text-pink">1</span>
           </p>
         </div>
         <div className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px]">

@@ -9,13 +9,13 @@ interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Chip = ({ isSelected = 'notSelected', children, ...props }: ChipProps) => {
   const selectedStyle = {
-    selected: 'bg-pink',
-    notSelected: 'bg-white border border-lightPink',
+    selected: 'bg-pink text-white',
+    notSelected: 'bg-white border border-lightPink text-pink',
   }
 
   return (
     <div
-      className={`w-[52px] h-[52px] rounded-[12px] p-2 flex justify-center items-center ${selectedStyle[isSelected]}`}
+      className={`w-[52px] h-[52px] rounded-[12px] p-2 flex justify-center items-center text-body2 ${selectedStyle[isSelected]}`}
       {...props}
     >
       {children}

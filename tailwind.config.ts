@@ -64,7 +64,7 @@ const config: Config = {
       typeBtn: '0px 0px 8px 0px rgba(21, 21, 21, 0.05)',
     },
   },
-  plugins: [require('tailwindcss-animated')],
+  plugins: [require('tailwindcss-animated'), require('tailwind-scrollbar-hide')],
 }
 
 export default config

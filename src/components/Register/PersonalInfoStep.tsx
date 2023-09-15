@@ -89,7 +89,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
           <InputField
             required
             width={342}
-            maxLength={10}
             placeholder="ex. @yourssu_official"
             value={contact}
             onChange={(e) => updateFields({ contact: (e.target as HTMLInputElement).value })}

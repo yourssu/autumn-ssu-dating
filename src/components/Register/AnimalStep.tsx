@@ -9,7 +9,7 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
 
   const onClick = (e: React.MouseEvent) => {
     updateFields({
-      animal: (e.target as HTMLDivElement | HTMLImageElement | HTMLParagraphElement).title,
+      animals: (e.target as HTMLDivElement | HTMLImageElement | HTMLParagraphElement).title,
     })
     if (moveNextStep) {
       moveNextStep()

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import RadioSelector from './RadioSelector'
+import TextareaField from './TextareaField'
 
 import checkedIcon from '../../assets/checkedIcon.svg'
 import uncheckedIcon from '../../assets/uncheckedIcon.svg'
@@ -74,13 +75,12 @@ const PersonalInfoStep = ({ nickname, mbti, appeal, tel, updateFields }: FormSte
               ( <span className="text-pink">{appeal.length}</span> / 100 )
             </span>
           </label>
-          <textarea
-            required
+          <TextareaField
+            required={true}
             maxLength={100}
-            placeholder="ex. 취미, 관심사, 키, 나이 등으로 자신을 드러내보세요!"
+            placeholder={'ex. 취미, 관심사, 키, 나이 등으로 자신을 드러내보세요!'}
             value={appeal}
             onChange={(e) => updateFields({ appeal: e.target.value })}
-            className="border"
           />
         </div>
 

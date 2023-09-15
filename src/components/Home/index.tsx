@@ -44,8 +44,9 @@ const Home = () => {
       </div>
       <Spacing direction="vertical" size={12} />
       <div>
-        <div className="grid grid-flow-col gap-x-1 w-fit text-body2">
+        <div className="w-[342px] flex justify-center text-body2">
           <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
+          <Spacing direction="horizontal" size={4} />
           <p>
             이용권 x <span className="text-pink">1</span>
           </p>

@@ -29,6 +29,7 @@ const BoxButton = ({
   }
 
   const sizeStyle = {
+    extraSmall: 'w-[116px] h-12',
     small: 'w-[193px] h-12',
     large: 'w-[342px] h-14',
   }

@@ -12,11 +12,11 @@ import { FormData } from '../../types/register.type'
 const Register = () => {
   const [formData, setFormData] = useState<FormData>({
     gender: '',
-    animal: '',
-    nickname: '',
+    animals: '',
+    nickName: '',
     mbti: '',
-    appeal: '',
-    tel: '',
+    introduce: '',
+    contact: '',
   })
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([

@@ -21,7 +21,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="bg-pink bg-opacity-[0.03]">
       <p className="text-pink text-titleBold whitespace-pre-line">{'뿌슝이의\n동물 SSU개팅'}</p>
       <Spacing direction="vertical" size={15} />
       <div className="grid grid-flow-col gap-x-2 w-fit">

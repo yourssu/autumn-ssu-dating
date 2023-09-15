@@ -32,7 +32,10 @@ const Home = () => {
           placeholder="인증코드를 입력해주세요."
         />
         <BoxButton isLine="line" size="extraSmall">
-          <button className="w-full h-full text-body2" onClick={verifyCode}>
+          <button
+            className="w-full h-full rounded-2xl text-body2 focus:outline-none"
+            onClick={verifyCode}
+          >
             인증하기
           </button>
         </BoxButton>

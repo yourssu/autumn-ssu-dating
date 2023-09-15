@@ -28,12 +28,7 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
       </div>
       <span className="text-black font-body1">{title}</span>
       <div className="flex flex-row items-center">
-        <img
-          src={ticket as string}
-          className="h-[22px] w-[22px]"
-          alt="티켓 아이콘"
-          onClick={() => navigate(backNav)}
-        ></img>
+        <img src={ticket as string} className="h-[22px] w-[22px]" alt="티켓 아이콘"></img>
         <Spacing direction="horizontal" size={4} />
         <span className="text-black font-body2">x</span>
         <Spacing direction="horizontal" size={5} />

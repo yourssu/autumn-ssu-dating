@@ -54,7 +54,7 @@ const Home = () => {
         </p>
       </div>
       <Spacing direction="vertical" size={40} />
-      <div className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px]">
+      <div className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px] scrollbar-hide">
         {animalOptions.map((option, index) => (
           <TypeButton key={index}>
             <img src={option.src} />

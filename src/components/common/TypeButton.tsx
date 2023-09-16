@@ -15,7 +15,7 @@ const TypeButton = ({
   ...props
 }: TypeButtonProps) => {
   const defaultStyle =
-    'shadow-typeBtn rounded-[20px] flex justify-center items-center font-body2 flex-col'
+    'shadow-typeBtn rounded-[20px] flex justify-center items-center text-body2 flex-col'
   const modeStyle = {
     pink: 'bg-pink text-white',
     white: 'bg-white text-pink',

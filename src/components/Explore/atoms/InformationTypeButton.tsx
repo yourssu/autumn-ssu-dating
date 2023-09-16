@@ -13,7 +13,6 @@ interface InformationTypeButtonProps extends React.HTMLAttributes<HTMLDivElement
   mbti: MbtiType
   animal: AnimalType
   content: string
-  contact: string
   gender: GenderType
   onButtonClick: (e: CurrentPopupSelectedType) => void
 }
@@ -23,7 +22,6 @@ const InformationTypeButton = ({
   mbti,
   animal,
   content,
-  contact,
   gender,
   onButtonClick,
   ...props
@@ -37,7 +35,6 @@ const InformationTypeButton = ({
           nickname,
           mbti,
           gender,
-          contact,
           animal,
           content,
         })
@@ -52,7 +49,7 @@ const InformationTypeButton = ({
           <Spacing direction="horizontal" size={4} />
           <img
             className="w-[2px] h-[2px]"
-            src={EllipseSeperator}
+            src={EllipseSeperator as string}
             alt="공간 분리용 동그라미"
             title="공간 분리용 동그라미"
           />

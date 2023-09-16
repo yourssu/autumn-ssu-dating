@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 
+import { useRecoilValue } from 'recoil'
+
 import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
+import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormStepProps } from '../../types/register.type'
 import BoxButton from '../common/BoxButton'
 import Checkbox from '../common/Checkbox'
@@ -10,8 +13,11 @@ import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
 
 const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: FormStepProps) => {
+  const ticketList = useRecoilValue(ticketListAtom)
+
   const [isChecked, setIsChecked] = useState(false)
-  const canRegister = nickName && mbti.length === 4 && introduce && contact && isChecked
+  const canRegister =
+    nickName && mbti.length === 4 && introduce && contact && isChecked && ticketList.length
 
   const mbtiOptions = [
     ['E', 'I'],

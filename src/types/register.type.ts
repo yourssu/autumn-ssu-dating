@@ -30,3 +30,8 @@ export type AnimalType =
   | 'DINO'
   | 'WOLF'
   | ''
+
+export interface RegisterToastData {
+  isShow: boolean
+  toastMessage: string
+}

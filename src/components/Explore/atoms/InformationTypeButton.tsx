@@ -13,7 +13,6 @@ interface InformationTypeButtonProps extends React.HTMLAttributes<HTMLDivElement
   mbti: MbtiType
   animal: AnimalType
   content: string
-  contact: string
   gender: GenderType
   onButtonClick: (e: CurrentPopupSelectedType) => void
 }

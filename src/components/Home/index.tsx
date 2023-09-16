@@ -64,7 +64,7 @@ const Home = () => {
       <Spacing direction="vertical" size={48} />
       <BoxButton size="large">
         <button
-          className="w-full h-full"
+          className="w-full h-full rounded-[12px]"
           onClick={() => {
             navigate('/register')
           }}
@@ -75,7 +75,7 @@ const Home = () => {
       <Spacing direction="vertical" size={16} />
       <BoxButton size="large">
         <button
-          className="w-full h-full"
+          className="w-full h-full rounded-[12px]"
           onClick={() => {
             navigate('/explore')
           }}

@@ -10,8 +10,7 @@ const Layout = () => {
 
   return (
     <div className="bg-[url('/src/assets/bg.png')] w-screen h-screen bg-cover overflow-hidden">
-      {/* 임시: ticketCount는 임의의 숫자 */}
-      <TopBar title={title} backNav={backNav as string} ticketCount={1}></TopBar>
+      <TopBar title={title} backNav={backNav as string}></TopBar>
       <Spacing direction="vertical" size={44}></Spacing>
       <Outlet></Outlet>
     </div>

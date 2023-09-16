@@ -10,10 +10,9 @@ import { ticketListAtom } from '../../state/ticketListAtom'
 interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
   backNav: string
   title: string
-  ticketCount: number
 }
 
-const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
+const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
   const ticketList = useRecoilValue(ticketListAtom)
 
   const navigate = useNavigate()
@@ -36,7 +35,7 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
         <Spacing direction="horizontal" size={4} />
         <span className="text-black text-body2">x</span>
         <Spacing direction="horizontal" size={5} />
-        <span className="text-pink text-body2">{ticketCount}</span>
+        <span className="text-pink text-body2">{ticketList.length}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>
     </div>

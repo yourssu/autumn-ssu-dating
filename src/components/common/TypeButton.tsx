@@ -24,9 +24,9 @@ const TypeButton = ({
 
   return (
     <div
-      style={{ width: `${width}px`, height: `${height}px`, borderRadius: `${rounded}px` }}
-      className={`${defaultStyle} ${modeStyle[mode]}`}
       {...props}
+      style={{ width: `${width}px`, height: `${height}px`, borderRadius: `${rounded}px` }}
+      className={`${defaultStyle} ${modeStyle[mode]} ${props.className}`}
     >
       {children}
     </div>

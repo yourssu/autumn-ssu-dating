@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 
+import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
+import { authCode } from '../../apis/authApi'
 import ticket from '../../assets/ticket.svg'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
@@ -18,14 +20,47 @@ const Home = () => {
   const [registerToast, setRegisterToast] = useRecoilState(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState<string>('')
 
   const animalOptions = getAnimalOptions()
 
   const navigate = useNavigate()
 
-  const verifyCode = () => {
-    alert(code)
-    setTicketList((prevTicketList) => [...prevTicketList, code])
+  async function verifyCode() {
+    try {
+      const response = await authCode(code)
+      setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
+      setToastMessage('인증 완료! 이용권 한 장이 부여됩니다.')
+      setCode('')
+    } catch (error) {
+      const authError = error as AxiosError
+      switch (authError.response?.status) {
+        case 400:
+          setToastMessage('10자리의 인증코드를 입력해주세요.')
+          break
+
+        case 404:
+          setToastMessage('존재하지 않는 인증코드예요.')
+          break
+
+        default:
+          setToastMessage('인증코드를 다시 한번 확인해주세요.')
+          break
+      }
+    }
+    displayToast()
+  }
+
+  function displayToast() {
+    setShowToast(true)
+    const timer = setTimeout(() => {
+      setShowToast(false)
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+    }
   }
 
   useEffect(() => {
@@ -41,7 +76,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="bg-palePink bg-opacity-50">
+    <div>
       <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>
@@ -103,6 +138,7 @@ const Home = () => {
           내 이상형 찾기
         </button>
       </BoxButton>
+      {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
       {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
     </div>
   )

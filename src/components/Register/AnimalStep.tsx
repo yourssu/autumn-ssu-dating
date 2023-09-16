@@ -1,7 +1,7 @@
 import ImageButton from './ImageButton'
 
 import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../constant'
-import { FormStepProps } from '../../types/register.type'
+import { AnimalType, FormStepProps } from '../../types/register.type'
 import TypeButton from '../common/TypeButton'
 
 const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
@@ -9,7 +9,8 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
 
   const onClick = (e: React.MouseEvent) => {
     updateFields({
-      animals: (e.target as HTMLDivElement | HTMLImageElement | HTMLParagraphElement).title,
+      animals: (e.target as HTMLDivElement | HTMLImageElement | HTMLParagraphElement)
+        .title as AnimalType,
     })
     if (moveNextStep) {
       moveNextStep()
@@ -24,7 +25,12 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
       <div className="grid grid-cols-2 gap-6">
         {animalOptions.map((option) => (
           <TypeButton key={option.label}>
-            <ImageButton src={option.src} label={option.label} onClick={onClick} />
+            <ImageButton
+              src={option.src}
+              label={option.label}
+              animals={option.animals}
+              onClick={onClick}
+            />
           </TypeButton>
         ))}
       </div>

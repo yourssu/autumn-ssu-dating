@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import ticket from '../../assets/ticket.svg'
-import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../constant'
+import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
@@ -12,7 +12,7 @@ import TypeButton from '../common/TypeButton'
 const Home = () => {
   const [code, setCode] = useState<string>('')
 
-  const animalOptions = [...ANIMAL_OPTIONS_MALE, ...ANIMAL_OPTIONS_FEMALE]
+  const animalOptions = getAnimalOptions()
 
   const navigate = useNavigate()
 

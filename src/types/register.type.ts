@@ -15,4 +15,17 @@ export interface FormStepProps extends FormData {
 export interface FormStepOption {
   src: string
   label: string
+  animals?: AnimalType
 }
+
+export type AnimalType =
+  | 'ALL'
+  | 'CAT'
+  | 'DOG'
+  | 'FOX'
+  | 'HAMSTER'
+  | 'PUSSUNG'
+  | 'RABBIT'
+  | 'BEAR'
+  | 'DINO'
+  | 'WOLF'

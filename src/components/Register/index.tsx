@@ -67,7 +67,7 @@ const Register = () => {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const profile: RegisterRequest = { ...formData, code: '1234567891' } // ticketList[0] }
+    const profile: RegisterRequest = { ...formData, code: ticketList[0] }
     const gender = formData.gender
 
     if ('gender' in profile) delete profile.gender

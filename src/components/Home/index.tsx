@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
 import ticket from '../../assets/ticket.svg'
+import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
+import ToastMessage from '../common/ToastMessage'
 import TypeButton from '../common/TypeButton'
 
 const Home = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [registerToast, setRegisterToast] = useRecoilState(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
 
@@ -24,6 +27,18 @@ const Home = () => {
     alert(code)
     setTicketList((prevTicketList) => [...prevTicketList, code])
   }
+
+  useEffect(() => {
+    if (registerToast.isShow) {
+      const timer = setTimeout(() => {
+        setRegisterToast({ isShow: false, toastMessage: '' })
+      }, 2000) // 애니메이션에 걸리는 시간과 동일하게 설정
+
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [])
 
   return (
     <div className="bg-palePink bg-opacity-50">
@@ -88,6 +103,7 @@ const Home = () => {
           내 이상형 찾기
         </button>
       </BoxButton>
+      {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
     </div>
   )
 }

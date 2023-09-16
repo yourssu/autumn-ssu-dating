@@ -14,7 +14,10 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
   const navigate = useNavigate()
   return (
-    <div className="w-screen h-[44px] flex flex-row items-center justify-between" {...props}>
+    <div
+      className="w-screen h-[44px] flex flex-row items-center justify-between fixed top-0"
+      {...props}
+    >
       <div className="w-[50px] h-[50px] flex justify-center items-center">
         <img
           src={leftIcon as string}
@@ -25,14 +28,10 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
       </div>
       <span className="text-black text-body1">{title}</span>
       <div className="flex flex-row items-center">
-        <img
-          src={ticket as string}
-          className="h-[22px]"
-          alt="티켓 아이콘"
-          onClick={() => navigate(backNav)}
-        ></img>
+        <img src={ticket as string} className="h-[22px] w-[22px]" alt="티켓 아이콘"></img>
         <Spacing direction="horizontal" size={4} />
-        <span className="text-black text-body2">x </span>
+        <span className="text-black text-body2">x</span>
+        <Spacing direction="horizontal" size={5} />
         <span className="text-pink text-body2">{ticketCount}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>

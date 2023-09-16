@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Explore from './components/Explore'
 import Home from './components/Home'
+import Layout from './components/Layout'
 import Register from './components/Register'
 
 const App = () => {
@@ -11,9 +12,11 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

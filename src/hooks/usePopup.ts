@@ -8,6 +8,7 @@ const usePopup = () => {
     nickname: 'ppussung',
     mbti: 'ISTJ',
     gender: 'female',
+    contact: '@yourssu_official',
     animal: '뿌슝이',
     content: 'ppussung',
   })

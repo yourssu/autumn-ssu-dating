@@ -49,7 +49,7 @@ const InformationTypeButton = ({
           <Spacing direction="horizontal" size={4} />
           <img
             className="w-[2px] h-[2px]"
-            src={EllipseSeperator}
+            src={EllipseSeperator as string}
             alt="공간 분리용 동그라미"
             title="공간 분리용 동그라미"
           />

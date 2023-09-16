@@ -16,12 +16,13 @@ const ContactButton = ({ contactOpen, contact, ...props }: ContactButtonProps) =
   }, [contactOpen])
   return (
     <span {...props}>
-      {contactOpen === 'closed' ? (
-        <BoxButton>
+      <BoxButton
+        isLine={contactOpen === 'opened' ? 'line' : 'filled'}
+        isDisabled={contactOpen === 'opened' ? 'disabled' : 'abled'}
+      >
+        {contactOpen === 'closed' ? (
           <span>연락처 확인하기</span>
-        </BoxButton>
-      ) : (
-        <BoxButton isLine="line" isDisabled="disabled">
+        ) : (
           <>
             <span>{contact}</span>
             <Spacing direction="horizontal" size={8}></Spacing>
@@ -35,8 +36,8 @@ const ContactButton = ({ contactOpen, contact, ...props }: ContactButtonProps) =
               title="복사하기 버튼"
             />
           </>
-        </BoxButton>
-      )}
+        )}
+      </BoxButton>
     </span>
   )
 }

@@ -8,8 +8,11 @@ const Layout = () => {
   const { pathname, search } = useLocation()
   const { title, backNav } = LINK_TITLE[pathname + search]
 
+  const bgUrl =
+    pathname === '/' ? `bg-[url('/src/assets/bg_palePink.png')]` : `bg-[url('/src/assets/bg.png')]`
+
   return (
-    <div className="bg-[url('/src/assets/bg.png')] w-screen h-screen bg-cover overflow-hidden">
+    <div className={`${bgUrl} w-screen h-screen bg-cover overflow-hidden`}>
       {/* 임시: ticketCount는 임의의 숫자 */}
       <TopBar title={title} backNav={backNav as string} ticketCount={1}></TopBar>
       <Spacing direction="vertical" size={44}></Spacing>

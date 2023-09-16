@@ -10,6 +10,7 @@ import PersonalInfoStep from './PersonalInfoStep'
 
 import { registerProfile } from '../../apis/registerApi'
 import useMultistepForm from '../../hooks/useMultistepForm'
+import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormData } from '../../types/register.type'
 import { RegisterRequest } from '../../types/registerApi.type'
@@ -17,6 +18,7 @@ import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [_, setRegisterToast] = useRecoilState(registerToastAtom)
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',
@@ -67,7 +69,7 @@ const Register = () => {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const profile: RegisterRequest = { ...formData, code: ticketList[0] }
+    const profile: RegisterRequest = { ...formData, code: 'oZGqFWHu1q' }
     const gender = formData.gender
 
     if ('gender' in profile) delete profile.gender
@@ -76,7 +78,11 @@ const Register = () => {
       await registerProfile({ gender, profile })
       const currentTicketList = ticketList.slice(1)
       setTicketList(currentTicketList)
-      setToastMessage('등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀')
+      setRegisterToast({
+        isShow: true,
+        toastMessage: '등록 완료!\n둘러보기에서 다른 프로필을 구경해보세요 👀',
+      })
+      navigate('/')
     } catch (error) {
       const authError = error as AxiosError
       console.log(authError)

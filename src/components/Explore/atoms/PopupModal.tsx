@@ -107,6 +107,7 @@ const PopupModal = ({
         <ContactButton
           contactOpen={contactOpen}
           contact={contact}
+          isChecked={isChecked}
           onClick={() => {
             if (isChecked) {
               setContactOpen('opened')

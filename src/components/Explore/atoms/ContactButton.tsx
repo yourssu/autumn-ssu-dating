@@ -8,9 +8,10 @@ import Spacing from '../../common/Spacing'
 interface ContactButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   contactOpen: ContactOpenType
   contact: string
+  isChecked: boolean
 }
 
-const ContactButton = ({ contactOpen, contact, ...props }: ContactButtonProps) => {
+const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactButtonProps) => {
   useEffect(() => {
     console.log(contactOpen)
   }, [contactOpen])
@@ -18,7 +19,7 @@ const ContactButton = ({ contactOpen, contact, ...props }: ContactButtonProps) =
     <span {...props}>
       <BoxButton
         isLine={contactOpen === 'opened' ? 'line' : 'filled'}
-        isDisabled={contactOpen === 'opened' ? 'disabled' : 'abled'}
+        isDisabled={contactOpen === 'opened' ? 'disabled' : isChecked ? 'abled' : 'disabled'}
       >
         {contactOpen === 'closed' ? (
           <span>연락처 확인하기</span>

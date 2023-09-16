@@ -15,21 +15,12 @@ interface PopupModalProps {
   mbti: MbtiType
   animal: AnimalType
   content: string
-  contact: string
   gender: GenderType
   isPopup: boolean
   onClickClose: () => void
 }
 
-const PopupModal = ({
-  nickname,
-  mbti,
-  animal,
-  content,
-  contact,
-  gender,
-  onClickClose,
-}: PopupModalProps) => {
+const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: PopupModalProps) => {
   const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
   const [isChecked, setIsChecked] = useState<boolean>(false)
 
@@ -50,7 +41,7 @@ const PopupModal = ({
           <Spacing direction="horizontal" size={230} />
           <img
             className="w-[18px] h-[18px]"
-            src={XButton}
+            src={XButton as string}
             title="X 버튼"
             alt="X 버튼"
             onClick={() => onClickClose()}
@@ -106,7 +97,7 @@ const PopupModal = ({
         <Spacing direction="vertical" size={4} />
         <ContactButton
           contactOpen={contactOpen}
-          contact={contact}
+          contact={'contact'}
           isChecked={isChecked}
           onClick={() => {
             if (isChecked) {

@@ -36,7 +36,7 @@ const Checkbox = ({
       <Spacing direction="horizontal" size={4} />
       <label className="text-caption text-pink">
         <input type="checkbox" onChange={onLabelClick} className="hidden" />
-        {checkCase} 시 이용권 한 장이 차감됩니다. (남은 이용권수: ${ticketList.length}장)
+        {checkCase} 시 이용권 한 장이 차감됩니다. (남은 이용권수: {ticketList.length}장)
       </label>
     </div>
   )

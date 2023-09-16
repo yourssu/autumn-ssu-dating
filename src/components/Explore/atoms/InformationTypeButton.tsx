@@ -16,10 +16,15 @@ const InformationTypeButton = ({ nickname, mbti, animal, content }: InformationT
       <div className="flex justify-start flex-col w-[129px] h-[104px]">
         <span className="text-body1">{nickname}</span>
         <Spacing direction="vertical" size={2} />
-        <div className="flex text-caption">
+        <div className="flex text-caption items-center">
           <span>{mbti}</span>
           <Spacing direction="horizontal" size={4} />
-          <img src={EllipseSeperator} alt="공간 분리용 동그라미" title="공간 분리용 동그라미" />
+          <img
+            className="w-[2px] h-[2px]"
+            src={EllipseSeperator}
+            alt="공간 분리용 동그라미"
+            title="공간 분리용 동그라미"
+          />
           <Spacing direction="horizontal" size={4} />
           <span>{animal}</span>
         </div>

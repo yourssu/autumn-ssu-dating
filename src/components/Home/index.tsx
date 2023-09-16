@@ -21,7 +21,7 @@ const Home = () => {
   }
 
   return (
-    <div className="bg-pink bg-opacity-[0.03]">
+    <div className="bg-palePink bg-opacity-50">
       <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>

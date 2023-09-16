@@ -23,7 +23,6 @@ const InformationTypeButton = ({
   mbti,
   animal,
   content,
-  contact,
   gender,
   onButtonClick,
   ...props
@@ -37,7 +36,6 @@ const InformationTypeButton = ({
           nickname,
           mbti,
           gender,
-          contact,
           animal,
           content,
         })

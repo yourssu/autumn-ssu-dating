@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 import Spacing from './Spacing'
 
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
+import { ticketListAtom } from '../../state/ticketListAtom'
 
 interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
   backNav: string
@@ -12,6 +14,8 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
+  const ticketList = useRecoilValue(ticketListAtom)
+
   const navigate = useNavigate()
   return (
     <div
@@ -32,7 +36,7 @@ const TopBar = ({ backNav, title, ticketCount, ...props }: TopBarProps) => {
         <Spacing direction="horizontal" size={4} />
         <span className="text-black font-body2">x</span>
         <Spacing direction="horizontal" size={5} />
-        <span className="text-pink font-body2">{ticketCount}</span>
+        <span className="text-pink font-body2">{ticketList.length}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>
     </div>

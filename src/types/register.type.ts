@@ -15,4 +15,5 @@ export interface FormStepProps extends FormData {
 export interface FormStepOption {
   src: string
   label: string
+  engLabel: string
 }

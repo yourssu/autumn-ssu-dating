@@ -15,12 +15,21 @@ interface PopupModalProps {
   mbti: MbtiType
   animal: AnimalType
   content: string
+  contact: string
   gender: GenderType
   isPopup: boolean
   onClickClose: () => void
 }
 
-const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: PopupModalProps) => {
+const PopupModal = ({
+  nickname,
+  mbti,
+  animal,
+  content,
+  contact,
+  gender,
+  onClickClose,
+}: PopupModalProps) => {
   const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
   const [isChecked, setIsChecked] = useState<boolean>(false)
 
@@ -97,7 +106,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
         <Spacing direction="vertical" size={4} />
         <ContactButton
           contactOpen={contactOpen}
-          contact={'contact'}
+          contact={contact}
           isChecked={isChecked}
           onClick={() => {
             if (isChecked) {

@@ -37,6 +37,7 @@ export type CurrentPopupSelectedType = {
   nickname: string
   mbti: MbtiType
   gender: GenderType
+  contact: string
   animal: AnimalType
   content: string
 }

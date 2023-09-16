@@ -17,7 +17,7 @@ const Layout = () => {
     <div className={`${bgUrl} w-screen h-screen bg-cover overflow-hidden`}>
       {!isHome && (
         <>
-          <TopBar title={title} backNav={backNav as string} ticketCount={1}></TopBar>
+          <TopBar title={title} backNav={backNav as string}></TopBar>
           <Spacing direction="vertical" size={44}></Spacing>
         </>
       )}

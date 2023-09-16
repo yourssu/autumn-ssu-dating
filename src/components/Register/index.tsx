@@ -80,7 +80,7 @@ const Register = () => {
       setTicketList(currentTicketList)
       setRegisterToast({
         isShow: true,
-        toastMessage: '등록 완료!\n둘러보기에서 다른 프로필을 구경해보세요 👀',
+        toastMessage: '등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀',
       })
       navigate('/')
     } catch (error) {

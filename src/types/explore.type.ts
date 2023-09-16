@@ -12,6 +12,8 @@ export interface CurrentExploreFilterType {
   femaleAnimal: FemaleAnimalType
 }
 
+export type ContactOpenType = 'opened' | 'closed'
+
 export type AnimalTabMode = 'image' | 'text'
 
 export type MbtiType =
@@ -30,3 +32,12 @@ export type MbtiType =
   | 'ESTJ'
   | 'ENFJ'
   | 'ENTJ'
+
+export type CurrentPopupSelectedType = {
+  nickname: string
+  mbti: MbtiType
+  gender: GenderType
+  contact: string
+  animal: AnimalType
+  content: string
+}

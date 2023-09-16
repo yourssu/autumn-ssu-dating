@@ -15,7 +15,7 @@ const Chip = ({ isSelected = 'notSelected', children, ...props }: ChipProps) => 
 
   return (
     <div
-      className={`w-[52px] h-[52px] rounded-[12px] p-2 flex justify-center items-center text-body2 ${selectedStyle[isSelected]}`}
+      className={`w-[52px] h-[52px] rounded-[12px] flex justify-center items-center text-body2 ${selectedStyle[isSelected]}`}
       {...props}
     >
       {children}

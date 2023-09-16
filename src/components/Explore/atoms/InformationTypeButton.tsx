@@ -1,18 +1,49 @@
 import EllipseSeperator from '../../../assets/ellipseSeperator.svg'
-import { AnimalType, MbtiType } from '../../../types/explore.type'
+import {
+  AnimalType,
+  CurrentPopupSelectedType,
+  GenderType,
+  MbtiType,
+} from '../../../types/explore.type'
 import Spacing from '../../common/Spacing'
 import TypeButton from '../../common/TypeButton'
 
-interface InformationTypeButtonProps {
+interface InformationTypeButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   nickname: string
   mbti: MbtiType
   animal: AnimalType
   content: string
+  contact: string
+  gender: GenderType
+  onButtonClick: (e: CurrentPopupSelectedType) => void
 }
 
-const InformationTypeButton = ({ nickname, mbti, animal, content }: InformationTypeButtonProps) => {
+const InformationTypeButton = ({
+  nickname,
+  mbti,
+  animal,
+  content,
+  contact,
+  gender,
+  onButtonClick,
+  ...props
+}: InformationTypeButtonProps) => {
   return (
-    <TypeButton width={161} height={140}>
+    <TypeButton
+      width={161}
+      height={140}
+      onClick={() =>
+        onButtonClick({
+          nickname,
+          mbti,
+          gender,
+          contact,
+          animal,
+          content,
+        })
+      }
+      {...props}
+    >
       <div className="flex justify-start flex-col w-[129px] h-[104px]">
         <span className="text-body1">{nickname}</span>
         <Spacing direction="vertical" size={2} />

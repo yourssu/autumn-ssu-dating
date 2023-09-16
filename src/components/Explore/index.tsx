@@ -1,12 +1,18 @@
 import { useRef } from 'react'
 
+import { InfiniteData } from '@tanstack/react-query'
+import InfiniteScroll from 'react-infinite-scroller'
+
 import AnimalTabBar from './atoms/AnimalTabBar'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
 
 import useExploreFilter from '../../hooks/useExploreFilter'
+import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
+import { UsersResponse } from '../../types/getAnimals.type'
+import { animalServerToClient } from '../../utils/animalUtil'
 import Spacing from '../common/Spacing'
 
 const Explore = () => {
@@ -15,6 +21,13 @@ const Explore = () => {
     usePopup()
 
   const bgRef = useRef<HTMLDivElement>(null)
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } = useGetAnimals(
+    currentExploreFilter.gender,
+    currentExploreFilter.gender === 'female'
+      ? currentExploreFilter.femaleAnimal
+      : currentExploreFilter.maleAnimal
+  )
 
   return (
     <div className="h-screen w-screen overflow-hidden">
@@ -32,18 +45,29 @@ const Explore = () => {
               onClickHandler={handleAnimalTab}
             />
             <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
-              {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item) => (
-                <InformationTypeButton
-                  nickname="슽엘라"
-                  mbti="INFP"
-                  key={item}
-                  animal="뿌슝이"
-                  gender="female"
-                  contact="djjd"
-                  content="ghsdjkghjksdfjkhsdjkfhsjkdhfjksdhfjksdhfjkhsdjkfhjksdhfjksdhfjkshdfjkhsdjkhfsjkdhfjkhsdjkfhsdjkfhsdjkghfjksdhhgjkh"
-                  onButtonClick={handlePopupSelected}
-                ></InformationTypeButton>
-              ))}
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={fetchNextPage}
+                hasMore={hasNextPage}
+                loader={
+                  <div className="loader" key={0}>
+                    Loading ...
+                  </div>
+                }
+                useWindow={false}
+              >
+                {(data as InfiniteData<UsersResponse>).pages?.map((item, index) => (
+                  <InformationTypeButton
+                    nickname={item.nickName}
+                    mbti={item.mbti}
+                    key={index}
+                    animal={animalServerToClient(item.animals)}
+                    gender={item.gender}
+                    content={item.introduce}
+                    onButtonClick={handlePopupSelected}
+                  ></InformationTypeButton>
+                ))}
+              </InfiniteScroll>
             </div>
           </div>
         ) : (
@@ -80,7 +104,6 @@ const Explore = () => {
             nickname={currentPopupSelected.nickname}
             mbti={currentPopupSelected.mbti}
             gender={currentPopupSelected.gender}
-            contact={currentPopupSelected.contact}
             animal={currentPopupSelected.animal}
             content={currentPopupSelected.content}
             isPopup={isPopup}

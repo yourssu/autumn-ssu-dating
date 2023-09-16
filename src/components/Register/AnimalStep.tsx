@@ -1,7 +1,7 @@
 import ImageButton from './ImageButton'
 
 import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../constant'
-import { AnimalType, FormStepProps } from '../../types/register.type'
+import { AnimalServerType, FormStepProps } from '../../types/register.type'
 import TypeButton from '../common/TypeButton'
 
 const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
@@ -10,7 +10,7 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
   const onClick = (e: React.MouseEvent) => {
     updateFields({
       animals: (e.target as HTMLDivElement | HTMLImageElement | HTMLParagraphElement)
-        .title as AnimalType,
+        .title as AnimalServerType,
     })
     if (moveNextStep) {
       moveNextStep()

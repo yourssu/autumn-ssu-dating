@@ -1,9 +1,9 @@
-import { AnimalType } from '../../types/register.type'
+import { AnimalServerType } from '../../types/register.type'
 
 interface ImageButtonProps {
   src: string
   label: string
-  animals?: AnimalType | undefined
+  animals?: AnimalServerType | undefined
   onClick: React.MouseEventHandler
 }
 

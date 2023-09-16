@@ -1,6 +1,6 @@
 export interface FormData {
   gender: string
-  animals: string
+  animals: AnimalType
   nickName: string
   mbti: string
   introduce: string
@@ -29,3 +29,4 @@ export type AnimalType =
   | 'BEAR'
   | 'DINO'
   | 'WOLF'
+  | ''

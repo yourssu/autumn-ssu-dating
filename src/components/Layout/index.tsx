@@ -8,8 +8,10 @@ const Layout = () => {
   const { pathname, search } = useLocation()
   const { title, backNav } = LINK_TITLE[pathname + search]
 
-  const bgUrl =
-    pathname === '/' ? `bg-[url('/src/assets/bg_palePink.png')]` : `bg-[url('/src/assets/bg.png')]`
+  const isHome = pathname === '/'
+  const bgUrl = isHome
+    ? `bg-[url('/src/assets/bg_palePink.png')]`
+    : `bg-[url('/src/assets/bg.png')]`
 
   return (
     <div className={`${bgUrl} w-screen h-screen bg-cover overflow-hidden`}>

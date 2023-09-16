@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 
 import ticket from '../../assets/ticket.svg'
+import { ticketListAtom } from '../../state/ticketListAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
@@ -10,6 +12,8 @@ import Spacing from '../common/Spacing'
 import TypeButton from '../common/TypeButton'
 
 const Home = () => {
+  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+
   const [code, setCode] = useState<string>('')
 
   const animalOptions = getAnimalOptions()
@@ -18,6 +22,7 @@ const Home = () => {
 
   const verifyCode = () => {
     alert(code)
+    setTicketList((prevTicketList) => [...prevTicketList, code])
   }
 
   return (
@@ -50,7 +55,7 @@ const Home = () => {
         <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
         <Spacing direction="horizontal" size={4} />
         <p>
-          이용권 x <span className="text-pink">1</span>
+          이용권 x <span className="text-pink">{ticketList.length}</span>
         </p>
       </div>
       <Spacing direction="vertical" size={40} />

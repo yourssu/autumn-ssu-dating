@@ -69,7 +69,7 @@ const Register = () => {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const profile: RegisterRequest = { ...formData, code: 'oZGqFWHu1q' }
+    const profile: RegisterRequest = { ...formData, code: ticketList[0] }
     const gender = formData.gender
 
     if ('gender' in profile) delete profile.gender
@@ -85,7 +85,6 @@ const Register = () => {
       navigate('/')
     } catch (error) {
       const authError = error as AxiosError
-      console.log(authError)
       switch (authError.response?.status) {
         case 400:
           setToastMessage('이미 존재하는 닉네임이에요.')

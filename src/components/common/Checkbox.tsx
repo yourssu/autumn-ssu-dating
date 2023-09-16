@@ -1,3 +1,5 @@
+import Spacing from './Spacing'
+
 import checkedIcon from '../../assets/checkedIcon.svg'
 import uncheckedIcon from '../../assets/uncheckedIcon.svg'
 
@@ -14,13 +16,20 @@ const Checkbox = ({
   onImgClick,
   onLabelClick,
 }: CheckboxProps) => {
+  const checkCaseJustify = {
+    '연락처 확인': 'justify-start',
+    등록: 'justify-center',
+  }
+
   return (
-    <div className="flex justify-center">
+    <div className={`flex ${checkCaseJustify[checkCase]} justify-start text-center h-[32px]`}>
       <img
+        className="h-[16px] w-[16px]"
         src={isChecked ? (checkedIcon as string) : (uncheckedIcon as string)}
         onClick={onImgClick}
       />
-      <label className="text-caption text-pink ml-1 my-2">
+      <Spacing direction="horizontal" size={4} />
+      <label className="text-caption text-pink">
         <input type="checkbox" onChange={onLabelClick} className="hidden" />
         {checkCase} 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
       </label>

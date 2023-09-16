@@ -1,10 +1,10 @@
 export interface FormData {
   gender: string
-  animal: string
-  nickname: string
+  animals: string
+  nickName: string
   mbti: string
-  appeal: string
-  tel: string
+  introduce: string
+  contact: string
 }
 
 export interface FormStepProps extends FormData {

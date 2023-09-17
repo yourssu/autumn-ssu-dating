@@ -1,6 +1,7 @@
 import ImageButton from './ImageButton'
 
 import { FormStepOption, FormStepProps } from '../../types/register.type'
+import Spacing from '../common/Spacing'
 import TypeButton from '../common/TypeButton'
 
 const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
@@ -19,8 +20,9 @@ const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <div className="grid gap-y-6 w-fit">
+    <div className="h-[calc(100vh-88px)] flex flex-col justify-center w-fit">
       <p className="text-center text-title">당신의 성별은?</p>
+      <Spacing direction="vertical" size={24} />
       <div className="grid grid-cols-2 gap-x-6">
         {genderOptions.map((option) => (
           <TypeButton key={option.label}>

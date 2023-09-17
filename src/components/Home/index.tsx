@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -24,6 +24,7 @@ const Home = () => {
   const [toastMessage, setToastMessage] = useState<string>('')
 
   const animalOptions = getAnimalOptions()
+  const animalCardRef = useRef<HTMLDivElement>(null)
 
   const navigate = useNavigate()
 
@@ -75,6 +76,26 @@ const Home = () => {
     }
   }, [])
 
+  useEffect(() => {
+    let scrollInterval = 1
+    const scrollBox = animalCardRef.current as HTMLDivElement
+    const scrollWidth = scrollBox.scrollWidth
+    const clientWidth = scrollBox.clientWidth
+
+    const timer = setInterval(() => {
+      const scrollLeft = scrollBox.scrollLeft
+      animalCardRef.current?.scrollTo(scrollLeft + scrollInterval, 0)
+
+      if (scrollBox.scrollLeft === 0 || scrollBox.scrollLeft + clientWidth == scrollWidth) {
+        scrollInterval *= -1
+      }
+    }, 20)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+
   return (
     <div>
       <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
@@ -109,7 +130,10 @@ const Home = () => {
         </p>
       </div>
       <Spacing direction="vertical" size={40} />
-      <div className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px] scrollbar-hide">
+      <div
+        className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px] scrollbar-hide"
+        ref={animalCardRef}
+      >
         {animalOptions.map((option, index) => (
           <TypeButton key={index}>
             <img src={option.src} />

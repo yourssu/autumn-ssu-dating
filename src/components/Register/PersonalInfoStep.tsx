@@ -38,7 +38,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
         <p className="text-title whitespace-pre-line">
           {'아래 정보들을 입력해\n본인을 소개해보세요!'}
         </p>
-
         <div className="grid gap-y-6 text-body2">
           <div>
             <label className="w-full flex items-center justify-between">
@@ -57,7 +56,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
               onChange={(e) => updateFields({ nickName: (e.target as HTMLInputElement).value })}
             />
           </div>
-
           <div>
             <label>
               MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
@@ -77,7 +75,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
               ))}
             </div>
           </div>
-
           <div className="grid">
             <label className="w-full flex items-center justify-between">
               본인 매력 어필
@@ -94,7 +91,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
               onChange={(e) => updateFields({ introduce: e.target.value })}
             />
           </div>
-
           <div>
             <label>연락처 (인스타그램 ID / 전화번호)</label>
             <Spacing direction="vertical" size={8} />
@@ -107,7 +103,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             />
           </div>
         </div>
-
+        <Spacing direction="vertical" size={8} />
         <div>
           <Checkbox
             checkCase="등록"

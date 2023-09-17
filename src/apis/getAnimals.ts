@@ -14,9 +14,6 @@ const getAnimals = async (
       page,
     },
   })
-
-  console.log(response.data)
-
   return response.data
 }
 

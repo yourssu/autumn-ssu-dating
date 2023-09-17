@@ -43,10 +43,13 @@ const AnimalTabBar = ({ currentAnimalTab, gender, onClickHandler }: AnimalTabPro
         />
         {gender === 'female'
           ? ANIMAL_OPTIONS_FEMALE.map((option) => (
-              <>
+              <div
+                key={option.label + 'female'}
+                className="flex
+              "
+              >
                 <Spacing direction="horizontal" size={6} />
                 <AnimalTab
-                  key={gender + option.label}
                   src={option.src}
                   label={option.label}
                   mode="image"
@@ -54,13 +57,13 @@ const AnimalTabBar = ({ currentAnimalTab, gender, onClickHandler }: AnimalTabPro
                   currentAnimalTab={currentAnimalTab}
                   onClickAnimalHandler={onClickHandler}
                 />
-              </>
+              </div>
             ))
           : ANIMAL_OPTIONS_MALE.map((option) => (
-              <>
+              <div key={option.label + 'male'} className="flex">
                 <Spacing direction="horizontal" size={6} />
                 <AnimalTab
-                  key={gender + option.label}
+                  key={option.label + 'male'}
                   src={option.src}
                   label={option.label}
                   mode="image"
@@ -68,7 +71,7 @@ const AnimalTabBar = ({ currentAnimalTab, gender, onClickHandler }: AnimalTabPro
                   currentAnimalTab={currentAnimalTab}
                   onClickAnimalHandler={onClickHandler}
                 />
-              </>
+              </div>
             ))}
         <Spacing direction="horizontal" size={24}></Spacing>
       </div>

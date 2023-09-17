@@ -76,7 +76,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="flex flex-col justify-center items-center h-full overflow-y-scroll">
+    <div className="flex flex-col justify-center items-center h-full">
       <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>

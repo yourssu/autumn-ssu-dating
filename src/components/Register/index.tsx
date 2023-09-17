@@ -28,7 +28,7 @@ const Register = () => {
     contact: '',
   })
 
-  const [failMessage, setFailMessage] = useState<string>('')
+  const [failToast, setFailToast] = useState<string>('')
   const setSuccessToast = useSetRecoilState(registerToastAtom)
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([
@@ -87,15 +87,15 @@ const Register = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setFailMessage('이미 존재하는 닉네임이에요.')
+          setFailToast('이미 존재하는 닉네임이에요.')
           break
 
         case 404:
-          setFailMessage('존재하지 않는 인증코드에요.')
+          setFailToast('존재하지 않는 인증코드에요.')
           break
 
         default:
-          setFailMessage('등록에 실패했습니다.')
+          setFailToast('등록에 실패했습니다.')
           break
       }
     }
@@ -104,7 +104,7 @@ const Register = () => {
 
   function hideToast() {
     const timer = setTimeout(() => {
-      setFailMessage('')
+      setFailToast('')
     }, 2000)
 
     return () => {
@@ -119,7 +119,7 @@ const Register = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>{currentStep}</form>
-      {failMessage && <ToastMessage>{failMessage}</ToastMessage>}
+      {failToast && <ToastMessage>{failToast}</ToastMessage>}
     </div>
   )
 }

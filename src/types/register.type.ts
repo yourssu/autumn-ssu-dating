@@ -1,6 +1,6 @@
 export interface FormData {
   gender: string
-  animals: string
+  animals: AnimalServerType
   nickName: string
   mbti: string
   introduce: string
@@ -15,10 +15,10 @@ export interface FormStepProps extends FormData {
 export interface FormStepOption {
   src: string
   label: string
-  animals?: AnimalType
+  animals?: AnimalServerType
 }
 
-export type AnimalType =
+export type AnimalServerType =
   | 'ALL'
   | 'CAT'
   | 'DOG'
@@ -29,3 +29,8 @@ export type AnimalType =
   | 'BEAR'
   | 'DINO'
   | 'WOLF'
+
+export interface RegisterToastData {
+  isShow: boolean
+  toastMessage: string
+}

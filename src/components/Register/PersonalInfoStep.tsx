@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react'
 
+import { useRecoilValue } from 'recoil'
+
 import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
-import checkedIcon from '../../assets/checkedIcon.svg'
-import uncheckedIcon from '../../assets/uncheckedIcon.svg'
+import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormStepProps } from '../../types/register.type'
 import BoxButton from '../common/BoxButton'
+import Checkbox from '../common/Checkbox'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
 
 const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: FormStepProps) => {
+  const ticketList = useRecoilValue(ticketListAtom)
+
   const [isChecked, setIsChecked] = useState(false)
-  const canRegister = nickName && mbti.length === 4 && introduce && contact && isChecked
+  const canRegister =
+    nickName && mbti.length === 4 && introduce && contact && isChecked && ticketList.length
 
   const mbtiOptions = [
     ['E', 'I'],
@@ -37,14 +42,14 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
           <label className="w-full flex items-center justify-between">
             닉네임
             <span className="text-caption text-gray">
-              ( <span className="text-pink">{nickName.length}</span> / 10 )
+              ( <span className="text-pink">{nickName.length}</span> / 9 )
             </span>
           </label>
           <Spacing direction="vertical" size={8} />
           <InputField
             required
             width={342}
-            maxLength={10}
+            maxLength={9}
             placeholder="ex. 숭실대 뿌슝이"
             value={nickName}
             onChange={(e) => updateFields({ nickName: (e.target as HTMLInputElement).value })}
@@ -102,24 +107,16 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
       </div>
 
       <div>
-        <div className="flex justify-center">
-          <img
-            src={isChecked ? (checkedIcon as string) : (uncheckedIcon as string)}
-            onClick={() => {
-              setIsChecked((prev) => !prev)
-            }}
-          />
-          <label className="text-caption text-pink ml-1 my-2">
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                setIsChecked(e.target.checked)
-              }}
-              className="hidden"
-            />
-            등록 시 이용권 한 장이 차감됩니다. (남은 이용권수: n장)
-          </label>
-        </div>
+        <Checkbox
+          checkCase="등록"
+          isChecked={isChecked}
+          onImgClick={() => {
+            setIsChecked((prev) => !prev)
+          }}
+          onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setIsChecked(e.target.checked)
+          }}
+        />
 
         <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
           <button

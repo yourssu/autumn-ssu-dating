@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss'
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const config: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -57,6 +59,9 @@ const config: Config = {
             lineHeight: '15.6px',
           },
         ],
+      },
+      fontFamily: {
+        sans: ['Pretendard Variable', ...defaultTheme.fontFamily.sans],
       },
     },
     boxShadow: {

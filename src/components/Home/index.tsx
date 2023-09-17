@@ -76,7 +76,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <div className="h-[calc(100%)] overflow-y-scroll">
       <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>
@@ -140,6 +140,7 @@ const Home = () => {
       </BoxButton>
       {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
       {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
+      <Spacing direction="vertical" size={44}></Spacing>
     </div>
   )
 }

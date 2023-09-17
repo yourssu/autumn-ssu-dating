@@ -42,14 +42,14 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
           <label className="w-full flex items-center justify-between">
             닉네임
             <span className="text-caption text-gray">
-              ( <span className="text-pink">{nickName.length}</span> / 10 )
+              ( <span className="text-pink">{nickName.length}</span> / 9 )
             </span>
           </label>
           <Spacing direction="vertical" size={8} />
           <InputField
             required
             width={342}
-            maxLength={10}
+            maxLength={9}
             placeholder="ex. 숭실대 뿌슝이"
             value={nickName}
             onChange={(e) => updateFields({ nickName: (e.target as HTMLInputElement).value })}

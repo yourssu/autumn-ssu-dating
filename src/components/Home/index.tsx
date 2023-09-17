@@ -98,7 +98,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-full">
-      <p className="w-[342px] text-center text-pink text-titleBold whitespace-pre-line">
+      <p className="text-center text-pink text-titleBold whitespace-pre-line">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={15} />
@@ -122,7 +122,7 @@ const Home = () => {
         </BoxButton>
       </div>
       <Spacing direction="vertical" size={12} />
-      <div className="w-[342px] flex justify-center text-body2">
+      <div className="flex justify-center text-body2">
         <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
         <Spacing direction="horizontal" size={4} />
         <p>
@@ -131,7 +131,7 @@ const Home = () => {
       </div>
       <Spacing direction="vertical" size={40} />
       <div
-        className="grid grid-flow-col gap-x-5 overflow-scroll w-[343px] scrollbar-hide"
+        className="grid grid-flow-col gap-x-5 overflow-scroll w-full scrollbar-hide"
         ref={animalCardRef}
       >
         {animalOptions.map((option, index) => (

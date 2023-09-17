@@ -98,8 +98,8 @@ const Register = () => {
           setFailToast('등록에 실패했습니다.')
           break
       }
+      hideToast()
     }
-    hideToast()
   }
 
   function hideToast() {

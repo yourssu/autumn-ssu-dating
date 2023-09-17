@@ -114,10 +114,6 @@ const Register = () => {
   }
 
   useEffect(() => {
-    console.log(formData)
-  }, [formData, setFormData])
-
-  useEffect(() => {
     updateStep(0)
   }, [])
 

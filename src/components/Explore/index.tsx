@@ -28,10 +28,6 @@ const Explore = () => {
       : currentExploreFilter.maleAnimal
   )
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
   return (
     <div className="h-screen w-screen overflow-hidden">
       <GenderTabBar

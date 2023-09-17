@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 import { IsDisabledType, IsLineType, SizeType } from '../../types/boxButton.type'
 
-interface BoxButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+interface BoxButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   isDisabled?: IsDisabledType
   isLine?: IsLineType
   size?: SizeType
@@ -35,12 +35,14 @@ const BoxButton = ({
   }
 
   return (
-    <div
+    <button
+      style={{ WebkitTapHighlightColor: 'transparent' }}
       className={`${defaultStyle} ${disableStyle[isDisabled]} ${lineStyle[isLine]} ${sizeStyle[size]}`}
       {...props}
+      disabled={isDisabled === 'disabled'}
     >
       {children}
-    </div>
+    </button>
   )
 }
 

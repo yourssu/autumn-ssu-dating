@@ -2,7 +2,7 @@ import { FormEvent, useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import AnimalStep from './AnimalStep'
 import GenderStep from './GenderStep'
@@ -18,7 +18,7 @@ import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
-  const [_, setRegisterToast] = useRecoilState(registerToastAtom)
+  const setRegisterToast = useSetRecoilState(registerToastAtom)
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',

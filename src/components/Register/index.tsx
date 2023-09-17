@@ -112,8 +112,21 @@ const Register = () => {
     }
   }
 
+  function handlePopState() {
+    const currentURL = window.location.href
+
+    if (currentURL.includes('step=')) {
+      navigate('/')
+    }
+  }
+
   useEffect(() => {
     updateStep(0)
+    window.addEventListener('popstate', handlePopState)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
   }, [])
 
   return (

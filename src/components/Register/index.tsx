@@ -18,7 +18,12 @@ import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
-  const setRegisterToast = useSetRecoilState(registerToastAtom)
+
+  const [failToast, setFailToast] = useState<string>('')
+  const setSuccessToast = useSetRecoilState(registerToastAtom)
+
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',
@@ -28,8 +33,6 @@ const Register = () => {
     introduce: '',
     contact: '',
   })
-  const [showToast, setShowToast] = useState(false)
-  const [toastMessage, setToastMessage] = useState<string>('')
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([
     <GenderStep
@@ -47,19 +50,16 @@ const Register = () => {
     <PersonalInfoStep key={'자기소개'} {...formData} updateFields={updateFields} />,
   ])
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  function updateFields(fields: Partial<FormData>) {
+    setFormData((prev) => {
+      return { ...prev, ...fields }
+    })
+  }
 
   function updateStep(stepIndex: number) {
     const search = new URLSearchParams(location.search)
     search.set('step', stepIndex.toString())
     navigate(`${location.pathname}?${search.toString()}`)
-  }
-
-  function updateFields(fields: Partial<FormData>) {
-    setFormData((prev) => {
-      return { ...prev, ...fields }
-    })
   }
 
   function moveNextStep() {
@@ -78,7 +78,7 @@ const Register = () => {
       await registerProfile({ gender, profile })
       const currentTicketList = ticketList.slice(1)
       setTicketList(currentTicketList)
-      setRegisterToast({
+      setSuccessToast({
         isShow: true,
         toastMessage: '등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀',
       })
@@ -87,25 +87,24 @@ const Register = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setToastMessage('이미 존재하는 닉네임이에요.')
+          setFailToast('이미 존재하는 닉네임이에요.')
           break
 
         case 404:
-          setToastMessage('존재하지 않는 인증코드에요.')
+          setFailToast('존재하지 않는 인증코드에요.')
           break
 
         default:
-          setToastMessage('등록에 실패했습니다.')
+          setFailToast('등록에 실패했습니다.')
           break
       }
+      hideToast()
     }
-    displayToast()
   }
 
-  function displayToast() {
-    setShowToast(true)
+  function hideToast() {
     const timer = setTimeout(() => {
-      setShowToast(false)
+      setFailToast('')
     }, 2000)
 
     return () => {
@@ -113,18 +112,27 @@ const Register = () => {
     }
   }
 
-  useEffect(() => {
-    console.log(formData)
-  }, [formData, setFormData])
+  function handlePopState() {
+    const currentURL = window.location.href
+
+    if (currentURL.includes('step=')) {
+      navigate('/')
+    }
+  }
 
   useEffect(() => {
     updateStep(0)
+    window.addEventListener('popstate', handlePopState)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
   }, [])
 
   return (
     <div>
       <form onSubmit={onSubmit}>{currentStep}</form>
-      {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
+      {failToast && <ToastMessage>{failToast}</ToastMessage>}
     </div>
   )
 }

@@ -29,7 +29,7 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
             <Spacing direction="horizontal" size={8}></Spacing>
             <img
               className="cursor-pointer w-[14px] h-[14px]"
-              src={CopyButton}
+              src={CopyButton as string}
               onClick={() => {
                 navigator.clipboard.writeText(contact)
               }}

@@ -14,6 +14,7 @@ import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormData } from '../../types/register.type'
 import { RegisterRequest } from '../../types/registerApi.type'
+import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
@@ -130,9 +131,12 @@ const Register = () => {
   }, [])
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>{currentStep}</form>
-      {failToast && <ToastMessage>{failToast}</ToastMessage>}
+    <div className=" w-screen h-[calc(100%-44px)] overflow-y-scroll flex flex-col items-center">
+      <div className="flex flex-col items-center">
+        <form onSubmit={onSubmit}>{currentStep}</form>
+        {failToast && <ToastMessage>{failToast}</ToastMessage>}
+      </div>
+      <Spacing direction="vertical" size={88}></Spacing>
     </div>
   )
 }

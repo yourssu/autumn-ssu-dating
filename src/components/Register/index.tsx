@@ -22,7 +22,7 @@ const Register = () => {
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',
-    animals: '',
+    animals: 'ALL',
     nickName: '',
     mbti: '',
     introduce: '',

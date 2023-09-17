@@ -7,7 +7,7 @@ import Spacing from '../../common/Spacing'
 
 interface ContactButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   contactOpen: ContactOpenType
-  contact: string
+  contact?: string
   isChecked: boolean
 }
 
@@ -21,24 +21,21 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
         isLine={contactOpen === 'opened' ? 'line' : 'filled'}
         isDisabled={contactOpen === 'opened' ? 'disabled' : isChecked ? 'abled' : 'disabled'}
       >
-        {contactOpen === 'closed' ? (
-          <span>연락처 확인하기</span>
-        ) : (
-          <>
-            <span>{contact}</span>
-            <Spacing direction="horizontal" size={8}></Spacing>
-            <img
-              className="cursor-pointer w-[14px] h-[14px]"
-              src={CopyButton as string}
-              onClick={() => {
-                navigator.clipboard.writeText(contact)
-              }}
-              alt="복사하기 버튼"
-              title="복사하기 버튼"
-            />
-          </>
-        )}
+        {contactOpen === 'closed' && !contact ? <span>연락처 확인하기</span> : <></>}
       </BoxButton>
+      <span className="flex justify-center items-center relative top-[calc(-50%)]">
+        <span>{contact}</span>
+        <Spacing direction="horizontal" size={8}></Spacing>
+        <img
+          className="cursor-pointer w-[14px] h-[14px]"
+          src={CopyButton as string}
+          onClick={() => {
+            contact && navigator.clipboard.writeText(contact)
+          }}
+          alt="복사하기 버튼"
+          title="복사하기 버튼"
+        />
+      </span>
     </span>
   )
 }

@@ -19,6 +19,12 @@ import ToastMessage from '../common/ToastMessage'
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
+  const [failToast, setFailToast] = useState<string>('')
+  const setSuccessToast = useSetRecoilState(registerToastAtom)
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const [formData, setFormData] = useState<FormData>({
     gender: '',
     animals: 'ALL',
@@ -27,9 +33,6 @@ const Register = () => {
     introduce: '',
     contact: '',
   })
-
-  const [failToast, setFailToast] = useState<string>('')
-  const setSuccessToast = useSetRecoilState(registerToastAtom)
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([
     <GenderStep
@@ -47,19 +50,16 @@ const Register = () => {
     <PersonalInfoStep key={'자기소개'} {...formData} updateFields={updateFields} />,
   ])
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  function updateFields(fields: Partial<FormData>) {
+    setFormData((prev) => {
+      return { ...prev, ...fields }
+    })
+  }
 
   function updateStep(stepIndex: number) {
     const search = new URLSearchParams(location.search)
     search.set('step', stepIndex.toString())
     navigate(`${location.pathname}?${search.toString()}`)
-  }
-
-  function updateFields(fields: Partial<FormData>) {
-    setFormData((prev) => {
-      return { ...prev, ...fields }
-    })
   }
 
   function moveNextStep() {

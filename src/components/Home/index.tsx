@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 
 import { authCode } from '../../apis/authApi'
 import ticket from '../../assets/ticket.svg'
+import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
@@ -16,6 +17,8 @@ import TypeButton from '../common/TypeButton'
 
 const Home = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [registerToast, setRegisterToast] = useRecoilState(registerToastAtom)
+
   const [code, setCode] = useState<string>('')
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState<string>('')
@@ -59,6 +62,18 @@ const Home = () => {
       clearTimeout(timer)
     }
   }
+
+  useEffect(() => {
+    if (registerToast.isShow) {
+      const timer = setTimeout(() => {
+        setRegisterToast({ isShow: false, toastMessage: '' })
+      }, 2000) // 애니메이션에 걸리는 시간과 동일하게 설정
+
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [])
 
   return (
     <div>
@@ -124,6 +139,7 @@ const Home = () => {
         </button>
       </BoxButton>
       {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
+      {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 export interface FormData {
   gender: string
-  animals: string
+  animals: AnimalServerType
   nickName: string
   mbti: string
   introduce: string
@@ -29,3 +29,8 @@ export type AnimalServerType =
   | 'BEAR'
   | 'DINO'
   | 'WOLF'
+
+export interface RegisterToastData {
+  isShow: boolean
+  toastMessage: string
+}

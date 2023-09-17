@@ -18,7 +18,6 @@ import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
-  const setRegisterToast = useSetRecoilState(registerToastAtom)
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',
@@ -28,8 +27,10 @@ const Register = () => {
     introduce: '',
     contact: '',
   })
-  const [showToast, setShowToast] = useState(false)
-  const [toastMessage, setToastMessage] = useState<string>('')
+
+  const [showFailToast, setShowFailToast] = useState(false)
+  const [failMessage, setFailMessage] = useState<string>('')
+  const setSuccessToast = useSetRecoilState(registerToastAtom)
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([
     <GenderStep
@@ -78,7 +79,7 @@ const Register = () => {
       await registerProfile({ gender, profile })
       const currentTicketList = ticketList.slice(1)
       setTicketList(currentTicketList)
-      setRegisterToast({
+      setSuccessToast({
         isShow: true,
         toastMessage: '등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀',
       })
@@ -87,15 +88,15 @@ const Register = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setToastMessage('이미 존재하는 닉네임이에요.')
+          setFailMessage('이미 존재하는 닉네임이에요.')
           break
 
         case 404:
-          setToastMessage('존재하지 않는 인증코드에요.')
+          setFailMessage('존재하지 않는 인증코드에요.')
           break
 
         default:
-          setToastMessage('등록에 실패했습니다.')
+          setFailMessage('등록에 실패했습니다.')
           break
       }
     }
@@ -103,9 +104,9 @@ const Register = () => {
   }
 
   function displayToast() {
-    setShowToast(true)
+    setShowFailToast(true)
     const timer = setTimeout(() => {
-      setShowToast(false)
+      setShowFailToast(false)
     }, 2000)
 
     return () => {
@@ -120,7 +121,7 @@ const Register = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>{currentStep}</form>
-      {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
+      {showFailToast && <ToastMessage>{failMessage}</ToastMessage>}
     </div>
   )
 }

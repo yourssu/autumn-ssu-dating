@@ -71,7 +71,11 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
         <div className="flex text-body2">
           <span>{mbti}</span>
           <Spacing direction="horizontal" size={4} />
-          <img src={EllipseSeperator} alt="공간 분리용 동그라미" title="공간 분리용 동그라미" />
+          <img
+            src={EllipseSeperator as string}
+            alt="공간 분리용 동그라미"
+            title="공간 분리용 동그라미"
+          />
           <Spacing direction="horizontal" size={4} />
           <span>{animal}</span>
         </div>

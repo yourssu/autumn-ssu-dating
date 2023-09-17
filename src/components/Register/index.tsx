@@ -28,7 +28,6 @@ const Register = () => {
     contact: '',
   })
 
-  const [showFailToast, setShowFailToast] = useState(false)
   const [failMessage, setFailMessage] = useState<string>('')
   const setSuccessToast = useSetRecoilState(registerToastAtom)
 
@@ -100,13 +99,12 @@ const Register = () => {
           break
       }
     }
-    displayToast()
+    hideToast()
   }
 
-  function displayToast() {
-    setShowFailToast(true)
+  function hideToast() {
     const timer = setTimeout(() => {
-      setShowFailToast(false)
+      setFailMessage('')
     }, 2000)
 
     return () => {
@@ -121,7 +119,7 @@ const Register = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>{currentStep}</form>
-      {showFailToast && <ToastMessage>{failMessage}</ToastMessage>}
+      {failMessage && <ToastMessage>{failMessage}</ToastMessage>}
     </div>
   )
 }

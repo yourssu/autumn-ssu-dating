@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 
 import { authCode } from '../../apis/authApi'
 import ticket from '../../assets/ticket.svg'
+import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
@@ -18,9 +19,9 @@ import TypeButton from '../common/TypeButton'
 
 const Home = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
-  const [registerToast, setRegisterToast] = useRecoilState(registerToastAtom)
 
   const { stateToast, setStateToast, hideStateToast } = useToast()
+  const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
 
@@ -55,16 +56,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (registerToast.isShow) {
-      const timer = setTimeout(() => {
-        setRegisterToast({ isShow: false, toastMessage: '' })
-      }, 2000) // 애니메이션에 걸리는 시간과 동일하게 설정
-
-      return () => {
-        clearTimeout(timer)
-      }
-    }
-  }, [])
+    hideRecoilStateToast()
+  }, [recoilStateToast, hideRecoilStateToast])
 
   useEffect(() => {
     let scrollInterval = 1
@@ -153,7 +146,11 @@ const Home = () => {
         </button>
       </BoxButton>
       {stateToast && <ToastMessage className="absolute bottom-[44px]">{stateToast}</ToastMessage>}
-      {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
+      {recoilStateToast.isShow && (
+        <ToastMessage className="absolute bottom-[44px]">
+          {recoilStateToast.toastMessage}
+        </ToastMessage>
+      )}
       <Spacing direction="vertical" size={44}></Spacing>
     </div>
   )

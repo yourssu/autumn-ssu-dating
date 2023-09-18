@@ -2,7 +2,7 @@ import { FormEvent, useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 import AnimalStep from './AnimalStep'
 import GenderStep from './GenderStep'
@@ -10,6 +10,7 @@ import PersonalInfoStep from './PersonalInfoStep'
 
 import { registerProfile } from '../../apis/registerApi'
 import useMultistepForm from '../../hooks/useMultistepForm'
+import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
@@ -22,7 +23,7 @@ const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
   const { stateToast, setStateToast, hideStateToast } = useToast()
-  const setSuccessToast = useSetRecoilState(registerToastAtom)
+  const { setRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -80,7 +81,7 @@ const Register = () => {
       await registerProfile({ gender, profile })
       const currentTicketList = ticketList.slice(1)
       setTicketList(currentTicketList)
-      setSuccessToast({
+      setRecoilStateToast({
         isShow: true,
         toastMessage: '등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀',
       })

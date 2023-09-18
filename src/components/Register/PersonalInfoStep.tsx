@@ -92,7 +92,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             />
           </div>
           <div>
-            <label>연락처 (인스타그램 ID / 전화번호)</label>
+            <label>연락처 (인스타그램 / 카카오톡 ID / 전화번호 중 택 1)</label>
             <Spacing direction="vertical" size={8} />
             <InputField
               required

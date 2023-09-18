@@ -11,9 +11,6 @@ export const registerProfile = async ({
   gender: string
   profile: RegisterRequest
 }): Promise<AxiosResponse<RegisterResponse>> => {
-  const response = await client.post(
-    `https://ssudate.xodns.site/register/${gender === '여자' ? 'female' : 'male'}`,
-    profile
-  )
+  const response = await client.post(`/register/${gender === '여자' ? 'female' : 'male'}`, profile)
   return response
 }

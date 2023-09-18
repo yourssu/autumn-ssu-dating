@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react'
 
-import InfiniteScroll from 'react-infinite-scroller'
-
 import AnimalTabBar from './atoms/AnimalTabBar'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
@@ -26,12 +24,16 @@ const Explore = () => {
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isError } = useGetAnimals(
+  const { data } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
       : currentExploreFilter.maleAnimal
   )
+
+  // useEffect(() => {
+  //   console.log(error)
+  // }, [error])
 
   useEffect(() => {
     hideRecoilStateToast()
@@ -55,68 +57,36 @@ const Explore = () => {
           onClickHandler={handleAnimalTab}
         />
         {currentExploreFilter.gender === 'female' ? (
-          <div className="flex flex-col h-full overflow-auto">
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={() => fetchNextPage()}
-              hasMore={hasNextPage}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-                </div>
-              }
-              useWindow={false}
-            >
-              <div className="flex w-screen justify-center">
-                <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
-                  {data?.pages.map((page) => {
-                    return page.users.map((item, index) => (
-                      <InformationTypeButton
-                        nickname={item.nickName}
-                        mbti={item.mbti}
-                        key={index}
-                        animal={animalServerToClient(item.animals)}
-                        gender={item.gender.toLowerCase() as GenderType}
-                        content={item.introduce}
-                        onButtonClick={handlePopupSelected}
-                      ></InformationTypeButton>
-                    ))
-                  })}
-                </div>
-              </div>
-            </InfiniteScroll>
+          <div className="flex w-screen justify-center">
+            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+              {data?.map((item, index) => (
+                <InformationTypeButton
+                  nickname={item.nickName}
+                  mbti={item.mbti}
+                  key={index}
+                  animal={animalServerToClient(item.animals)}
+                  gender={item.gender.toLowerCase() as GenderType}
+                  content={item.introduce}
+                  onButtonClick={handlePopupSelected}
+                ></InformationTypeButton>
+              ))}
+            </div>
           </div>
         ) : (
-          <div className="flex flex-col h-full overflow-auto">
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={() => fetchNextPage()}
-              hasMore={hasNextPage}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-                </div>
-              }
-              useWindow={false}
-            >
-              <div className="flex w-screen justify-center">
-                <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
-                  {data?.pages.map((page) => {
-                    return page.users.map((item, index) => (
-                      <InformationTypeButton
-                        nickname={item.nickName}
-                        mbti={item.mbti}
-                        key={index}
-                        animal={animalServerToClient(item.animals)}
-                        gender={item.gender.toLowerCase() as GenderType}
-                        content={item.introduce}
-                        onButtonClick={handlePopupSelected}
-                      ></InformationTypeButton>
-                    ))
-                  })}
-                </div>
-              </div>
-            </InfiniteScroll>
+          <div className="flex w-screen justify-center">
+            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+              {data?.map((item, index) => (
+                <InformationTypeButton
+                  nickname={item.nickName}
+                  mbti={item.mbti}
+                  key={index}
+                  animal={animalServerToClient(item.animals)}
+                  gender={item.gender.toLowerCase() as GenderType}
+                  content={item.introduce}
+                  onButtonClick={handlePopupSelected}
+                ></InformationTypeButton>
+              ))}
+            </div>
           </div>
         )}
       </div>

@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 
 import { authCode } from '../../apis/authApi'
 import ticket from '../../assets/ticket.svg'
+import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
@@ -19,9 +20,9 @@ const Home = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
   const [registerToast, setRegisterToast] = useRecoilState(registerToastAtom)
 
+  const { stateToast, setStateToast, hideStateToast } = useToast()
+
   const [code, setCode] = useState<string>('')
-  const [showToast, setShowToast] = useState(false)
-  const [toastMessage, setToastMessage] = useState<string>('')
 
   const animalOptions = getAnimalOptions()
   const animalCardRef = useRef<HTMLDivElement>(null)
@@ -32,36 +33,25 @@ const Home = () => {
     try {
       const response = await authCode(code)
       setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
-      setToastMessage('인증 완료! 이용권 한 장이 부여됩니다.')
+      setStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
       setCode('')
     } catch (error) {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setToastMessage('10자리의 인증코드를 입력해주세요.')
+          setStateToast('10자리의 인증코드를 입력해주세요.')
           break
 
         case 404:
-          setToastMessage('존재하지 않는 인증코드예요.')
+          setStateToast('존재하지 않는 인증코드예요.')
           break
 
         default:
-          setToastMessage('인증코드를 다시 한번 확인해주세요.')
+          setStateToast('인증코드를 다시 한번 확인해주세요.')
           break
       }
     }
-    displayToast()
-  }
-
-  function displayToast() {
-    setShowToast(true)
-    const timer = setTimeout(() => {
-      setShowToast(false)
-    }, 2000)
-
-    return () => {
-      clearTimeout(timer)
-    }
+    hideStateToast()
   }
 
   useEffect(() => {
@@ -162,7 +152,7 @@ const Home = () => {
           내 이상형 찾기
         </button>
       </BoxButton>
-      {showToast && <ToastMessage>{toastMessage}</ToastMessage>}
+      {stateToast && <ToastMessage className="absolute bottom-[44px]">{stateToast}</ToastMessage>}
       {registerToast.isShow && <ToastMessage>{registerToast.toastMessage}</ToastMessage>}
       <Spacing direction="vertical" size={44}></Spacing>
     </div>

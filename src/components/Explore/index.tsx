@@ -10,9 +10,12 @@ import PopupModal from './atoms/PopupModal'
 import useExploreFilter from '../../hooks/useExploreFilter'
 import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
+import useRecoilToast from '../../hooks/useRecoilToast'
+import { exploreToastAtom } from '../../state/exploreToastAtom'
 import { GenderType } from '../../types/explore.type'
 import { animalServerToClient } from '../../utils/animalUtil'
 import Spacing from '../common/Spacing'
+import ToastMessage from '../common/ToastMessage'
 
 const Explore = () => {
   const { currentExploreFilter, handleGenderTab, handleAnimalTab } = useExploreFilter()
@@ -21,12 +24,18 @@ const Explore = () => {
 
   const bgRef = useRef<HTMLDivElement>(null)
 
+  const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
+
   const { data, fetchNextPage, hasNextPage, isLoading, isError } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
       : currentExploreFilter.maleAnimal
   )
+
+  useEffect(() => {
+    hideRecoilStateToast()
+  }, [recoilStateToast, hideRecoilStateToast])
 
   return (
     <div className="h-screen w-screen overflow-hidden">
@@ -113,7 +122,7 @@ const Explore = () => {
       </div>
       {isPopup ? (
         <div
-          className="bg-[rgba(4,9,27,0.50)] w-screen h-screen absolute top-0 flex justify-center items-center"
+          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-screen absolute top-0 justify-center items-center"
           ref={bgRef}
           onClick={(e) => handlePopup(bgRef, e)}
         >
@@ -126,6 +135,11 @@ const Explore = () => {
             isPopup={isPopup}
             onClickClose={handleClosePopup}
           ></PopupModal>
+          {recoilStateToast.isShow && (
+            <ToastMessage className="absolute bottom-[22px]">
+              {recoilStateToast.toastMessage}
+            </ToastMessage>
+          )}
         </div>
       ) : null}
     </div>

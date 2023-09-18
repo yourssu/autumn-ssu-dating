@@ -36,6 +36,7 @@ const BoxButton = ({
 
   return (
     <div
+      style={{ WebkitTapHighlightColor: 'transparent' }}
       className={`${defaultStyle} ${disableStyle[isDisabled]} ${lineStyle[isLine]} ${sizeStyle[size]}`}
       {...props}
     >

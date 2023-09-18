@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
 
 import AnimalTabBar from './atoms/AnimalTabBar'
+import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
@@ -30,6 +31,7 @@ const Explore = () => {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
+      <FloatingButton />
       <GenderTabBar
         currentGenderTab={currentExploreFilter.gender}
         handleGenderTab={handleGenderTab}

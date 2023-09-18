@@ -10,6 +10,7 @@ import PersonalInfoStep from './PersonalInfoStep'
 
 import { registerProfile } from '../../apis/registerApi'
 import useMultistepForm from '../../hooks/useMultistepForm'
+import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormData } from '../../types/register.type'
@@ -20,7 +21,7 @@ import ToastMessage from '../common/ToastMessage'
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
-  const [failToast, setFailToast] = useState<string>('')
+  const { stateToast, setStateToast, hideStateToast } = useToast()
   const setSuccessToast = useSetRecoilState(registerToastAtom)
 
   const navigate = useNavigate()
@@ -88,28 +89,18 @@ const Register = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setFailToast('이미 존재하는 닉네임이에요.')
+          setStateToast('이미 존재하는 닉네임이에요.')
           break
 
         case 404:
-          setFailToast('존재하지 않는 인증코드에요.')
+          setStateToast('존재하지 않는 인증코드에요.')
           break
 
         default:
-          setFailToast('등록에 실패했습니다.')
+          setStateToast('등록에 실패했습니다.')
           break
       }
-      hideToast()
-    }
-  }
-
-  function hideToast() {
-    const timer = setTimeout(() => {
-      setFailToast('')
-    }, 2000)
-
-    return () => {
-      clearTimeout(timer)
+      hideStateToast()
     }
   }
 
@@ -134,7 +125,7 @@ const Register = () => {
     <div className=" w-screen h-[calc(100%-44px)] overflow-y-scroll flex flex-col items-center">
       <div className="flex flex-col items-center">
         <form onSubmit={onSubmit}>{currentStep}</form>
-        {failToast && <ToastMessage>{failToast}</ToastMessage>}
+        {stateToast && <ToastMessage className="absolute bottom-[22px]">{stateToast}</ToastMessage>}
       </div>
       <Spacing direction="vertical" size={88}></Spacing>
     </div>

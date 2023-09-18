@@ -21,21 +21,28 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
         isLine={contactOpen === 'opened' ? 'line' : 'filled'}
         isDisabled={contactOpen === 'opened' ? 'disabled' : isChecked ? 'abled' : 'disabled'}
       >
-        {contactOpen === 'closed' && !contact ? <span>연락처 확인하기</span> : <></>}
+        {contactOpen === 'closed' && !contact ? (
+          <button>연락처 확인하기</button>
+        ) : (
+          <>
+            <button
+              disabled={contactOpen === 'opened'}
+              className="flex justify-center items-center relative"
+            ></button>
+            <span>{contact}</span>
+            <Spacing direction="horizontal" size={8}></Spacing>
+            <img
+              className="cursor-pointer w-[14px] h-[14px]"
+              src={CopyButton as string}
+              onClick={() => {
+                contact && navigator.clipboard.writeText(contact)
+              }}
+              alt="복사하기 버튼"
+              title="복사하기 버튼"
+            />
+          </>
+        )}
       </BoxButton>
-      <span className="flex justify-center items-center relative top-[calc(-50%)]">
-        <span>{contact}</span>
-        <Spacing direction="horizontal" size={8}></Spacing>
-        <img
-          className="cursor-pointer w-[14px] h-[14px]"
-          src={CopyButton as string}
-          onClick={() => {
-            contact && navigator.clipboard.writeText(contact)
-          }}
-          alt="복사하기 버튼"
-          title="복사하기 버튼"
-        />
-      </span>
     </span>
   )
 }

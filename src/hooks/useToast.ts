@@ -6,7 +6,7 @@ const useToast = () => {
   function hideStateToast() {
     const timer = setTimeout(() => {
       setStateToast('')
-    }, 2000)
+    }, 3000)
 
     return () => {
       clearTimeout(timer)

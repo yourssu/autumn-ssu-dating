@@ -38,7 +38,7 @@ const Explore = () => {
   }, [recoilStateToast, hideRecoilStateToast])
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-[100dvh] w-screen overflow-hidden flex flex-col items-center">
       <FloatingButton
         onClick={() => {
           refetch()
@@ -49,7 +49,7 @@ const Explore = () => {
         handleGenderTab={handleGenderTab}
       />
       <Spacing direction="vertical" size={48} />
-      <div className="h-[calc(100%-44px-48px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
+      <div className="h-[calc(100%-44px-48px-32px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
         <AnimalTabBar
           currentAnimalTab={
             currentExploreFilter.gender === 'female'
@@ -103,7 +103,7 @@ const Explore = () => {
       </div>
       {isPopup ? (
         <div
-          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-screen absolute top-0 justify-center items-center"
+          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-[100dvh] absolute top-0 justify-center items-center"
           ref={bgRef}
           onClick={(e) => handlePopup(bgRef, e)}
         >
@@ -116,13 +116,13 @@ const Explore = () => {
             isPopup={isPopup}
             onClickClose={handleClosePopup}
           ></PopupModal>
-          {recoilStateToast.isShow && (
-            <ToastMessage className="absolute bottom-[22px]">
-              {recoilStateToast.toastMessage}
-            </ToastMessage>
-          )}
         </div>
       ) : null}
+      {recoilStateToast.isShow && (
+        <ToastMessage className="absolute bottom-[22px] flex self-center justify-center items-center">
+          {recoilStateToast.toastMessage}
+        </ToastMessage>
+      )}
     </div>
   )
 }

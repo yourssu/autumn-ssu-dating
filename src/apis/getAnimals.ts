@@ -4,7 +4,7 @@ import { GenderType } from '../types/explore.type'
 import { AnimalsResponse } from '../types/getAnimals.type'
 import { AnimalServerType } from '../types/register.type'
 
-const getAnimals = async (
+export const getAnimals = async (
   gender: GenderType,
   animals: AnimalServerType
 ): Promise<AnimalsResponse> => {
@@ -12,4 +12,7 @@ const getAnimals = async (
   return response.data
 }
 
-export default getAnimals
+export const getRecentAnimals = async (): Promise<AnimalsResponse> => {
+  const response = await client.get('/search/recent')
+  return response.data
+}

@@ -1,8 +1,8 @@
 import ImageButton from './ImageButton'
 
-import { FormStepOption, FormStepProps } from '../../types/register.type'
-import Spacing from '../common/Spacing'
-import TypeButton from '../common/TypeButton'
+import { FormStepOption, FormStepProps } from '../../../types/register.type'
+import Spacing from '../../common/Spacing'
+import TypeButton from '../../common/TypeButton'
 
 const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   const genderOptions: FormStepOption[] = [

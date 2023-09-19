@@ -6,6 +6,7 @@ import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
 
+import Loading from '../../assets/loading.gif'
 import useExploreFilter from '../../hooks/useExploreFilter'
 import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
@@ -25,7 +26,7 @@ const Explore = () => {
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
-  const { data, refetch } = useGetAnimals(
+  const { data, refetch, isLoading, isFetching } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
@@ -58,6 +59,13 @@ const Explore = () => {
           gender={currentExploreFilter.gender}
           onClickHandler={handleAnimalTab}
         />
+
+        {isLoading || isFetching ? (
+          <div className="w-scren h-[calc(100%-180px)] flex justify-center items-center">
+            <img src={Loading} className="w-[100px] h-[100px]" alt="loading" title="loading"></img>
+          </div>
+        ) : null}
+
         {currentExploreFilter.gender === 'female' ? (
           <div className="flex w-screen justify-center">
             <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">

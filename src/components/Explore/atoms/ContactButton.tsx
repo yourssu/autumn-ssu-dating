@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-
 import CopyButton from '../../../assets/copy.svg'
+import useRecoilToast from '../../../hooks/useRecoilToast'
+import { exploreToastAtom } from '../../../state/exploreToastAtom'
 import { ContactOpenType } from '../../../types/explore.type'
 import BoxButton from '../../common/BoxButton'
 import Spacing from '../../common/Spacing'
@@ -12,9 +12,8 @@ interface ContactButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactButtonProps) => {
-  useEffect(() => {
-    console.log(contactOpen)
-  }, [contactOpen])
+  const { setRecoilStateToast } = useRecoilToast(exploreToastAtom)
+
   return (
     <span {...props}>
       <BoxButton
@@ -31,11 +30,16 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
             ></button>
             <span>{contact}</span>
             <Spacing direction="horizontal" size={8}></Spacing>
+
             <img
               className="cursor-pointer w-[14px] h-[14px]"
               src={CopyButton as string}
               onClick={() => {
                 contact && navigator.clipboard.writeText(contact)
+                setRecoilStateToast({
+                  isShow: true,
+                  toastMessage: '복사 완료!',
+                })
               }}
               alt="복사하기 버튼"
               title="복사하기 버튼"

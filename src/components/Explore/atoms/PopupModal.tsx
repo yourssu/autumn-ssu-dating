@@ -94,35 +94,44 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
         </div>
         <Spacing direction="vertical" size={16} />
         <div className="w-[226px] h-[114px] text-gray text-body2 break-words">{content}</div>
-        <Spacing direction="vertical" size={29} />
+        {contactOpen === 'closed' ? (
+          <Spacing direction="vertical" size={29} />
+        ) : (
+          <Spacing direction="vertical" size={8} />
+        )}
         <div className="w-[226px] flex justify-center">
           {contactOpen === 'closed' ? (
-            <Checkbox
-              checkCase="연락처 확인"
-              isChecked={isChecked}
-              onImgClick={() => {
-                if (ticketList.length > 0) {
-                  setIsChecked((prev) => !prev)
-                } else {
-                  setRecoilStateToast({
-                    isShow: true,
-                    toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                  })
-                }
-              }}
-              onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-                if (ticketList.length > 0) {
-                  setIsChecked(e.target.checked)
-                } else {
-                  setRecoilStateToast({
-                    isShow: true,
-                    toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                  })
-                }
-              }}
-            ></Checkbox>
+            <>
+              <Spacing direction="vertical" size={29} />
+              <Checkbox
+                checkCase="연락처 확인"
+                isChecked={isChecked}
+                onImgClick={() => {
+                  if (ticketList.length > 0) {
+                    setIsChecked((prev) => !prev)
+                  } else {
+                    setRecoilStateToast({
+                      isShow: true,
+                      toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
+                    })
+                  }
+                }}
+                onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (ticketList.length > 0) {
+                    setIsChecked(e.target.checked)
+                  } else {
+                    setRecoilStateToast({
+                      isShow: true,
+                      toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
+                    })
+                  }
+                }}
+              ></Checkbox>
+            </>
           ) : (
-            <Spacing direction="vertical" size={32} />
+            <>
+              <div className="h-[53px] w-[211px] bg-[url('/bubble.png')] bg-cover animate-flip-up animate-once animate-duration-[500ms] animate-ease-linear animate-normal"></div>
+            </>
           )}
         </div>
         <Spacing direction="vertical" size={4} />

@@ -6,8 +6,8 @@ import TypeButton from '../../common/TypeButton'
 
 const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   const genderOptions: FormStepOption[] = [
-    { src: '/src/assets/maleIcon.png', label: '남자' },
-    { src: '/src/assets/femaleIcon.png', label: '여자' },
+    { src: '/maleIcon.png', label: '남자' },
+    { src: '/femaleIcon.png', label: '여자' },
   ]
 
   const onClick = (e: React.MouseEvent) => {

@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
 
 import AnimalTabBar from './atoms/AnimalTabBar'
+import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
 
+import Loading from '../../assets/loading.gif'
 import useExploreFilter from '../../hooks/useExploreFilter'
 import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
@@ -24,29 +26,30 @@ const Explore = () => {
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
-  const { data } = useGetAnimals(
+  const { data, refetch, isLoading, isFetching } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
       : currentExploreFilter.maleAnimal
   )
 
-  // useEffect(() => {
-  //   console.log(error)
-  // }, [error])
-
   useEffect(() => {
     hideRecoilStateToast()
   }, [recoilStateToast, hideRecoilStateToast])
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-[100dvh] w-screen overflow-hidden flex flex-col items-center">
+      <FloatingButton
+        onClick={() => {
+          refetch()
+        }}
+      />
       <GenderTabBar
         currentGenderTab={currentExploreFilter.gender}
         handleGenderTab={handleGenderTab}
       />
       <Spacing direction="vertical" size={48} />
-      <div className="h-[calc(100%-44px-48px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
+      <div className="h-[calc(100%-44px-48px-32px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
         <AnimalTabBar
           currentAnimalTab={
             currentExploreFilter.gender === 'female'
@@ -56,6 +59,13 @@ const Explore = () => {
           gender={currentExploreFilter.gender}
           onClickHandler={handleAnimalTab}
         />
+
+        {isLoading || isFetching ? (
+          <div className="w-scren h-[calc(100%-180px)] flex justify-center items-center">
+            <img src={Loading} className="w-[100px] h-[100px]" alt="loading" title="loading"></img>
+          </div>
+        ) : null}
+
         {currentExploreFilter.gender === 'female' ? (
           <div className="flex w-screen justify-center">
             <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
@@ -89,10 +99,11 @@ const Explore = () => {
             </div>
           </div>
         )}
+        <Spacing direction="vertical" size={32} />
       </div>
       {isPopup ? (
         <div
-          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-screen absolute top-0 justify-center items-center"
+          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-[100dvh] absolute top-0 justify-center items-center"
           ref={bgRef}
           onClick={(e) => handlePopup(bgRef, e)}
         >
@@ -105,13 +116,13 @@ const Explore = () => {
             isPopup={isPopup}
             onClickClose={handleClosePopup}
           ></PopupModal>
-          {recoilStateToast.isShow && (
-            <ToastMessage className="absolute bottom-[22px]">
-              {recoilStateToast.toastMessage}
-            </ToastMessage>
-          )}
         </div>
       ) : null}
+      {recoilStateToast.isShow && (
+        <ToastMessage className="absolute bottom-[22px] flex self-center justify-center items-center">
+          {recoilStateToast.toastMessage}
+        </ToastMessage>
+      )}
     </div>
   )
 }

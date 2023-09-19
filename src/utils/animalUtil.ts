@@ -5,7 +5,8 @@ import { FormStepOption } from '../types/register.type'
 
 export const getAnimalOptions = (): FormStepOption[] => {
   const animalOptionsArray = [...ANIMAL_OPTIONS_MALE, ...ANIMAL_OPTIONS_FEMALE]
-  return [...new Set(animalOptionsArray.map(JSON.stringify))].map(JSON.parse)
+  const animalOptionsArraySet = new Set(animalOptionsArray)
+  return Array.from(animalOptionsArraySet)
 }
 
 const animalToServerTransfer = {

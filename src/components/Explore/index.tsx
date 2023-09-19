@@ -32,10 +32,6 @@ const Explore = () => {
       : currentExploreFilter.maleAnimal
   )
 
-  // useEffect(() => {
-  //   console.log(error)
-  // }, [error])
-
   useEffect(() => {
     hideRecoilStateToast()
   }, [recoilStateToast, hideRecoilStateToast])

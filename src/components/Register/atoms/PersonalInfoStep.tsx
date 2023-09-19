@@ -122,8 +122,8 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             onImgClick={() => {
               checkTicket(!isChecked)
             }}
-            onLabelClick={() => {
-              checkTicket(false)
+            onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+              checkTicket(e.target.checked)
             }}
           />
           <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">

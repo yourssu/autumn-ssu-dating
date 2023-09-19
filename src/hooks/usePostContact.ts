@@ -21,7 +21,6 @@ export const usePostContact = () => {
     },
     onError: (error) => {
       const authError = error as AxiosError
-      console.log(authError.response?.status)
 
       switch (authError.response?.status) {
         case 400:

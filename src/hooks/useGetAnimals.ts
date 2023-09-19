@@ -11,9 +11,6 @@ export const useGetAnimals = (gender: GenderType, animals: AnimalType) => {
     () => getAnimals(gender, animalClientToServer(animals)),
     {
       staleTime: 60000 * 5,
-      onSuccess(data) {
-        console.log(data)
-      },
     }
   )
 }

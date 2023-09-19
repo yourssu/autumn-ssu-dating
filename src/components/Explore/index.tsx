@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import AnimalTabBar from './atoms/AnimalTabBar'
+import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
@@ -24,16 +25,12 @@ const Explore = () => {
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
-  const { data } = useGetAnimals(
+  const { data, refetch } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
       : currentExploreFilter.maleAnimal
   )
-
-  // useEffect(() => {
-  //   console.log(error)
-  // }, [error])
 
   useEffect(() => {
     hideRecoilStateToast()
@@ -41,6 +38,11 @@ const Explore = () => {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
+      <FloatingButton
+        onClick={() => {
+          refetch()
+        }}
+      />
       <GenderTabBar
         currentGenderTab={currentExploreFilter.gender}
         handleGenderTab={handleGenderTab}
@@ -89,6 +91,7 @@ const Explore = () => {
             </div>
           </div>
         )}
+        <Spacing direction="vertical" size={32} />
       </div>
       {isPopup ? (
         <div

@@ -41,8 +41,6 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
     }
   }, [isSuccess, data?.contact])
 
-  useEffect(() => {}, [])
-
   return (
     <TypeButton
       className="animate-jump-in animate-once animate-duration-[300ms] animate-ease-in-out"

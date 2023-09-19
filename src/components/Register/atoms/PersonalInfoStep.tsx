@@ -5,19 +5,21 @@ import { useRecoilValue } from 'recoil'
 import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
+import useToast from '../../../hooks/useToast'
 import { ticketListAtom } from '../../../state/ticketListAtom'
 import { FormStepProps } from '../../../types/register.type'
 import BoxButton from '../../common/BoxButton'
 import Checkbox from '../../common/Checkbox'
 import InputField from '../../common/InputField'
 import Spacing from '../../common/Spacing'
+import ToastMessage from '../../common/ToastMessage'
 
 const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: FormStepProps) => {
   const ticketList = useRecoilValue(ticketListAtom)
 
   const [isChecked, setIsChecked] = useState(false)
-  const canRegister =
-    nickName && mbti.length === 4 && introduce && contact && isChecked && ticketList.length
+  const { stateToast, setStateToast, hideStateToast } = useToast()
+  const canRegister = nickName && mbti.length === 4 && introduce && contact && isChecked
 
   const mbtiOptions = [
     ['E', 'I'],
@@ -27,12 +29,21 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
   ]
   const [mbtiValueArray, setMbtiValueArray] = useState<{ [key: string]: string }>({})
 
+  function checkTicket(isChecked: boolean) {
+    if (ticketList.length > 0) {
+      setIsChecked(isChecked)
+    } else {
+      setStateToast('이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!')
+      hideStateToast()
+    }
+  }
+
   useEffect(() => {
     updateFields({ mbti: Object.values(mbtiValueArray).join('') })
   }, [mbtiValueArray])
 
   return (
-    <>
+    <div className="w-screen flex flex-col items-center">
       <Spacing direction="vertical" size={44}></Spacing>
       <div className="grid gap-y-4 w-fit">
         <p className="text-title whitespace-pre-line">
@@ -109,13 +120,12 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             checkCase="등록"
             isChecked={isChecked}
             onImgClick={() => {
-              setIsChecked((prev) => !prev)
+              checkTicket(!isChecked)
             }}
-            onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setIsChecked(e.target.checked)
+            onLabelClick={() => {
+              checkTicket(false)
             }}
           />
-
           <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
             <button
               type="submit"
@@ -128,7 +138,8 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
         </div>
       </div>
       <Spacing direction="vertical" size={44}></Spacing>
-    </>
+      {stateToast && <ToastMessage>{stateToast}</ToastMessage>}
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ const useRecoilToast = (stateName: RecoilState<ToastData>) => {
     if (recoilStateToast.isShow) {
       const timer = setTimeout(() => {
         setRecoilStateToast({ isShow: false, toastMessage: '' })
-      }, 2000) // 애니메이션에 걸리는 시간과 동일하게 설정
+      }, 3000)
 
       return () => {
         clearTimeout(timer)

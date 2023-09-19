@@ -25,7 +25,7 @@ const Explore = () => {
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
-  const { data } = useGetAnimals(
+  const { data, refetch } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
@@ -38,7 +38,11 @@ const Explore = () => {
 
   return (
     <div className="h-screen w-screen overflow-hidden">
-      <FloatingButton />
+      <FloatingButton
+        onClick={() => {
+          refetch()
+        }}
+      />
       <GenderTabBar
         currentGenderTab={currentExploreFilter.gender}
         handleGenderTab={handleGenderTab}
@@ -87,6 +91,7 @@ const Explore = () => {
             </div>
           </div>
         )}
+        <Spacing direction="vertical" size={32} />
       </div>
       {isPopup ? (
         <div

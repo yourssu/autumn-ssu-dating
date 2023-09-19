@@ -6,14 +6,9 @@ import { AnimalServerType } from '../types/register.type'
 
 const getAnimals = async (
   gender: GenderType,
-  animals: AnimalServerType,
-  page: number
+  animals: AnimalServerType
 ): Promise<AnimalsResponse> => {
-  const response = await client.get(`/search/${gender}/${animals}`, {
-    params: {
-      page,
-    },
-  })
+  const response = await client.get(`/search/${gender}/${animals}`)
   return response.data
 }
 

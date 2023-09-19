@@ -1,4 +1,4 @@
-import { AnimalServerType } from '../../types/register.type'
+import { AnimalServerType } from '../../../types/register.type'
 
 interface ImageButtonProps {
   src: string

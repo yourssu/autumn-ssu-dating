@@ -145,12 +145,8 @@ const Home = () => {
           내 이상형 찾기
         </button>
       </BoxButton>
-      {stateToast && <ToastMessage className="absolute bottom-[44px]">{stateToast}</ToastMessage>}
-      {recoilStateToast.isShow && (
-        <ToastMessage className="absolute bottom-[44px]">
-          {recoilStateToast.toastMessage}
-        </ToastMessage>
-      )}
+      {stateToast && <ToastMessage>{stateToast}</ToastMessage>}
+      {recoilStateToast.isShow && <ToastMessage>{recoilStateToast.toastMessage}</ToastMessage>}
       <Spacing direction="vertical" size={44}></Spacing>
     </div>
   )

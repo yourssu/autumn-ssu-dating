@@ -1,13 +1,6 @@
 import { MbtiType } from './explore.type'
 import { AnimalServerType } from './register.type'
 
-interface PageResponse {
-  number: number
-  size: number
-  totalElements: number
-  totalPages: number
-}
-
 export type GenderType = 'FEMALE' | 'MALE'
 
 export interface UsersResponse {
@@ -18,7 +11,4 @@ export interface UsersResponse {
   nickName: string
 }
 
-export interface AnimalsResponse {
-  page: PageResponse
-  users: UsersResponse[]
-}
+export type AnimalsResponse = UsersResponse[]

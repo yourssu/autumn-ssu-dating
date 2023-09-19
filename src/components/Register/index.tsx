@@ -4,9 +4,9 @@ import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
-import AnimalStep from './AnimalStep'
-import GenderStep from './GenderStep'
-import PersonalInfoStep from './PersonalInfoStep'
+import AnimalStep from './atoms/AnimalStep'
+import GenderStep from './atoms/GenderStep'
+import PersonalInfoStep from './atoms/PersonalInfoStep'
 
 import { registerProfile } from '../../apis/registerApi'
 import useMultistepForm from '../../hooks/useMultistepForm'
@@ -126,7 +126,7 @@ const Register = () => {
     <div className=" w-screen h-[calc(100%-44px)] overflow-y-scroll flex flex-col items-center">
       <div className="flex flex-col items-center">
         <form onSubmit={onSubmit}>{currentStep}</form>
-        {stateToast && <ToastMessage className="absolute bottom-[22px]">{stateToast}</ToastMessage>}
+        {stateToast && <ToastMessage>{stateToast}</ToastMessage>}
       </div>
       <Spacing direction="vertical" size={88}></Spacing>
     </div>

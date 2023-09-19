@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react'
 
-import InfiniteScroll from 'react-infinite-scroller'
-
 import AnimalTabBar from './atoms/AnimalTabBar'
 import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
@@ -11,9 +9,12 @@ import PopupModal from './atoms/PopupModal'
 import useExploreFilter from '../../hooks/useExploreFilter'
 import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
+import useRecoilToast from '../../hooks/useRecoilToast'
+import { exploreToastAtom } from '../../state/exploreToastAtom'
 import { GenderType } from '../../types/explore.type'
 import { animalServerToClient } from '../../utils/animalUtil'
 import Spacing from '../common/Spacing'
+import ToastMessage from '../common/ToastMessage'
 
 const Explore = () => {
   const { currentExploreFilter, handleGenderTab, handleAnimalTab } = useExploreFilter()
@@ -22,12 +23,22 @@ const Explore = () => {
 
   const bgRef = useRef<HTMLDivElement>(null)
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isError } = useGetAnimals(
+  const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
+
+  const { data } = useGetAnimals(
     currentExploreFilter.gender,
     currentExploreFilter.gender === 'female'
       ? currentExploreFilter.femaleAnimal
       : currentExploreFilter.maleAnimal
   )
+
+  // useEffect(() => {
+  //   console.log(error)
+  // }, [error])
+
+  useEffect(() => {
+    hideRecoilStateToast()
+  }, [recoilStateToast, hideRecoilStateToast])
 
   return (
     <div className="h-screen w-screen overflow-hidden">
@@ -48,74 +59,42 @@ const Explore = () => {
           onClickHandler={handleAnimalTab}
         />
         {currentExploreFilter.gender === 'female' ? (
-          <div className="flex flex-col h-full overflow-auto">
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={() => fetchNextPage()}
-              hasMore={hasNextPage}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-                </div>
-              }
-              useWindow={false}
-            >
-              <div className="flex w-screen justify-center">
-                <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
-                  {data?.pages.map((page) => {
-                    return page.users.map((item, index) => (
-                      <InformationTypeButton
-                        nickname={item.nickName}
-                        mbti={item.mbti}
-                        key={index}
-                        animal={animalServerToClient(item.animals)}
-                        gender={item.gender.toLowerCase() as GenderType}
-                        content={item.introduce}
-                        onButtonClick={handlePopupSelected}
-                      ></InformationTypeButton>
-                    ))
-                  })}
-                </div>
-              </div>
-            </InfiniteScroll>
+          <div className="flex w-screen justify-center">
+            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+              {data?.map((item, index) => (
+                <InformationTypeButton
+                  nickname={item.nickName}
+                  mbti={item.mbti}
+                  key={index}
+                  animal={animalServerToClient(item.animals)}
+                  gender={item.gender.toLowerCase() as GenderType}
+                  content={item.introduce}
+                  onButtonClick={handlePopupSelected}
+                ></InformationTypeButton>
+              ))}
+            </div>
           </div>
         ) : (
-          <div className="flex flex-col h-full overflow-auto">
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={() => fetchNextPage()}
-              hasMore={hasNextPage}
-              loader={
-                <div className="loader" key={0}>
-                  Loading ...
-                </div>
-              }
-              useWindow={false}
-            >
-              <div className="flex w-screen justify-center">
-                <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
-                  {data?.pages.map((page) => {
-                    return page.users.map((item, index) => (
-                      <InformationTypeButton
-                        nickname={item.nickName}
-                        mbti={item.mbti}
-                        key={index}
-                        animal={animalServerToClient(item.animals)}
-                        gender={item.gender.toLowerCase() as GenderType}
-                        content={item.introduce}
-                        onButtonClick={handlePopupSelected}
-                      ></InformationTypeButton>
-                    ))
-                  })}
-                </div>
-              </div>
-            </InfiniteScroll>
+          <div className="flex w-screen justify-center">
+            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+              {data?.map((item, index) => (
+                <InformationTypeButton
+                  nickname={item.nickName}
+                  mbti={item.mbti}
+                  key={index}
+                  animal={animalServerToClient(item.animals)}
+                  gender={item.gender.toLowerCase() as GenderType}
+                  content={item.introduce}
+                  onButtonClick={handlePopupSelected}
+                ></InformationTypeButton>
+              ))}
+            </div>
           </div>
         )}
       </div>
       {isPopup ? (
         <div
-          className="bg-[rgba(4,9,27,0.50)] w-screen h-screen absolute top-0 flex justify-center items-center"
+          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-screen absolute top-0 justify-center items-center"
           ref={bgRef}
           onClick={(e) => handlePopup(bgRef, e)}
         >
@@ -128,6 +107,11 @@ const Explore = () => {
             isPopup={isPopup}
             onClickClose={handleClosePopup}
           ></PopupModal>
+          {recoilStateToast.isShow && (
+            <ToastMessage className="absolute bottom-[22px]">
+              {recoilStateToast.toastMessage}
+            </ToastMessage>
+          )}
         </div>
       ) : null}
     </div>

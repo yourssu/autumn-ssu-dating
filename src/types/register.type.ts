@@ -29,8 +29,3 @@ export type AnimalServerType =
   | 'BEAR'
   | 'DINO'
   | 'WOLF'
-
-export interface RegisterToastData {
-  isShow: boolean
-  toastMessage: string
-}

@@ -1,9 +1,9 @@
 import ImageButton from './ImageButton'
 
-import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../constant'
-import { AnimalServerType, FormStepProps } from '../../types/register.type'
-import Spacing from '../common/Spacing'
-import TypeButton from '../common/TypeButton'
+import { ANIMAL_OPTIONS_MALE, ANIMAL_OPTIONS_FEMALE } from '../../../constant'
+import { AnimalServerType, FormStepProps } from '../../../types/register.type'
+import Spacing from '../../common/Spacing'
+import TypeButton from '../../common/TypeButton'
 
 const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
   const animalOptions = gender === '남자' ? ANIMAL_OPTIONS_MALE : ANIMAL_OPTIONS_FEMALE

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import TypeButton from '../common/TypeButton'
+import TypeButton from '../../common/TypeButton'
 
 export interface RadioSelectorProps {
   labels: string[]

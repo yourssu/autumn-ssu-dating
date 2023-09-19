@@ -4,9 +4,9 @@ import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
-import AnimalStep from './AnimalStep'
-import GenderStep from './GenderStep'
-import PersonalInfoStep from './PersonalInfoStep'
+import AnimalStep from './atoms/AnimalStep'
+import GenderStep from './atoms/GenderStep'
+import PersonalInfoStep from './atoms/PersonalInfoStep'
 
 import { registerProfile } from '../../apis/registerApi'
 import useMultistepForm from '../../hooks/useMultistepForm'

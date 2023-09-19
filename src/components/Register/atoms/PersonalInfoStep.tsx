@@ -5,12 +5,12 @@ import { useRecoilValue } from 'recoil'
 import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
-import { ticketListAtom } from '../../state/ticketListAtom'
-import { FormStepProps } from '../../types/register.type'
-import BoxButton from '../common/BoxButton'
-import Checkbox from '../common/Checkbox'
-import InputField from '../common/InputField'
-import Spacing from '../common/Spacing'
+import { ticketListAtom } from '../../../state/ticketListAtom'
+import { FormStepProps } from '../../../types/register.type'
+import BoxButton from '../../common/BoxButton'
+import Checkbox from '../../common/Checkbox'
+import InputField from '../../common/InputField'
+import Spacing from '../../common/Spacing'
 
 const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: FormStepProps) => {
   const ticketList = useRecoilValue(ticketListAtom)

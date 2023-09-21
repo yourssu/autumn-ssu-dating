@@ -17,6 +17,6 @@ export const useGetAnimals = (gender: GenderType, animals: AnimalType) => {
 
 export const useGetRecentAnimals = () => {
   return useQuery<AnimalsResponse>(['getAnimals', 'recent'], () => getRecentAnimals(), {
-    staleTime: 60000,
+    staleTime: 0,
   })
 }

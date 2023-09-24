@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/5a9d15a8-a338-4fd0-ad02-a0e3b68d87ec" />
+   <img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/576cf6b4-584e-4435-8561-6879a5b323f3" />
    <h1>뿌슝이의 동물 SSU개팅</h1>
 </div>
 
@@ -18,17 +18,19 @@
 <h2> 💘 기능 소개 </h2>
 <h3>인증코드 등록하기</h3>
 <p>뿌슝이의 동물 SSU개팅은 회원가입 절차 없이 인증코드를 통해 서비스를 이용할 수 있습니다.<br/>유효하지 않은 인증코드나, 이미 사용한 인증코드를 입력할 경우 토스트 메시지로 원인을 알려줍니다.</p>
-<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/c3b914c6-9ea6-4162-b66e-667bf6a4ab4a" />
+<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/518bc806-2c4b-4c9d-91f7-0376c4ac6dc4" />
 
 <h3>프로필 등록하기</h3>
 <p>성별, 자신을 나타내는 동물, 자기소개를 작성해 프로필을 등록할 수 있습니다.<br/>등록 시마다 이용권 1장이 차감되며, 프로필 등록에 실패할 경우 토스트 메시지로 원인을 알려줍니다.</p>
-<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/0872c908-cfba-41f6-bd2c-f0190ce18cb2" />
+<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/db219fe6-f28a-4a2a-9496-ede035b769a8" />
+
 
 <h3>내 이상형 둘러보기</h3>
 <p>성별, 동물 필터를 선택하여 조건에 해당하는 프로필 목록을 볼 수 있습니다.<br/>
 목록에 나타나는 16개의 프로필 순서는 랜덤이며, 우측 하단의 새로고침 버튼으로 새로운 목록을 볼 수 있습니다.<br/>
 목록의 프로필을 클릭하면 팝업 모달로 전체 내용을 볼 수 있으며, 연락처 열람 시마다 이용권 1장이 차감됩니다.</p>
-<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/a2ccb87a-4d55-4c3a-9dd0-42a0054c262f" />
+<img src="https://github.com/yourssu/autumn-ssu-dating/assets/87255462/d0b8321d-3976-4c03-b935-69855c75eeca" />
+
 
 <h2> ✨ 실행 </h2>
 

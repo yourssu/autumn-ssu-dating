@@ -20,7 +20,7 @@ const GenderStep = ({ updateFields, moveNextStep }: FormStepProps) => {
   }
 
   return (
-    <div className="h-[calc(100vh-88px)] flex flex-col justify-center w-fit">
+    <div className="flex h-[calc(100vh-88px)] w-fit flex-col justify-center">
       <p className="text-center text-title">당신의 성별은?</p>
       <Spacing direction="vertical" size={24} />
       <div className="grid grid-cols-2 gap-x-6">

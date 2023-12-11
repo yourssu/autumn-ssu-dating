@@ -21,16 +21,16 @@ const MonitorExplore = () => {
   const { data, isLoading, isFetching } = useGetRecentAnimals()
 
   return (
-    <div className="bg-[url('/src/assets/bg_palePink.png')] w-screen h-[100dvh] bg-cover overflow-hidden flex flex-col items-center overflow-y-scroll scrollbar-hide pt-[50px]">
+    <div className="flex h-[100dvh] w-screen flex-col items-center overflow-hidden overflow-y-scroll bg-[url('/src/assets/bg_palePink.png')] bg-cover pt-[50px] scrollbar-hide">
       {isLoading || isFetching ? (
-        <div className="w-[100dvh] h-[100dvh] flex justify-center items-center">
-          <img src={Loading} className="w-[400px] h-[400px]" alt="loading" title="loading"></img>
+        <div className="flex h-[100dvh] w-[100dvh] items-center justify-center">
+          <img src={Loading} className="h-[400px] w-[400px]" alt="loading" title="loading"></img>
         </div>
       ) : (
         <>
           <img src={heartSpeechBubble as string} />
           <p className="text-titleBold text-pink">뿌슝이의 동물 SSU개팅</p>
-          <p className="text-button text-pink mb-10">
+          <p className="mb-10 text-button text-pink">
             실시간으로 추가되는 프로필들을 확인해보세요.
           </p>
           <div className="grid grid-cols-5 gap-x-10 gap-y-5">

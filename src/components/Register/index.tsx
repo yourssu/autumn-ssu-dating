@@ -123,7 +123,7 @@ const Register = () => {
   }, [])
 
   return (
-    <div className=" w-screen h-[calc(100%-44px)] overflow-y-scroll flex flex-col items-center scrollbar-hide">
+    <div className=" flex h-[calc(100%-44px)] w-screen flex-col items-center overflow-y-scroll scrollbar-hide">
       <div className="flex flex-col items-center">
         <form onSubmit={onSubmit}>{currentStep}</form>
         {stateToast && <ToastMessage>{stateToast}</ToastMessage>}

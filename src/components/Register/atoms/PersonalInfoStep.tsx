@@ -18,7 +18,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
   const ticketList = useRecoilValue(ticketListAtom)
 
   const [isChecked, setIsChecked] = useState(false)
-  const { stateToast, setStateToast, hideStateToast } = useToast()
+  const { stateToast, showStateToast } = useToast()
   const canRegister = nickName && mbti.length === 4 && introduce && contact && isChecked
 
   const mbtiOptions = [
@@ -33,8 +33,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
     if (ticketList.length > 0) {
       setIsChecked(isChecked)
     } else {
-      setStateToast('이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!')
-      hideStateToast()
+      showStateToast('이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!')
     }
   }
 

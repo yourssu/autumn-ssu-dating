@@ -14,7 +14,7 @@ const Layout = () => {
     : `bg-[url('/src/assets/bg.png')]`
 
   return (
-    <div className={`${bgUrl} w-screen h-[100dvh] bg-cover overflow-hidden`}>
+    <div className={`${bgUrl} h-[100dvh] w-screen overflow-hidden bg-cover`}>
       {!isHome && (
         <>
           <TopBar title={title} backNav={backNav as string}></TopBar>

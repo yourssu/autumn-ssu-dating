@@ -14,11 +14,11 @@ const ImageButton = ({ src, label, animals, onClick }: ImageButtonProps) => {
     <div
       onClick={onClick}
       title={animals || label}
-      className="flex flex-col justify-center items-center cursor-pointer w-full h-full"
+      className="flex h-full w-full cursor-pointer flex-col items-center justify-center"
     >
       <img
         src={src}
-        className={`${isGender ? 'w-[88px] h-[88px]' : 'w-[108px] h-[109px]'}`}
+        className={`${isGender ? 'h-[88px] w-[88px]' : 'h-[109px] w-[108px]'}`}
         title={animals || label}
       />
       <p title={animals || label} className="text-black">

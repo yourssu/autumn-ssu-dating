@@ -43,7 +43,7 @@ const AnimalTab = ({
         {mode === 'text' ? (
           <p>{label}</p>
         ) : (
-          <img className="w-[44px] h-[44px]" src={src} title={label} alt={label} />
+          <img className="h-[44px] w-[44px]" src={src} title={label} alt={label} />
         )}
       </Chip>
     </>

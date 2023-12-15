@@ -21,8 +21,8 @@ const AnimalStep = ({ gender, updateFields, moveNextStep }: FormStepProps) => {
   return (
     <>
       <Spacing direction="vertical" size={44}></Spacing>
-      <div className="grid gap-y-6 w-fit">
-        <p className="text-title whitespace-pre-line w-full">
+      <div className="grid w-fit gap-y-6">
+        <p className="w-full whitespace-pre-line text-title">
           {'자신을 나타내는\n동물을 골라주세요.'}
         </p>
         <div className="grid grid-cols-2 gap-6">

@@ -9,7 +9,7 @@ interface GenderTabBarProps {
 
 const GenderTabBar = ({ currentGenderTab, handleGenderTab }: GenderTabBarProps) => {
   return (
-    <div className="w-screen flex h-[48px] fixed top-[44px]">
+    <div className="fixed top-[44px] flex h-[48px] w-screen">
       <GenderTab
         gender="female"
         isSelected={currentGenderTab === 'female' ? 'selected' : 'notSelected'}

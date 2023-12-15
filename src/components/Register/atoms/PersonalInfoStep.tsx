@@ -42,15 +42,15 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
   }, [mbtiValueArray])
 
   return (
-    <div className="w-screen flex flex-col items-center">
+    <div className="flex w-screen flex-col items-center">
       <Spacing direction="vertical" size={44}></Spacing>
-      <div className="grid gap-y-4 w-fit">
-        <p className="text-title whitespace-pre-line">
+      <div className="grid w-fit gap-y-4">
+        <p className="whitespace-pre-line text-title">
           {'아래 정보들을 입력해\n본인을 소개해보세요!'}
         </p>
         <div className="grid gap-y-6 text-body2">
           <div>
-            <label className="w-full flex items-center justify-between">
+            <label className="flex w-full items-center justify-between">
               닉네임
               <span className="text-caption text-gray">
                 ( <span className="text-pink">{nickName.length}</span> / 9 )
@@ -86,7 +86,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             </div>
           </div>
           <div className="grid">
-            <label className="w-full flex items-center justify-between">
+            <label className="flex w-full items-center justify-between">
               본인 매력 어필
               <span className="text-caption text-gray">
                 ( <span className="text-pink">{introduce.length}</span> / 100 )
@@ -128,7 +128,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
           <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
             <button
               type="submit"
-              className="w-full h-full disabled:cursor-not-allowed"
+              className="h-full w-full disabled:cursor-not-allowed"
               disabled={!canRegister}
             >
               등록하기

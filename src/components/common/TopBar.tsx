@@ -18,24 +18,24 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
   const navigate = useNavigate()
   return (
     <div
-      className="w-screen h-[44px] flex flex-row items-center justify-between fixed top-0"
+      className="fixed top-0 flex h-[44px] w-screen flex-row items-center justify-between"
       {...props}
     >
-      <div className="w-[50px] h-[50px] flex justify-center items-center">
+      <div className="flex h-[50px] w-[50px] items-center justify-center">
         <img
           src={leftIcon as string}
-          className="w-[24px] h-[24px] cursor-pointer"
+          className="h-[24px] w-[24px] cursor-pointer"
           alt="뒤로가기"
           onClick={() => navigate(backNav)}
         ></img>
       </div>
-      <span className="text-black text-body1">{title}</span>
+      <span className="text-body1 text-black">{title}</span>
       <div className="flex flex-row items-center">
         <img src={ticket as string} className="h-[22px] w-[22px]" alt="티켓 아이콘"></img>
         <Spacing direction="horizontal" size={4} />
-        <span className="text-black text-body2">x</span>
+        <span className="text-body2 text-black">x</span>
         <Spacing direction="horizontal" size={5} />
-        <span className="text-pink text-body2">{ticketList.length}</span>
+        <span className="text-body2 text-pink">{ticketList.length}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>
     </div>

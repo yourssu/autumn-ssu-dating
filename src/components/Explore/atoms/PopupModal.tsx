@@ -43,17 +43,17 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
 
   return (
     <TypeButton
-      className="animate-jump-in animate-once animate-duration-[300ms] animate-ease-in-out"
+      className="animate-jump-in animate-duration-[300ms] animate-once animate-ease-in-out"
       mode="white"
       width={266}
       height={460}
     >
-      <div className="h-full w-full flex flex-col justify-start items-center">
+      <div className="flex h-full w-full flex-col items-center justify-start">
         <Spacing direction="vertical" size={11} />
         <div className="flex">
           <Spacing direction="horizontal" size={230} />
           <img
-            className="w-[18px] h-[18px]"
+            className="h-[18px] w-[18px]"
             src={XButton as string}
             title="X 버튼"
             alt="X 버튼"
@@ -93,13 +93,13 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
           <span>{animal}</span>
         </div>
         <Spacing direction="vertical" size={16} />
-        <div className="w-[226px] h-[114px] text-gray text-body2 break-words">{content}</div>
+        <div className="h-[114px] w-[226px] break-words text-body2 text-gray">{content}</div>
         {contactOpen === 'closed' ? (
           <Spacing direction="vertical" size={29} />
         ) : (
           <Spacing direction="vertical" size={8} />
         )}
-        <div className="w-[226px] flex justify-center">
+        <div className="flex w-[226px] justify-center">
           {contactOpen === 'closed' ? (
             <>
               <Spacing direction="vertical" size={29} />
@@ -130,7 +130,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
             </>
           ) : (
             <>
-              <div className="h-[53px] w-[211px] bg-[url('/bubble.png')] bg-cover animate-flip-up animate-once animate-duration-[500ms] animate-ease-linear animate-normal"></div>
+              <div className="h-[53px] w-[211px] animate-flip-up bg-[url('/bubble.png')] bg-cover animate-normal animate-duration-[500ms] animate-once animate-ease-linear"></div>
             </>
           )}
         </div>

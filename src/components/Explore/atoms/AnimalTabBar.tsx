@@ -26,7 +26,7 @@ const AnimalTabBar = ({ currentAnimalTab, gender, onClickHandler }: AnimalTabPro
   return (
     <div className="w-screen overflow-x-scroll scrollbar-hide min-[450px]:flex min-[450px]:justify-center min-[450px]:py-4">
       <Spacing direction="vertical" size={16} />
-      <div className="w-fit flex">
+      <div className="flex w-fit">
         <Spacing direction="horizontal" size={24}></Spacing>
         <AnimalTab
           mode="text"

@@ -7,13 +7,13 @@ const FloatingButton = ({ ...props }: FloatingButtonProps) => {
     <button
       {...props}
       style={{ WebkitTapHighlightColor: 'transparent' }}
-      className="w-16 h-16 p-[18px] bg-white rounded-[999px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.15)] border border-lightPink absolute bottom-[16px] right-[16px]"
+      className="absolute bottom-[16px] right-[16px] h-16 w-16 rounded-[999px] border border-lightPink bg-white p-[18px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.15)]"
     >
       <img
         src={Reload as string}
         alt="리로드"
         title="리로드"
-        className="w-[21px] h-[23.917px]"
+        className="h-[23.917px] w-[21px]"
       ></img>
     </button>
   )

@@ -12,9 +12,9 @@ const InformationCard = ({ profile, animalSrc: src }: InformationCardProps) => {
   const { nickName, mbti, animals, introduce, gender } = profile
 
   return (
-    <div className="bg-white text-pink rounded-[20px] shadow-typeBtn flex flex-col items-center text-body2 w-[224px] h-[343px]">
-      <img src={src} className="w-[106px] h-[106px]" />
-      <div className="text-center px-5 pb-5">
+    <div className="flex h-[343px] w-[224px] flex-col items-center rounded-[20px] bg-white text-body2 text-pink shadow-typeBtn">
+      <img src={src} className="h-[106px] w-[106px]" />
+      <div className="px-5 pb-5 text-center">
         <p className="text-button">{nickName}</p>
         <Spacing direction="vertical" size={4} />
         <div className="flex justify-center">

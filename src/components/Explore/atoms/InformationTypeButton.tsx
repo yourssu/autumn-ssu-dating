@@ -41,14 +41,14 @@ const InformationTypeButton = ({
       }
       {...props}
     >
-      <div className="flex justify-start flex-col w-[129px] h-[104px]">
+      <div className="flex h-[104px] w-[129px] flex-col justify-start">
         <span className="text-body1">{nickname}</span>
         <Spacing direction="vertical" size={2} />
-        <div className="flex text-caption items-center">
+        <div className="flex items-center text-caption">
           <span>{mbti}</span>
           <Spacing direction="horizontal" size={4} />
           <img
-            className="w-[2px] h-[2px]"
+            className="h-[2px] w-[2px]"
             src={EllipseSeperator as string}
             alt="공간 분리용 동그라미"
             title="공간 분리용 동그라미"
@@ -57,7 +57,7 @@ const InformationTypeButton = ({
           <span>{animal}</span>
         </div>
         <Spacing direction="vertical" size={8} />
-        <div className="text-gray text-body2 line-clamp-3 break-words">{content}</div>
+        <div className="line-clamp-3 break-words text-body2 text-gray">{content}</div>
       </div>
     </TypeButton>
   )

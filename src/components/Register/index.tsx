@@ -22,7 +22,7 @@ import ToastMessage from '../common/ToastMessage'
 const Register = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
-  const { stateToast, setStateToast, hideStateToast } = useToast()
+  const { stateToast, showStateToast } = useToast()
   const { setRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const navigate = useNavigate()
@@ -90,18 +90,17 @@ const Register = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setStateToast('이미 존재하는 닉네임이에요.')
+          showStateToast('이미 존재하는 닉네임이에요.')
           break
 
         case 404:
-          setStateToast('존재하지 않는 인증코드에요.')
+          showStateToast('존재하지 않는 인증코드에요.')
           break
 
         default:
-          setStateToast('등록에 실패했습니다.')
+          showStateToast('등록에 실패했습니다.')
           break
       }
-      hideStateToast()
     }
   }
 
@@ -123,7 +122,7 @@ const Register = () => {
   }, [])
 
   return (
-    <div className=" w-screen h-[calc(100%-44px)] overflow-y-scroll flex flex-col items-center scrollbar-hide">
+    <div className=" flex h-[calc(100%-44px)] w-screen flex-col items-center overflow-y-scroll scrollbar-hide">
       <div className="flex flex-col items-center">
         <form onSubmit={onSubmit}>{currentStep}</form>
         {stateToast && <ToastMessage>{stateToast}</ToastMessage>}

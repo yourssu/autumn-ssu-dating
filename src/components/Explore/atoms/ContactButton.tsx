@@ -26,13 +26,13 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
           <>
             <button
               disabled={contactOpen === 'opened'}
-              className="flex justify-center items-center relative"
+              className="relative flex items-center justify-center"
             ></button>
             <span>{contact}</span>
             <Spacing direction="horizontal" size={8}></Spacing>
 
             <img
-              className="cursor-pointer w-[14px] h-[14px]"
+              className="h-[14px] w-[14px] cursor-pointer"
               src={CopyButton as string}
               onClick={() => {
                 contact && navigator.clipboard.writeText(contact)

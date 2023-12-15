@@ -27,7 +27,7 @@ const Checkbox = ({
   }
 
   return (
-    <div className={`flex ${checkCaseJustify[checkCase]} justify-start text-center h-[32px]`}>
+    <div className={`flex ${checkCaseJustify[checkCase]} h-[32px] justify-start text-center`}>
       <img
         className="h-[16px] w-[16px]"
         src={isChecked ? (checkedIcon as string) : (uncheckedIcon as string)}

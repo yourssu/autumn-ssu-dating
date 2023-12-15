@@ -38,7 +38,7 @@ const Explore = () => {
   }, [recoilStateToast, hideRecoilStateToast])
 
   return (
-    <div className="h-[100dvh] w-screen overflow-hidden flex flex-col items-center">
+    <div className="flex h-[100dvh] w-screen flex-col items-center overflow-hidden">
       <FloatingButton
         onClick={() => {
           refetch()
@@ -49,7 +49,7 @@ const Explore = () => {
         handleGenderTab={handleGenderTab}
       />
       <Spacing direction="vertical" size={48} />
-      <div className="h-[calc(100%-44px-48px-32px)] overflow-y-scroll overflow-x-hidden scrollbar-hide">
+      <div className="h-[calc(100%-44px-48px-32px)] overflow-x-hidden overflow-y-scroll scrollbar-hide">
         <AnimalTabBar
           currentAnimalTab={
             currentExploreFilter.gender === 'female'
@@ -61,14 +61,14 @@ const Explore = () => {
         />
 
         {isLoading || isFetching ? (
-          <div className="w-scren h-[calc(100%-180px)] flex justify-center items-center">
-            <img src={Loading} className="w-[100px] h-[100px]" alt="loading" title="loading"></img>
+          <div className="w-scren flex h-[calc(100%-180px)] items-center justify-center">
+            <img src={Loading} className="h-[100px] w-[100px]" alt="loading" title="loading"></img>
           </div>
         ) : null}
 
         {currentExploreFilter.gender === 'female' ? (
           <div className="flex w-screen justify-center">
-            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+            <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
               {data?.map((item, index) => (
                 <InformationTypeButton
                   nickname={item.nickName}
@@ -84,7 +84,7 @@ const Explore = () => {
           </div>
         ) : (
           <div className="flex w-screen justify-center">
-            <div className="flex flex-wrap gap-5 justify-start self-center w-[342px]">
+            <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
               {data?.map((item, index) => (
                 <InformationTypeButton
                   nickname={item.nickName}
@@ -103,7 +103,7 @@ const Explore = () => {
       </div>
       {isPopup ? (
         <div
-          className="bg-[rgba(4,9,27,0.50)] flex flex-col w-screen h-[100dvh] absolute top-0 justify-center items-center"
+          className="absolute top-0 flex h-[100dvh] w-screen flex-col items-center justify-center bg-[rgba(4,9,27,0.50)]"
           ref={bgRef}
           onClick={(e) => handlePopup(bgRef, e)}
         >
@@ -119,7 +119,7 @@ const Explore = () => {
         </div>
       ) : null}
       {recoilStateToast.isShow && (
-        <ToastMessage className="absolute bottom-[22px] flex self-center justify-center items-center">
+        <ToastMessage className="absolute bottom-[22px] flex items-center justify-center self-center">
           {recoilStateToast.toastMessage}
         </ToastMessage>
       )}

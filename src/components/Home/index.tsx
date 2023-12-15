@@ -20,7 +20,7 @@ import TypeButton from '../common/TypeButton'
 const Home = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
-  const { stateToast, setStateToast, hideStateToast } = useToast()
+  const { stateToast, showStateToast } = useToast()
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
@@ -34,25 +34,24 @@ const Home = () => {
     try {
       const response = await authCode(code)
       setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
-      setStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
+      showStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
       setCode('')
     } catch (error) {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          setStateToast('10자리의 인증코드를 입력해주세요.')
+          showStateToast('10자리의 인증코드를 입력해주세요.')
           break
 
         case 404:
-          setStateToast('존재하지 않는 인증코드예요.')
+          showStateToast('존재하지 않는 인증코드예요.')
           break
 
         default:
-          setStateToast('인증코드를 다시 한번 확인해주세요.')
+          showStateToast('인증코드를 다시 한번 확인해주세요.')
           break
       }
     }
-    hideStateToast()
   }
 
   useEffect(() => {
@@ -80,8 +79,8 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="flex flex-col justify-center items-center h-full">
-      <p className="text-center text-pink text-titleBold whitespace-pre-line">
+    <div className="flex h-full flex-col items-center justify-center">
+      <p className="whitespace-pre-line text-center text-titleBold text-pink">
         {'뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={15} />
@@ -97,7 +96,7 @@ const Home = () => {
         <Spacing direction="horizontal" size={8} />
         <BoxButton isLine="line" size="extraSmall">
           <button
-            className="w-full h-full rounded-2xl text-body2 focus:outline-none"
+            className="h-full w-full rounded-2xl text-body2 focus:outline-none"
             onClick={verifyCode}
           >
             인증하기
@@ -114,7 +113,7 @@ const Home = () => {
       </div>
       <Spacing direction="vertical" size={40} />
       <div
-        className="grid grid-flow-col gap-x-5 overflow-scroll w-full scrollbar-hide"
+        className="grid w-full grid-flow-col gap-x-5 overflow-scroll scrollbar-hide"
         ref={animalCardRef}
       >
         {animalOptions.map((option, index) => (
@@ -126,7 +125,7 @@ const Home = () => {
       <Spacing direction="vertical" size={48} />
       <BoxButton size="large">
         <button
-          className="w-full h-full rounded-[12px]"
+          className="h-full w-full rounded-[12px]"
           onClick={() => {
             navigate('/register')
           }}
@@ -137,7 +136,7 @@ const Home = () => {
       <Spacing direction="vertical" size={16} />
       <BoxButton size="large">
         <button
-          className="w-full h-full rounded-[12px]"
+          className="h-full w-full rounded-[12px]"
           onClick={() => {
             navigate('/explore')
           }}

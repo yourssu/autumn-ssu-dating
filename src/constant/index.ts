@@ -7,6 +7,9 @@ export const LINK_TITLE: { [key: string]: { title: string; backNav?: string } } 
   '/register?step=0': { title: '성별 고르기', backNav: '/' },
   '/register?step=1': { title: '동물 고르기', backNav: '/' },
   '/register?step=2': { title: '본인 소개하기', backNav: '/' },
+  '/user': { title: '마이페이지', backNav: '/' },
+  '/user/edit': { title: '내 프로필 수정하기', backNav: '/user' },
+  '/user/contact': { title: '내가 가져온 프로필', backNav: '/user' },
 }
 
 export const ANIMAL_OPTIONS_MALE: FormStepOption[] = [

@@ -1,6 +1,11 @@
 const Link = ({ link, children }: { link: string; children: string }) => {
   return (
-    <a href={link} className="text-blue-600 underline underline-offset-2">
+    <a
+      href={link}
+      target="_blank"
+      className="text-blue-600 underline underline-offset-2"
+      rel="noreferrer"
+    >
       {children}
     </a>
   )

@@ -4,6 +4,8 @@ import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
+import Policy from './atoms/Policy'
+
 import { authCode } from '../../apis/authApi'
 import ticket from '../../assets/ticket.svg'
 import useRecoilToast from '../../hooks/useRecoilToast'
@@ -18,6 +20,15 @@ import ToastMessage from '../common/ToastMessage'
 import TypeButton from '../common/TypeButton'
 
 const Home = () => {
+  const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
+  return (
+    <div className="flex h-full flex-col items-center justify-center">
+      {isLogged ? <AfterLogin /> : <BeforeLogin />}
+    </div>
+  )
+}
+
+const AfterLogin = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
 
   const { stateToast, showStateToast } = useToast()
@@ -79,9 +90,9 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
-        {'뿌슝이의\n동물 SSU개팅'}
+        {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={15} />
       <div className="flex">
@@ -147,7 +158,32 @@ const Home = () => {
       {stateToast && <ToastMessage>{stateToast}</ToastMessage>}
       {recoilStateToast.isShow && <ToastMessage>{recoilStateToast.toastMessage}</ToastMessage>}
       <Spacing direction="vertical" size={44}></Spacing>
-    </div>
+    </>
+  )
+}
+
+const BeforeLogin = () => {
+  const navigate = useNavigate()
+
+  return (
+    <>
+      <p className="whitespace-pre-line text-center text-titleBold text-pink">
+        {'돌아온 뿌슝이의\n동물 SSU개팅'}
+      </p>
+      <Spacing direction="vertical" size={437} />
+      <BoxButton size="large">
+        <button
+          className="h-full w-full rounded-[12px]"
+          onClick={() => {
+            navigate('/login') // 백엔드에서 제공하는 로그인 링크로 수정
+          }}
+        >
+          SSU개팅 진행하기
+        </button>
+      </BoxButton>
+      <Spacing direction="vertical" size={16} />
+      <Policy />
+    </>
   )
 }
 

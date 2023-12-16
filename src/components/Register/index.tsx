@@ -83,7 +83,8 @@ const Register = () => {
       setTicketList(currentTicketList)
       setRecoilStateToast({
         isShow: true,
-        toastMessage: '등록 완료! 둘러보기에서 다른 프로필을 구경해보세요 👀',
+        toastMessage:
+          '등록 완료! 내 이상형 찾기에서\n다른 사람들이 작성한 프로필을 구경해보세요 👀',
       })
       navigate('/')
     } catch (error) {

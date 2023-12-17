@@ -6,13 +6,13 @@ import { useRecoilState } from 'recoil'
 
 import Policy from './atoms/Policy'
 
-import { authCode } from '../../apis/authApi'
+import { postReferralCode } from '../../apis/postReferralCode'
 import myPageIcon from '../../assets/myPageIcon.svg'
 import ticket from '../../assets/ticket.svg'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
@@ -30,7 +30,7 @@ const Home = () => {
 }
 
 const AfterLogin = () => {
-  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [ticketCount, setTicketCount] = useRecoilState(ticketAtom)
 
   const { stateToast, showStateToast } = useToast()
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
@@ -44,8 +44,8 @@ const AfterLogin = () => {
 
   async function verifyCode() {
     try {
-      const response = await authCode(code)
-      setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
+      const response = await postReferralCode(code)
+      setTicketCount(response.data.ticket)
       showStateToast('추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.')
       setCode('')
     } catch (error) {
@@ -131,7 +131,7 @@ const AfterLogin = () => {
         <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
         <Spacing direction="horizontal" size={4} />
         <p>
-          이용권 x <span className="text-pink">{ticketList.length}</span>
+          이용권 x <span className="text-pink">{ticketCount}</span>
         </p>
       </div>
       <Spacing direction="vertical" size={40} />

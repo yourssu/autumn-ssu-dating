@@ -6,7 +6,7 @@ import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
 import useToast from '../../../hooks/useToast'
-import { ticketListAtom } from '../../../state/ticketListAtom'
+import { ticketListAtom } from '../../../state/ticketAtom'
 import { FormStepProps } from '../../../types/register.type'
 import BoxButton from '../../common/BoxButton'
 import Checkbox from '../../common/Checkbox'

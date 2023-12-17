@@ -7,7 +7,7 @@ import useRecoilToast from './useRecoilToast'
 import { postContact } from '../apis/postContact'
 import { queryClient } from '../main'
 import { exploreToastAtom } from '../state/exploreToastAtom'
-import { ticketListAtom } from '../state/ticketListAtom'
+import { ticketListAtom } from '../state/ticketAtom'
 
 export const usePostContact = () => {
   const [ticketList, setTicketList] = useRecoilState(ticketListAtom)

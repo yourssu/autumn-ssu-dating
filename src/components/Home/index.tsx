@@ -46,21 +46,21 @@ const AfterLogin = () => {
     try {
       const response = await authCode(code)
       setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
-      showStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
+      showStateToast('추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.')
       setCode('')
     } catch (error) {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          showStateToast('10자리의 인증코드를 입력해주세요.')
+          showStateToast('10자리의 추천인 코드를 입력해주세요.')
           break
 
         case 404:
-          showStateToast('존재하지 않는 인증코드예요.')
+          showStateToast('존재하지 않는 추천인 코드예요.')
           break
 
         default:
-          showStateToast('인증코드를 다시 한번 확인해주세요.')
+          showStateToast('추천인 코드를 다시 한번 확인해주세요.')
           break
       }
     }

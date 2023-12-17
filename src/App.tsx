@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom'
 import Explore from './components/Explore'
 import Home from './components/Home'
 import Layout from './components/Layout'
-import MonitorExplore from './components/MonitorExplore'
 import NotFound from './components/NotFound'
 import Register from './components/Register'
 
@@ -19,7 +18,6 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          <Route path="/monitor" element={<MonitorExplore />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

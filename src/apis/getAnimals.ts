@@ -11,8 +11,3 @@ export const getAnimals = async (
   const response = await client.get(`/search/${gender}/${animals}`)
   return response.data
 }
-
-export const getRecentAnimals = async (): Promise<AnimalsResponse> => {
-  const response = await client.get('/search/recent')
-  return response.data
-}

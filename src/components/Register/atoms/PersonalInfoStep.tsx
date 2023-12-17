@@ -96,7 +96,7 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
             <TextareaField
               required={true}
               maxLength={100}
-              placeholder={'ex. 취미, 관심사, 키, 나이 등으로 자신을 드러내보세요!'}
+              placeholder="ex. 프로필을 가져갈 다른 사람들에게 내 매력을 어필해보세요! (모두가 사용하는 커뮤니티인만큼 부적절한 언어 사용은 피해주세요 :D)"
               value={introduce}
               onChange={(e) => updateFields({ introduce: e.target.value })}
             />

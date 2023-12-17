@@ -1,5 +1,7 @@
+import { AnimalServerType } from './register.type'
+
 export interface UserInfoResponse {
-  animals: string
+  animals: AnimalServerType
   code: string
   contact: string
   createdAt: string

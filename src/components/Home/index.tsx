@@ -23,7 +23,7 @@ import TypeButton from '../common/TypeButton'
 const Home = () => {
   const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex h-full select-none flex-col items-center justify-center">
       {isLogged ? <AfterLogin /> : <BeforeLogin />}
     </div>
   )

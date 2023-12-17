@@ -114,7 +114,7 @@ const AfterLogin = () => {
           onChange={(e) => {
             setCode((e.target as HTMLInputElement).value)
           }}
-          placeholder="인증코드를 입력해주세요."
+          placeholder="추천인 코드를 입력해주세요."
         />
         <Spacing direction="horizontal" size={8} />
         <BoxButton isLine="line" size="extraSmall">
@@ -122,7 +122,7 @@ const AfterLogin = () => {
             className="h-full w-full rounded-2xl text-body2 focus:outline-none"
             onClick={verifyCode}
           >
-            인증하기
+            이용권 받기
           </button>
         </BoxButton>
       </div>

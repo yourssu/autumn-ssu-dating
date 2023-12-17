@@ -1,12 +1,26 @@
+import { useEffect } from 'react'
+
 import { useNavigate } from 'react-router-dom'
 
 import { List } from './atoms/List'
+import Profile from './atoms/Profile'
+
+import useRecoilToast from '../../hooks/useRecoilToast'
+import { userPageToastAtom } from '../../state/userPageToastAtom'
+import ToastMessage from '../common/ToastMessage'
 
 const UserPage = () => {
+  const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(userPageToastAtom)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    hideRecoilStateToast()
+  }, [recoilStateToast, hideRecoilStateToast])
 
   return (
     <div className="flex h-[calc(100%-44px)] select-none flex-col items-center overflow-y-scroll scrollbar-hide">
+      <Profile />
       <div className="mt-6 h-3 w-screen bg-palePink"></div>
       <List title="프로필 관리">
         <List.Item
@@ -50,6 +64,7 @@ const UserPage = () => {
           <p className="text-caption text-gray">회원탈퇴</p>
         </List.Item>
       </List>
+      {recoilStateToast.isShow && <ToastMessage>{recoilStateToast.toastMessage}</ToastMessage>}
     </div>
   )
 }

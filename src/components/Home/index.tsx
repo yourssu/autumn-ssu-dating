@@ -98,7 +98,7 @@ const AfterLogin = () => {
           alt="마이페이지"
           title="마이페이지"
           onClick={() => {
-            navigate('/mypage')
+            navigate('/user')
           }}
         />
       </div>

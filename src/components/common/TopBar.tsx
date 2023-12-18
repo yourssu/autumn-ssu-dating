@@ -13,7 +13,7 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
-  const ticketCount = useRecoilValue(ticketAtom)
+  const hasRightIcon = backNav !== '/user'
 
   const navigate = useNavigate()
   return (
@@ -30,15 +30,33 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
         ></img>
       </div>
       <span className="text-body1 text-black">{title}</span>
-      <div className="flex flex-row items-center">
-        <img src={ticket as string} className="h-[22px] w-[22px]" alt="티켓 아이콘"></img>
-        <Spacing direction="horizontal" size={4} />
-        <span className="text-body2 text-black">x</span>
-        <Spacing direction="horizontal" size={5} />
-        <span className="text-body2 text-pink">{ticketCount}</span>
-        <Spacing direction="horizontal" size={12.87} />
-      </div>
+      {hasRightIcon && <RightIcon />}
     </div>
+  )
+}
+
+const RightIcon = () => {
+  const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
+
+  return (
+    <div className="flex flex-row items-center">
+      {isLogged ? <TicketCount /> : <span className="w-[60px] text-body2 text-pink">로그인</span>}
+    </div>
+  )
+}
+
+const TicketCount = () => {
+  const ticketCount = useRecoilValue(ticketAtom)
+
+  return (
+    <>
+      <img src={ticket as string} className="h-[22px] w-[22px]" alt="티켓 아이콘"></img>
+      <Spacing direction="horizontal" size={4} />
+      <span className="text-body2 text-black">x</span>
+      <Spacing direction="horizontal" size={5} />
+      <span className="text-body2 text-pink">{ticketCount}</span>
+      <Spacing direction="horizontal" size={12.87} />
+    </>
   )
 }
 

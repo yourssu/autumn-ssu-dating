@@ -2,7 +2,6 @@ import { FormEvent, useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
 
 import AnimalStep from './atoms/AnimalStep'
 import GenderStep from './atoms/GenderStep'
@@ -13,25 +12,17 @@ import useMultistepForm from '../../hooks/useMultistepForm'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
-import { ticketListAtom } from '../../state/ticketListAtom'
 import { FormData } from '../../types/register.type'
 import { RegisterRequest } from '../../types/registerApi.type'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
-  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
-
   const { stateToast, showStateToast } = useToast()
   const { setRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const navigate = useNavigate()
   const location = useLocation()
-
-  // 보리가 여기서 정보 빼서 사용하시면 됩니다 :)
-  useEffect(() => {
-    console.log(location.state)
-  }, [location.state])
 
   const [formData, setFormData] = useState<FormData>({
     gender: '',
@@ -40,6 +31,7 @@ const Register = () => {
     mbti: '',
     introduce: '',
     contact: '',
+    oauthName: '',
   })
 
   const { currentStepIndex, currentStep, next } = useMultistepForm([
@@ -77,15 +69,14 @@ const Register = () => {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const profile: RegisterRequest = { ...formData, code: ticketList[0] }
+    const profile: RegisterRequest = { ...formData }
     const gender = formData.gender
 
     if ('gender' in profile) delete profile.gender
 
     try {
-      await registerProfile({ gender, profile })
-      const currentTicketList = ticketList.slice(1)
-      setTicketList(currentTicketList)
+      const response = await registerProfile({ gender, profile })
+      // response.ticket으로 ticketcount 설정
       setRecoilStateToast({
         isShow: true,
         toastMessage:
@@ -124,6 +115,16 @@ const Register = () => {
 
     return () => {
       window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (location.state === null) {
+      navigate('/')
+    } else {
+      setFormData((prev) => {
+        return { ...prev, oauthName: location.state.code }
+      })
     }
   }, [])
 

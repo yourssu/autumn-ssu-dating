@@ -40,4 +40,5 @@ export type CurrentPopupSelectedType = {
   gender: GenderType
   animal: AnimalType
   content: string
+  weight: number
 }

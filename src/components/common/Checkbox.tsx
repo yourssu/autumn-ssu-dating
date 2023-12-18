@@ -4,7 +4,7 @@ import Spacing from './Spacing'
 
 import checkedIcon from '../../assets/checkedIcon.svg'
 import uncheckedIcon from '../../assets/uncheckedIcon.svg'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketListAtom } from '../../state/ticketAtom'
 
 interface CheckboxProps {
   checkCase: '등록' | '연락처 확인'

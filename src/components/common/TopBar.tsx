@@ -5,7 +5,7 @@ import Spacing from './Spacing'
 
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketListAtom } from '../../state/ticketAtom'
 
 interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
   backNav: string

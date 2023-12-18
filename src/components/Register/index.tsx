@@ -91,7 +91,7 @@ const Register = () => {
           break
 
         case 404:
-          showStateToast('존재하지 않는 인증코드에요.')
+          showStateToast('로그인 정보가 올바르지 않습니다. 다시 로그인해 주세요.')
           break
 
         default:

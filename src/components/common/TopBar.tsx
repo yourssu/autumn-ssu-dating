@@ -13,7 +13,7 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
-  const hasRightIcon = backNav !== '/user'
+  const hasRightIcon = backNav !== '/user' && window.location.pathname !== '/register'
 
   const navigate = useNavigate()
   return (
@@ -30,7 +30,7 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
         ></img>
       </div>
       <span className="text-body1 text-black">{title}</span>
-      {hasRightIcon && <RightIcon />}
+      {hasRightIcon ? <RightIcon /> : <div className="w-[60px]"></div>}
     </div>
   )
 }

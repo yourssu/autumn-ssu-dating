@@ -1,7 +1,10 @@
 import { useState } from 'react'
 
+import { AxiosError } from 'axios'
 import _ from 'lodash'
+import { useNavigate } from 'react-router-dom'
 
+import { updateProfile } from '../../apis/registerApi'
 import { UpdateRequest } from '../../types/register.type'
 import TextareaField from '../Register/atoms/TextareaField'
 import BoxButton from '../common/BoxButton'
@@ -20,6 +23,8 @@ const UpdateProfile = () => {
   const hasDifference = !_.isEqual(originData, formData)
   const canUpdate = formData.nickName && formData.introduce && formData.contact && hasDifference
 
+  const navigate = useNavigate()
+
   function updateFields(fields: Partial<UpdateRequest>) {
     setFormData((prev) => {
       return { ...prev, ...fields }
@@ -29,6 +34,15 @@ const UpdateProfile = () => {
   async function onSubmit(e: React.MouseEvent) {
     e.preventDefault()
     console.dir(formData)
+
+    // try {
+    //   const response = await updateProfile(formData)
+    //   전역 ticket 값을 response.ticket 값으로 업데이트
+    //   navigate('/user')
+    // } catch (error) {
+    //   const updateError = error as AxiosError
+    //   실패 토스트 노출
+    // }
   }
 
   return (

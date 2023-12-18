@@ -16,7 +16,7 @@ const BoxButton = ({
   children,
   ...props
 }: BoxButtonProps) => {
-  const defaultStyle = 'px-4 flex rounded-[12px] justify-center items-center'
+  const defaultStyle = 'px-4 flex flex-col rounded-[12px] justify-center items-center'
 
   const disableStyle = {
     disabled: 'bg-lightPink border-lightPink',
@@ -29,8 +29,10 @@ const BoxButton = ({
   }
 
   const sizeStyle = {
+    extraExtraSmall: 'w-[42px] h-[23px]',
     extraSmall: 'w-[116px] h-12',
     small: 'w-[193px] h-12',
+    middle: 'w-[226px] min-h-[43px]',
     large: 'w-[342px] h-14',
   }
 

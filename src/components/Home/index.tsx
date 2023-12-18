@@ -137,7 +137,7 @@ const BeforeLogin = () => {
         {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={437} />
-      <div className="flex w-screen flex-col  items-center px-4">
+      <div className="flex w-screen max-w-[350px] flex-col items-center px-4">
         <a href="/explore" className="underline underline-offset-2">
           그냥 둘러볼래요
         </a>

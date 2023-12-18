@@ -7,13 +7,10 @@ const Redirect = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(code)
     if (code) {
       navigate('/register', { state: { code } })
     }
   }, [code])
-
-  return <div>Redirect</div>
 }
 
 export default Redirect

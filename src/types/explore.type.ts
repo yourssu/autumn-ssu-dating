@@ -13,6 +13,7 @@ export interface CurrentExploreFilterType {
 }
 
 export type ContactOpenType = 'opened' | 'closed'
+export type RecommendOpenType = 'opened' | 'closed'
 
 export type AnimalTabMode = 'image' | 'text'
 

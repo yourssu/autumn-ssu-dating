@@ -93,6 +93,10 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
               value={contact}
               onChange={(e) => updateFields({ contact: (e.target as HTMLInputElement).value })}
             />
+            <Spacing direction="vertical" size={8} />
+            <p className="text-caption text-gray">
+              * 연락처의 경우 프로필을 가져간 사람에게만 공개됩니다.
+            </p>
           </div>
         </div>
         <Spacing direction="vertical" size={8} />

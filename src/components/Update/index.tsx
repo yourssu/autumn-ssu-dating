@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { AxiosError } from 'axios'
 import _ from 'lodash'
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { updateProfile } from '../../apis/registerApi'
 import { UpdateRequest } from '../../types/register.type'
+import RadioSelector from '../Register/atoms/RadioSelector'
 import TextareaField from '../Register/atoms/TextareaField'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
@@ -14,11 +15,24 @@ import Spacing from '../common/Spacing'
 const UpdateProfile = () => {
   const originData: UpdateRequest = {
     nickName: '멍멍이',
-    mbti: 'INFP',
+    mbti: 'INTP',
     introduce: '잘짖어요............',
     contact: '@fakeid',
   }
   const [formData, setFormData] = useState<UpdateRequest>(originData)
+
+  const mbtiOptions = [
+    ['E', 'I'],
+    ['S', 'N'],
+    ['F', 'T'],
+    ['P', 'J'],
+  ]
+  const [mbtiValueObject, setMbtiValueObject] = useState<{ [key: string]: string }>(
+    originData.mbti.split('').reduce((accumulator, value, index) => {
+      accumulator[index.toString()] = value
+      return accumulator
+    }, {})
+  )
 
   const hasDifference = !_.isEqual(originData, formData)
   const canUpdate = formData.nickName && formData.introduce && formData.contact && hasDifference
@@ -45,6 +59,10 @@ const UpdateProfile = () => {
     // }
   }
 
+  useEffect(() => {
+    updateFields({ mbti: Object.values(mbtiValueObject).join('') })
+  }, [mbtiValueObject])
+
   return (
     <div className="flex h-[calc(100%-44px-34px)] select-none flex-col items-center justify-between overflow-y-scroll scrollbar-hide">
       <div className="grid gap-y-6 text-body2">
@@ -65,6 +83,27 @@ const UpdateProfile = () => {
             value={formData?.nickName}
             onChange={(e) => updateFields({ nickName: (e.target as HTMLInputElement).value })}
           />
+        </div>
+
+        <div>
+          <label>
+            MBTI <span className="text-caption text-gray">(클릭해서 MBTI를 완성해보세요!)</span>
+          </label>
+          <Spacing direction="vertical" size={8} />
+          <div className="flex justify-between">
+            {mbtiOptions.map((option, index) => (
+              <RadioSelector
+                key={index}
+                labels={option}
+                updateMbti={(value: string) => {
+                  setMbtiValueObject((prev) => {
+                    return { ...prev, ...{ [index]: value } }
+                  })
+                }}
+                defaultLabel={mbtiValueObject[index.toString()]}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid">

@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
+import AnimalSlide from './atoms/AnimalSlide'
 import Policy from './atoms/Policy'
 
 import { postReferralCode } from '../../apis/postReferralCode'
@@ -13,12 +14,10 @@ import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { ticketAtom } from '../../state/ticketAtom'
-import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
-import TypeButton from '../common/TypeButton'
 
 const Home = () => {
   const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
@@ -36,9 +35,6 @@ const AfterLogin = () => {
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
-
-  const animalOptions = getAnimalOptions()
-  const animalCardRef = useRef<HTMLDivElement>(null)
 
   const navigate = useNavigate()
 
@@ -69,26 +65,6 @@ const AfterLogin = () => {
   useEffect(() => {
     hideRecoilStateToast()
   }, [recoilStateToast, hideRecoilStateToast])
-
-  useEffect(() => {
-    let scrollInterval = 1
-    const scrollBox = animalCardRef.current as HTMLDivElement
-    const scrollWidth = scrollBox.scrollWidth
-    const clientWidth = scrollBox.clientWidth
-
-    const timer = setInterval(() => {
-      const scrollLeft = scrollBox.scrollLeft
-      animalCardRef.current?.scrollTo(scrollLeft + scrollInterval, 0)
-
-      if (scrollBox.scrollLeft === 0 || scrollBox.scrollLeft + clientWidth == scrollWidth) {
-        scrollInterval *= -1
-      }
-    }, 20)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
 
   return (
     <>
@@ -124,16 +100,7 @@ const AfterLogin = () => {
         </p>
       </div>
       <Spacing direction="vertical" size={40} />
-      <div
-        className="grid w-full grid-flow-col gap-x-5 overflow-scroll scrollbar-hide"
-        ref={animalCardRef}
-      >
-        {animalOptions.map((option, index) => (
-          <TypeButton key={index}>
-            <img src={option.src} />
-          </TypeButton>
-        ))}
-      </div>
+      <AnimalSlide />
       <Spacing direction="vertical" size={48} />
       <BoxButton size="large">
         <button

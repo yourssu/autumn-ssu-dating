@@ -31,5 +31,4 @@ export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
 ]
 
 // 서버 배포 이후 수정 필요
-export const LOGIN_LINK =
-  'http://ec2-13-125-112-2.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao'
+export const LOGIN_LINK = 'https://ssudate-server.yourssu.com//oauth2/authorization/kakao'

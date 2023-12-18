@@ -9,6 +9,7 @@ import Policy from './atoms/Policy'
 import { authCode } from '../../apis/authApi'
 import myPageIcon from '../../assets/myPageIcon.svg'
 import ticket from '../../assets/ticket.svg'
+import { LOGIN_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
@@ -175,8 +176,6 @@ const AfterLogin = () => {
 }
 
 const BeforeLogin = () => {
-  const navigate = useNavigate()
-
   return (
     <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
@@ -187,7 +186,7 @@ const BeforeLogin = () => {
         <button
           className="h-full w-full rounded-[12px]"
           onClick={() => {
-            navigate('/login') // 백엔드에서 제공하는 로그인 링크로 수정
+            window.location.assign(LOGIN_LINK)
           }}
         >
           SSU개팅 진행하기

@@ -182,18 +182,22 @@ const BeforeLogin = () => {
         {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={437} />
-      <BoxButton size="large">
+      <div className="flex w-screen flex-col  items-center px-4">
+        <a href="/explore" className="underline underline-offset-2">
+          그냥 둘러볼래요
+        </a>
+        <Spacing direction="vertical" size={12} />
         <button
-          className="h-full w-full rounded-[12px]"
+          className="h-[56px] w-full rounded-[8px] bg-[#ffe812] text-body1"
           onClick={() => {
             window.location.assign(LOGIN_LINK)
           }}
         >
-          SSU개팅 진행하기
+          카카오톡으로 로그인
         </button>
-      </BoxButton>
-      <Spacing direction="vertical" size={16} />
-      <Policy />
+        <Spacing direction="vertical" size={16} />
+        <Policy />
+      </div>
     </>
   )
 }

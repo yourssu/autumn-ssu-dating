@@ -8,3 +8,9 @@ export const ticketListAtom = atom<string[]>({
   default: [],
   effects_UNSTABLE: [persistAtom],
 })
+
+export const ticketAtom = atom<number>({
+  key: 'ticket',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+})

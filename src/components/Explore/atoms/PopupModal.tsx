@@ -10,7 +10,7 @@ import { ANIMAL_OPTIONS_FEMALE, ANIMAL_OPTIONS_MALE } from '../../../constant'
 import { usePostContact } from '../../../hooks/usePostContact'
 import useRecoilToast from '../../../hooks/useRecoilToast'
 import { exploreToastAtom } from '../../../state/exploreToastAtom'
-import { ticketListAtom } from '../../../state/ticketAtom'
+import { ticketAtom } from '../../../state/ticketAtom'
 import { AnimalType, ContactOpenType, GenderType, MbtiType } from '../../../types/explore.type'
 import Checkbox from '../../common/Checkbox'
 import Spacing from '../../common/Spacing'
@@ -30,7 +30,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
   const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [contact, setContact] = useState<string>()
-  const ticketList = useRecoilValue(ticketListAtom)
+  const ticketCount = useRecoilValue(ticketAtom)
   const { setRecoilStateToast } = useRecoilToast(exploreToastAtom)
   const { mutate: postContact, data, isSuccess } = usePostContact()
 
@@ -107,7 +107,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
                 checkCase="연락처 확인"
                 isChecked={isChecked}
                 onImgClick={() => {
-                  if (ticketList.length > 0) {
+                  if (ticketCount > 0) {
                     setIsChecked((prev) => !prev)
                   } else {
                     setRecoilStateToast({
@@ -117,7 +117,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
                   }
                 }}
                 onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (ticketList.length > 0) {
+                  if (ticketCount > 0) {
                     setIsChecked(e.target.checked)
                   } else {
                     setRecoilStateToast({
@@ -141,7 +141,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
           contact={data?.contact}
           onClick={() => {
             if (!contact) {
-              postContact({ code: ticketList[0], nickName: nickname })
+              postContact({ nickName: nickname })
             }
           }}
         />

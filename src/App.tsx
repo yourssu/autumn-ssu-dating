@@ -19,7 +19,7 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          <Route path="/kakaoredirect" element={<Redirect />} />
+          <Route path="/kakao-redirect" element={<Redirect />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

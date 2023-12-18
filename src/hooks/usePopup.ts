@@ -10,6 +10,7 @@ const usePopup = () => {
     gender: 'female',
     animal: '뿌슝이',
     content: 'ppussung',
+    weight: 0,
   })
 
   const handlePopup = (

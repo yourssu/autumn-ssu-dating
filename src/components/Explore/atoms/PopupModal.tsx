@@ -23,7 +23,7 @@ interface PopupModalProps {
   content: string
   gender: GenderType
   isPopup: boolean
-  checkedCount: number
+  weight: number
   onClickClose: () => void
 }
 
@@ -33,7 +33,7 @@ const PopupModal = ({
   animal,
   content,
   gender,
-  checkedCount,
+  weight,
   onClickClose,
 }: PopupModalProps) => {
   const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
@@ -72,7 +72,7 @@ const PopupModal = ({
                 <Spacing direction="vertical" size={8} />
                 <div>
                   <span>지금까지 </span>
-                  <span className="text-pink">{`${checkedCount}`}</span>
+                  <span className="text-pink">{`${weight}`}</span>
                   <span>명이</span>
                 </div>
                 <div>프로필을 확인했어요!</div>

@@ -77,6 +77,7 @@ const Explore = () => {
                   animal={animalServerToClient(item.animals)}
                   gender={item.gender.toLowerCase() as GenderType}
                   content={item.introduce}
+                  weight={item.weight}
                   onButtonClick={handlePopupSelected}
                 ></InformationTypeButton>
               ))}
@@ -94,6 +95,7 @@ const Explore = () => {
                   gender={item.gender.toLowerCase() as GenderType}
                   content={item.introduce}
                   onButtonClick={handlePopupSelected}
+                  weight={item.weight}
                 ></InformationTypeButton>
               ))}
             </div>
@@ -115,6 +117,7 @@ const Explore = () => {
             content={currentPopupSelected.content}
             isPopup={isPopup}
             onClickClose={handleClosePopup}
+            weight={currentPopupSelected.weight}
           ></PopupModal>
         </div>
       ) : null}

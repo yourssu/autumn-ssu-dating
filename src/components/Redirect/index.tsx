@@ -11,6 +11,8 @@ const Redirect = () => {
       navigate('/register', { state: { code } })
     }
   }, [code])
+
+  return <></>
 }
 
 export default Redirect

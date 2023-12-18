@@ -6,6 +6,7 @@ import Explore from './components/Explore'
 import Home from './components/Home'
 import Layout from './components/Layout'
 import NotFound from './components/NotFound'
+import Redirect from './components/Redirect'
 import Register from './components/Register'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
           </Route>
+          <Route path="/kakaoredirect" element={<Redirect />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -6,14 +6,14 @@ import { useRecoilState } from 'recoil'
 
 import Policy from './atoms/Policy'
 
-import { authCode } from '../../apis/authApi'
+import { postReferralCode } from '../../apis/postReferralCode'
 import myPageIcon from '../../assets/myPageIcon.svg'
 import ticket from '../../assets/ticket.svg'
 import { LOGIN_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 import { getAnimalOptions } from '../../utils/animalUtil'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
@@ -24,14 +24,14 @@ import TypeButton from '../common/TypeButton'
 const Home = () => {
   const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex h-full select-none flex-col items-center justify-center">
       {isLogged ? <AfterLogin /> : <BeforeLogin />}
     </div>
   )
 }
 
 const AfterLogin = () => {
-  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [ticketCount, setTicketCount] = useRecoilState(ticketAtom)
 
   const { stateToast, showStateToast } = useToast()
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
@@ -45,23 +45,23 @@ const AfterLogin = () => {
 
   async function verifyCode() {
     try {
-      const response = await authCode(code)
-      setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
-      showStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
+      const response = await postReferralCode(code)
+      setTicketCount(response.data.ticket)
+      showStateToast('추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.')
       setCode('')
     } catch (error) {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          showStateToast('10자리의 인증코드를 입력해주세요.')
+          showStateToast('10자리의 추천인 코드를 입력해주세요.')
           break
 
         case 404:
-          showStateToast('존재하지 않는 인증코드예요.')
+          showStateToast('존재하지 않는 추천인 코드예요.')
           break
 
         default:
-          showStateToast('인증코드를 다시 한번 확인해주세요.')
+          showStateToast('추천인 코드를 다시 한번 확인해주세요.')
           break
       }
     }
@@ -115,7 +115,7 @@ const AfterLogin = () => {
           onChange={(e) => {
             setCode((e.target as HTMLInputElement).value)
           }}
-          placeholder="인증코드를 입력해주세요."
+          placeholder="추천인 코드를 입력해주세요."
         />
         <Spacing direction="horizontal" size={8} />
         <BoxButton isLine="line" size="extraSmall">
@@ -123,7 +123,7 @@ const AfterLogin = () => {
             className="h-full w-full rounded-2xl text-body2 focus:outline-none"
             onClick={verifyCode}
           >
-            인증하기
+            이용권 받기
           </button>
         </BoxButton>
       </div>
@@ -132,7 +132,7 @@ const AfterLogin = () => {
         <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
         <Spacing direction="horizontal" size={4} />
         <p>
-          이용권 x <span className="text-pink">{ticketList.length}</span>
+          이용권 x <span className="text-pink">{ticketCount}</span>
         </p>
       </div>
       <Spacing direction="vertical" size={40} />

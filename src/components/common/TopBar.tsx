@@ -5,7 +5,7 @@ import Spacing from './Spacing'
 
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 
 interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
   backNav: string
@@ -13,7 +13,7 @@ interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
-  const ticketList = useRecoilValue(ticketListAtom)
+  const ticketCount = useRecoilValue(ticketAtom)
 
   const navigate = useNavigate()
   return (
@@ -35,7 +35,7 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
         <Spacing direction="horizontal" size={4} />
         <span className="text-body2 text-black">x</span>
         <Spacing direction="horizontal" size={5} />
-        <span className="text-body2 text-pink">{ticketList.length}</span>
+        <span className="text-body2 text-pink">{ticketCount}</span>
         <Spacing direction="horizontal" size={12.87} />
       </div>
     </div>

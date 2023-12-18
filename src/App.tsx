@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Layout from './components/Layout'
 import NotFound from './components/NotFound'
 import Register from './components/Register'
+import UpdateProfile from './components/Update'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/user/edit" element={<UpdateProfile />} />
           </Route>
           <Route path="/*" element={<NotFound />} />
         </Routes>

@@ -28,6 +28,11 @@ const Register = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  // 보리가 여기서 정보 빼서 사용하시면 됩니다 :)
+  useEffect(() => {
+    console.log(location.state)
+  }, [location.state])
+
   const [formData, setFormData] = useState<FormData>({
     gender: '',
     animals: 'ALL',

@@ -139,10 +139,10 @@ const AfterLogin = () => {
         <button
           className="h-full w-full rounded-[12px]"
           onClick={() => {
-            navigate('/register')
+            navigate('/user')
           }}
         >
-          프로필 등록하기
+          내 프로필 보기
         </button>
       </BoxButton>
       <Spacing direction="vertical" size={16} />

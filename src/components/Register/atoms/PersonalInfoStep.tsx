@@ -1,25 +1,15 @@
 import { useState, useEffect } from 'react'
 
-import { useRecoilValue } from 'recoil'
-
 import RadioSelector from './RadioSelector'
 import TextareaField from './TextareaField'
 
-import useToast from '../../../hooks/useToast'
-import { ticketListAtom } from '../../../state/ticketAtom'
 import { FormStepProps } from '../../../types/register.type'
 import BoxButton from '../../common/BoxButton'
-import Checkbox from '../../common/Checkbox'
 import InputField from '../../common/InputField'
 import Spacing from '../../common/Spacing'
-import ToastMessage from '../../common/ToastMessage'
 
 const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: FormStepProps) => {
-  const ticketList = useRecoilValue(ticketListAtom)
-
-  const [isChecked, setIsChecked] = useState(false)
-  const { stateToast, showStateToast } = useToast()
-  const canRegister = nickName && mbti.length === 4 && introduce && contact && isChecked
+  const canRegister = nickName && mbti.length === 4 && introduce && contact
 
   const mbtiOptions = [
     ['E', 'I'],
@@ -28,14 +18,6 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
     ['P', 'J'],
   ]
   const [mbtiValueArray, setMbtiValueArray] = useState<{ [key: string]: string }>({})
-
-  function checkTicket(isChecked: boolean) {
-    if (ticketList.length > 0) {
-      setIsChecked(isChecked)
-    } else {
-      showStateToast('이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!')
-    }
-  }
 
   useEffect(() => {
     updateFields({ mbti: Object.values(mbtiValueArray).join('') })
@@ -111,33 +93,24 @@ const PersonalInfoStep = ({ nickName, mbti, introduce, contact, updateFields }: 
               value={contact}
               onChange={(e) => updateFields({ contact: (e.target as HTMLInputElement).value })}
             />
+            <Spacing direction="vertical" size={8} />
+            <p className="text-caption text-gray">
+              * 연락처의 경우 프로필을 가져간 사람에게만 공개됩니다.
+            </p>
           </div>
         </div>
         <Spacing direction="vertical" size={8} />
-        <div>
-          <Checkbox
-            checkCase="등록"
-            isChecked={isChecked}
-            onImgClick={() => {
-              checkTicket(!isChecked)
-            }}
-            onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-              checkTicket(e.target.checked)
-            }}
-          />
-          <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
-            <button
-              type="submit"
-              className="h-full w-full disabled:cursor-not-allowed"
-              disabled={!canRegister}
-            >
-              등록하기
-            </button>
-          </BoxButton>
-        </div>
+        <BoxButton isDisabled={canRegister ? 'abled' : 'disabled'} isLine="filled" size="large">
+          <button
+            type="submit"
+            className="h-full w-full disabled:cursor-not-allowed"
+            disabled={!canRegister}
+          >
+            등록하기
+          </button>
+        </BoxButton>
       </div>
       <Spacing direction="vertical" size={44}></Spacing>
-      {stateToast && <ToastMessage>{stateToast}</ToastMessage>}
     </div>
   )
 }

@@ -7,7 +7,6 @@ import { useRecoilState } from 'recoil'
 import Policy from './atoms/Policy'
 
 import { postReferralCode } from '../../apis/postReferralCode'
-import myPageIcon from '../../assets/myPageIcon.svg'
 import ticket from '../../assets/ticket.svg'
 import { LOGIN_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
@@ -93,17 +92,6 @@ const AfterLogin = () => {
 
   return (
     <>
-      <div className="flex w-screen justify-end px-[23px]">
-        <img
-          src={myPageIcon as string}
-          alt="마이페이지"
-          title="마이페이지"
-          onClick={() => {
-            navigate('/user')
-          }}
-        />
-      </div>
-      <Spacing direction="vertical" size={10} />
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
         {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>

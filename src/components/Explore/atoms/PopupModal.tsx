@@ -23,10 +23,19 @@ interface PopupModalProps {
   content: string
   gender: GenderType
   isPopup: boolean
+  checkedCount: number
   onClickClose: () => void
 }
 
-const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: PopupModalProps) => {
+const PopupModal = ({
+  nickname,
+  mbti,
+  animal,
+  content,
+  gender,
+  checkedCount,
+  onClickClose,
+}: PopupModalProps) => {
   const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [contact, setContact] = useState<string>()
@@ -51,7 +60,26 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
       <div className="flex h-full w-full flex-col items-center justify-start">
         <Spacing direction="vertical" size={11} />
         <div className="flex">
-          <Spacing direction="horizontal" size={230} />
+          {/* 로그인 작업 후에 수정 */}
+          {contactOpen === 'opened' ? (
+            <>
+              <Spacing direction="horizontal" size={230} />
+            </>
+          ) : (
+            <>
+              <Spacing direction="horizontal" size={83} />
+              <div className="flex w-[100px] flex-col items-center justify-center text-caption text-gray">
+                <Spacing direction="vertical" size={8} />
+                <div>
+                  <span>지금까지 </span>
+                  <span className="text-pink">{`${checkedCount}`}</span>
+                  <span>명이</span>
+                </div>
+                <div>프로필을 확인했어요!</div>
+              </div>
+              <Spacing direction="horizontal" size={46.27} />
+            </>
+          )}
           <img
             className="h-[18px] w-[18px]"
             src={XButton as string}
@@ -61,6 +89,7 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
           />
           <Spacing direction="horizontal" size={12} />
         </div>
+        {contactOpen === 'opened' && <Spacing direction="vertical" size={8} />}
         <img
           className="h-[106px] w-[106px]"
           src={

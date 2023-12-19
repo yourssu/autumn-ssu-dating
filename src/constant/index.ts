@@ -18,7 +18,7 @@ export const ANIMAL_OPTIONS_MALE: FormStepOption[] = [
   { src: '/foxIcon.png', label: '여우', animals: 'FOX' },
   { src: '/wolfIcon.png', label: '늑대', animals: 'WOLF' },
   { src: '/dinoIcon.png', label: '공룡', animals: 'DINO' },
-  { src: '/ppussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
+  { src: '/pussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
 
 export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
@@ -27,7 +27,7 @@ export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
   { src: '/rabbitIcon.png', label: '토끼', animals: 'RABBIT' },
   { src: '/foxIcon.png', label: '여우', animals: 'FOX' },
   { src: '/hamsterIcon.png', label: '햄스터', animals: 'HAMSTER' },
-  { src: '/ppussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
+  { src: '/pussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
 
 export const LOGIN_LINK = 'https://ssudate-server.yourssu.com/oauth2/authorization/kakao'

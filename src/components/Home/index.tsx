@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
 
 import AnimalSlide from './atoms/AnimalSlide'
 import Policy from './atoms/Policy'
@@ -13,6 +13,7 @@ import { LOGIN_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
+import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
@@ -20,10 +21,10 @@ import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
 
 const Home = () => {
-  const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
+  const signed = useRecoilValue(signedAtom)
   return (
     <div className="flex h-full select-none flex-col items-center justify-center">
-      {isLogged ? <AfterLogin /> : <BeforeLogin />}
+      {signed ? <AfterLogin /> : <BeforeLogin />}
     </div>
   )
 }
@@ -48,7 +49,7 @@ const AfterLogin = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          showStateToast('10자리의 추천인 코드를 입력해주세요.')
+          showStateToast('자기 자신의 코드는 등록할 수 없습니다.')
           break
 
         case 404:

@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import TypeButton from '../../common/TypeButton'
 
 export interface RadioSelectorProps {
   labels: string[]
   updateMbti: (value: string) => void
+  defaultLabel?: string
 }
 
-const RadioSelector = ({ labels, updateMbti }: RadioSelectorProps) => {
+const RadioSelector = ({ labels, updateMbti, defaultLabel }: RadioSelectorProps) => {
   const radioName = labels.toString()
   const [isCheckedArray, setIsCheckedArray] = useState<boolean[]>([false, false])
 
@@ -22,6 +23,14 @@ const RadioSelector = ({ labels, updateMbti }: RadioSelectorProps) => {
       setIsCheckedArray([false, true])
     }
   }
+
+  useEffect(() => {
+    if (defaultLabel === labels[0]) {
+      setIsCheckedArray([true, false])
+    } else if (defaultLabel === labels[1]) {
+      setIsCheckedArray([false, true])
+    }
+  }, [])
 
   return (
     <div className="grid grid-cols-1 gap-y-2">

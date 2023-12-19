@@ -29,6 +29,10 @@ const usePopup = () => {
     setIsPopup(true)
   }
 
+  const handleOpenPopup = () => {
+    setIsPopup(true)
+  }
+
   const handleClosePopup = () => {
     setIsPopup(false)
   }
@@ -37,6 +41,7 @@ const usePopup = () => {
     isPopup,
     setIsPopup,
     handlePopup,
+    handleOpenPopup,
     handleClosePopup,
     handlePopupSelected,
     currentPopupSelected,

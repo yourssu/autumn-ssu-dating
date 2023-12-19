@@ -14,7 +14,7 @@ const Link = ({ link, children }: { link: string; children: string }) => {
 const Policy = () => {
   return (
     <p className="whitespace-pre-line text-center text-caption">
-      계속 진행할 경우 <Link link="link1">서비스 이용약관</Link>과{'\n'}
+      로그인할 경우 SSU개팅 <Link link="link1">서비스 이용약관</Link>과{'\n'}
       <Link link="link2"> 개인정보 처리방침</Link>에 동의하는 것으로 간주됩니다.
     </p>
   )

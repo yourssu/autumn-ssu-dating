@@ -30,5 +30,8 @@ export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
   { src: '/ppussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
 
-// 서버 배포 이후 수정 필요
-export const LOGIN_LINK = 'https://ssudate-server.yourssu.com//oauth2/authorization/kakao'
+export const LOGIN_LINK = 'https://ssudate-server.yourssu.com/oauth2/authorization/kakao'
+export const POLICY_LINK =
+  'https://flying-judge-a15.notion.site/SSU-5e06f7afe192412f9ddcce4cd10b5f1c'
+export const PRIVACY_LINK =
+  'https://flying-judge-a15.notion.site/SSU-5dca77c6f3f04fecac6df2805d013f11'

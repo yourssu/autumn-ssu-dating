@@ -22,9 +22,8 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
             <Route element={<AuthRoute />}>
-              <Route path="/user" element={<UserPage />}>
-                <Route path="edit" element={<UpdateProfile />} />
-              </Route>
+              <Route path="/user" element={<UserPage />} />
+              <Route path="/user/edit" element={<UpdateProfile />} />
             </Route>
           </Route>
           <Route path="/kakao-redirect" element={<Redirect />} />

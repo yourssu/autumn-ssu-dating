@@ -33,7 +33,7 @@ const UserPage = () => {
   const onClickWithdraw = async () => {
     if (
       window.confirm(
-        '정말 탈퇴하시겠어요?\n등록한 프로필과 남은 이용권은 삭제되며, 복구가 불가능합니다.'
+        '정말 탈퇴하시겠어요?\n등록한 프로필과 남은 이용권은 삭제되며 복구할 수 없습니다.\n가져가신 연락처는 탈퇴 후 다시 조회할 수 없으니, 별도로 저장해주세요.'
       )
     ) {
       await withdraw()

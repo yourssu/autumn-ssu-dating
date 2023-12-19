@@ -17,7 +17,10 @@ const Redirect = () => {
   }, [code])
 
   useEffect(() => {
-    if (accessToken && refreshToken) setToken(accessToken, refreshToken)
+    if (accessToken && refreshToken) {
+      setToken(accessToken, refreshToken)
+      navigate('/')
+    }
   }, [accessToken, refreshToken])
 
   return <></>

@@ -9,11 +9,9 @@ import XButton from '../../../assets/Xbutton.svg'
 import EllipseSeperator from '../../../assets/ellipseSeperator.svg'
 import { ANIMAL_OPTIONS_FEMALE, ANIMAL_OPTIONS_MALE } from '../../../constant'
 import { usePostContact } from '../../../hooks/usePostContact'
-import useRecoilToast from '../../../hooks/useRecoilToast'
-import { exploreToastAtom } from '../../../state/exploreToastAtom'
 import { signedAtom } from '../../../state/signedAtom'
 import { ticketAtom } from '../../../state/ticketAtom'
-import { AnimalType, ContactOpenType, GenderType, MbtiType } from '../../../types/explore.type'
+import { AnimalType, OpenType, GenderType, MbtiType } from '../../../types/explore.type'
 import BoxButton from '../../common/BoxButton'
 import Checkbox from '../../common/Checkbox'
 import Spacing from '../../common/Spacing'
@@ -28,6 +26,7 @@ interface PopupModalProps {
   isPopup: boolean
   weight: number
   onClickClose: () => void
+  onClickTicketOpen: () => void
 }
 
 const PopupModal = ({
@@ -38,12 +37,12 @@ const PopupModal = ({
   gender,
   weight,
   onClickClose,
+  onClickTicketOpen,
 }: PopupModalProps) => {
-  const [contactOpen, setContactOpen] = useState<ContactOpenType>('closed')
+  const [contactOpen, setContactOpen] = useState<OpenType>('closed')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [contact, setContact] = useState<string>()
   const ticketCount = useRecoilValue(ticketAtom)
-  const { setRecoilStateToast } = useRecoilToast(exploreToastAtom)
   const { mutate: postContact, data, isSuccess } = usePostContact()
   const signed = useRecoilValue(signedAtom)
 
@@ -66,7 +65,6 @@ const PopupModal = ({
       <div className="flex h-full w-full flex-col items-center justify-start">
         <Spacing direction="vertical" size={11} />
         <div className="flex">
-          {/* 로그인 작업 후에 수정 */}
           {contactOpen === 'opened' ? (
             <>
               <Spacing direction="horizontal" size={230} />
@@ -144,24 +142,10 @@ const PopupModal = ({
                     checkCase="연락처 확인"
                     isChecked={isChecked}
                     onImgClick={() => {
-                      if (ticketCount > 0) {
-                        setIsChecked((prev) => !prev)
-                      } else {
-                        setRecoilStateToast({
-                          isShow: true,
-                          toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                        })
-                      }
+                      setIsChecked((prev) => !prev)
                     }}
                     onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      if (ticketCount > 0) {
-                        setIsChecked(e.target.checked)
-                      } else {
-                        setRecoilStateToast({
-                          isShow: true,
-                          toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                        })
-                      }
+                      setIsChecked(e.target.checked)
                     }}
                   ></Checkbox>
                 </>
@@ -177,8 +161,13 @@ const PopupModal = ({
               isChecked={isChecked}
               contact={data?.contact}
               onClick={() => {
-                if (!contact) {
-                  postContact({ nickName: nickname })
+                if (ticketCount > 0) {
+                  if (!contact) {
+                    postContact({ nickName: nickname })
+                  }
+                } else {
+                  onClickClose()
+                  onClickTicketOpen()
                 }
               }}
             />
@@ -202,5 +191,4 @@ const PopupModal = ({
   )
 }
 
-// PopupModal.displayName = 'PopupModal'
 export default PopupModal

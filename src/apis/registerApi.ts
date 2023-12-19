@@ -14,9 +14,7 @@ export const registerProfile = async ({
   return response.data
 }
 
-export const updateProfile = async (
-  profile: UpdateRequest
-): Promise<AxiosResponse<UpdateResponse>> => {
+export const updateProfile = async (profile: UpdateRequest): Promise<UpdateResponse> => {
   const response = await client.patch('/users/my', profile)
-  return response
+  return response.data
 }

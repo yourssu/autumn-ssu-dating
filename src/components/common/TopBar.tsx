@@ -5,6 +5,7 @@ import Spacing from './Spacing'
 
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
+import { LOGIN_LINK } from '../../constant'
 import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
 
@@ -41,7 +42,13 @@ const RightIcon = () => {
 
   return (
     <div className="flex flex-row items-center">
-      {signed ? <TicketCount /> : <span className="w-[60px] text-body2 text-pink">로그인</span>}
+      {signed ? (
+        <TicketCount />
+      ) : (
+        <a href={LOGIN_LINK} className="w-[60px] text-body2 text-pink">
+          로그인
+        </a>
+      )}
     </div>
   )
 }

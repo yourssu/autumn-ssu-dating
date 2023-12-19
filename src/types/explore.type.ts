@@ -12,8 +12,7 @@ export interface CurrentExploreFilterType {
   femaleAnimal: FemaleAnimalType
 }
 
-export type ContactOpenType = 'opened' | 'closed'
-export type RecommendOpenType = 'opened' | 'closed'
+export type OpenType = 'opened' | 'closed'
 
 export type AnimalTabMode = 'image' | 'text'
 

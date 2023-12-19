@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { getMyInfo } from '../apis/getMyInfo'
-import { MyInfoResponse } from '../types/getMyInfo.type'
+import { UserInfoResponse } from '../types/user.type'
 
 export const useGetMyInfo = () => {
-  return useQuery<MyInfoResponse>([getMyInfo], () => getMyInfo(), {
+  return useQuery<UserInfoResponse>([getMyInfo], () => getMyInfo(), {
     staleTime: 60000 * 5,
   })
 }

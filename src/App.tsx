@@ -8,6 +8,7 @@ import Layout from './components/Layout'
 import NotFound from './components/NotFound'
 import Redirect from './components/Redirect'
 import Register from './components/Register'
+import UpdateProfile from './components/Update'
 import UserPage from './components/User'
 import AuthRoute from './components/common/AuthRoute'
 
@@ -21,9 +22,8 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
             <Route element={<AuthRoute />}>
-              <Route path="/user" element={<UserPage />}>
-                {/* 프로필 수정, 구매 프로필 조회  */}
-              </Route>
+              <Route path="/user" element={<UserPage />} />
+              <Route path="/user/edit" element={<UpdateProfile />} />
             </Route>
           </Route>
           <Route path="/kakao-redirect" element={<Redirect />} />

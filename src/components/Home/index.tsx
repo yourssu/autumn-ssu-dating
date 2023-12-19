@@ -49,7 +49,7 @@ const AfterLogin = () => {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          showStateToast('10자리의 추천인 코드를 입력해주세요.')
+          showStateToast('자기 자신의 코드는 등록할 수 없습니다.')
           break
 
         case 404:

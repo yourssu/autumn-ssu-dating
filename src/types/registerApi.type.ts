@@ -8,3 +8,8 @@ export interface RegisterResponse extends FormData {
   ticket: number
   id: number
 }
+
+export interface UpdateResponse extends FormData {
+  id: number
+  ticket: number
+}

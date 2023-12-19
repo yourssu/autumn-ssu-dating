@@ -1,18 +1,32 @@
 import { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { useResetRecoilState } from 'recoil'
 
 import { List } from './atoms/List'
 import Profile from './atoms/Profile'
 
+import { signOut } from '../../apis/signOut'
 import useRecoilToast from '../../hooks/useRecoilToast'
+import { signedAtom } from '../../state/signedAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 import { userPageToastAtom } from '../../state/userPageToastAtom'
+import { clearToken } from '../../utils/tokenUtils'
 import ToastMessage from '../common/ToastMessage'
 
 const UserPage = () => {
+  const resetSigned = useResetRecoilState(signedAtom)
+  const resetTicketCount = useResetRecoilState(ticketAtom)
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(userPageToastAtom)
 
   const navigate = useNavigate()
+
+  const onClickSignOut = async () => {
+    await signOut()
+    clearToken()
+    resetSigned()
+    resetTicketCount()
+  }
 
   useEffect(() => {
     hideRecoilStateToast()
@@ -57,7 +71,7 @@ const UserPage = () => {
       </List>
 
       <List title="계정 관리">
-        <List.Item onClick={() => {}} hasButton={false}>
+        <List.Item onClick={onClickSignOut} hasButton={false}>
           로그아웃
         </List.Item>
         <List.Item onClick={() => {}} hasButton={false}>

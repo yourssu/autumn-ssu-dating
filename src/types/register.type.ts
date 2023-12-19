@@ -31,4 +31,4 @@ export type AnimalServerType =
   | 'DINO'
   | 'WOLF'
 
-export interface UpdateRequest extends Omit<FormData, 'gender' | 'animals'> {}
+export interface UpdateRequest extends Omit<FormData, 'gender' | 'animals' | 'oauthName'> {}

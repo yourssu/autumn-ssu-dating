@@ -49,7 +49,9 @@ const UserPage = () => {
 
   return (
     <div className="flex h-[calc(100%-44px)] select-none flex-col items-center overflow-y-scroll scrollbar-hide">
-      <Profile />
+      <div className="h-[210px]">
+        <Profile />
+      </div>
       <div className="mt-6 h-3 w-screen bg-palePink"></div>
       <List title="프로필 관리">
         <List.Item

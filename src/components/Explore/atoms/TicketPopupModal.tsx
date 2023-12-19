@@ -1,15 +1,21 @@
 import { useState } from 'react'
 
+import InviteButton from './InviteButton'
 import RecommendButton from './RecommendButton'
 
 import XButton from '../../../assets/Xbutton.svg'
 import ticket from '../../../assets/ticket.svg'
-import { RecommendOpenType } from '../../../types/explore.type'
+import { OpenType } from '../../../types/explore.type'
 import Spacing from '../../common/Spacing'
 import TypeButton from '../../common/TypeButton'
 
-const TicketPopupModal = () => {
-  const [recommendInputOpen, setRecommendInputOpen] = useState<RecommendOpenType>('closed')
+interface TicketPopupModalProps {
+  onClickClose: () => void
+}
+
+const TicketPopupModal = ({ onClickClose }: TicketPopupModalProps) => {
+  const [recommendButtonOpen, setRecommendButtonOpen] = useState<OpenType>('closed')
+  const [inviteButtonOpen, setInviteButtonOpen] = useState<OpenType>('closed')
 
   return (
     <TypeButton
@@ -22,7 +28,13 @@ const TicketPopupModal = () => {
         <Spacing direction="vertical" size={12} className="flex-shrink-0" />
         <div className="flex flex-shrink-0">
           <Spacing direction="horizontal" size={230} />
-          <img className="h-[18px] w-[18px]" src={XButton as string} title="X 버튼" alt="X 버튼" />
+          <img
+            className="h-[18px] w-[18px]"
+            src={XButton as string}
+            title="X 버튼"
+            alt="X 버튼"
+            onClick={() => onClickClose()}
+          />
         </div>
         <Spacing direction="vertical" size={16} className="flex-shrink-0" />
         <img
@@ -39,18 +51,19 @@ const TicketPopupModal = () => {
           <span>이용권을 충전해보세요!</span>
         </div>
         <Spacing direction="vertical" size={20} className="flex-shrink-0" />
-        <RecommendButton
+        <InviteButton
           className="flex-shrink-0"
-          recommendOpen={recommendInputOpen}
+          inviteOpen={inviteButtonOpen}
           onClick={() => {
-            setRecommendInputOpen(recommendInputOpen === 'opened' ? 'closed' : 'opened')
+            setInviteButtonOpen(inviteButtonOpen === 'opened' ? 'closed' : 'opened')
           }}
         />
+        <Spacing direction="vertical" size={8} />
         <RecommendButton
           className="flex-shrink-0"
-          recommendOpen={recommendInputOpen}
+          recommendOpen={recommendButtonOpen}
           onClick={() => {
-            setRecommendInputOpen(recommendInputOpen === 'opened' ? 'closed' : 'opened')
+            setRecommendButtonOpen(recommendButtonOpen === 'opened' ? 'closed' : 'opened')
           }}
         />
         <Spacing direction="vertical" size={28} className="flex-shrink-0" />

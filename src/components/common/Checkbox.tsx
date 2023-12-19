@@ -4,7 +4,7 @@ import Spacing from './Spacing'
 
 import checkedIcon from '../../assets/checkedIcon.svg'
 import uncheckedIcon from '../../assets/uncheckedIcon.svg'
-import { ticketListAtom } from '../../state/ticketListAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 
 interface CheckboxProps {
   checkCase: '등록' | '연락처 확인'
@@ -19,7 +19,7 @@ const Checkbox = ({
   onImgClick,
   onLabelClick,
 }: CheckboxProps) => {
-  const ticketList = useRecoilValue(ticketListAtom)
+  const ticketCount = useRecoilValue(ticketAtom)
 
   const checkCaseJustify = {
     '연락처 확인': 'justify-start',
@@ -36,7 +36,7 @@ const Checkbox = ({
       <Spacing direction="horizontal" size={4} />
       <label className="text-caption text-pink" style={{ WebkitTapHighlightColor: 'transparent' }}>
         <input type="checkbox" onChange={onLabelClick} className="hidden" />
-        {checkCase} 시 이용권 한 장이 차감됩니다. (남은 이용권수: {ticketList.length}장)
+        {checkCase} 시 이용권 한 장이 차감됩니다. (남은 이용권수: {ticketCount}장)
       </label>
     </div>
   )

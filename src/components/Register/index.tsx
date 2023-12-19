@@ -17,6 +17,7 @@ import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
 import { FormData } from '../../types/register.type'
 import { RegisterRequest } from '../../types/registerApi.type'
+import { setToken } from '../../utils/tokenUtils'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
 
@@ -82,8 +83,11 @@ const Register = () => {
 
     try {
       const response = await registerProfile({ gender, profile })
-      setTicketCount(response.ticket)
+
+      setToken(response.accessToken, response.refreshToken)
       setSigned(true)
+      setTicketCount(response.ticket)
+
       setRecoilStateToast({
         isShow: true,
         toastMessage:

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 
 import { useGetMyInfo } from '../../hooks/useGetMyInfo'
+import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
 import { getAccessToken, getRefreshToken, setToken } from '../../utils/tokenUtils'
 
@@ -13,6 +14,7 @@ const Redirect = () => {
   const refreshToken = new URL(document.location.toString()).searchParams.get('refreshToken')
   const navigate = useNavigate()
   const setTicketCount = useSetRecoilState(ticketAtom)
+  const setSigned = useSetRecoilState(signedAtom)
 
   useEffect(() => {
     if (code) {
@@ -31,6 +33,7 @@ const Redirect = () => {
   useEffect(() => {
     if (isSuccess && data) {
       setTicketCount(data.ticket)
+      setSigned(true)
       navigate('/')
     }
   }, [getAccessToken, getRefreshToken, isSuccess, data])

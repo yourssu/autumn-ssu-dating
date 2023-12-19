@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
-import { setToken } from '../../utils/tokenUtils'
+import { useGetMyInfo } from '../../hooks/useGetMyInfo'
+import { ticketAtom } from '../../state/ticketAtom'
+import { getAccessToken, getRefreshToken, setToken } from '../../utils/tokenUtils'
 
 const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('oauthName')
   const accessToken = new URL(document.location.toString()).searchParams.get('accessToken')
   const refreshToken = new URL(document.location.toString()).searchParams.get('refreshToken')
   const navigate = useNavigate()
+  const setTicket = useSetRecoilState(ticketAtom)
 
   useEffect(() => {
     if (code) {
@@ -16,12 +20,21 @@ const Redirect = () => {
     }
   }, [code])
 
+  const { data, isSuccess } = useGetMyInfo()
+
   useEffect(() => {
     if (accessToken && refreshToken) {
       setToken(accessToken, refreshToken)
-      navigate('/')
     }
   }, [accessToken, refreshToken])
+
+  useEffect(() => {
+    console.log(isSuccess, data)
+    if (isSuccess && data) {
+      setTicket(data.ticket)
+      navigate('/')
+    }
+  }, [getAccessToken(), getRefreshToken(), isSuccess, data])
 
   return <></>
 }

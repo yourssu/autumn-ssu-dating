@@ -5,6 +5,7 @@ import Spacing from './Spacing'
 
 import leftIcon from '../../assets/leftIcon.svg'
 import ticket from '../../assets/ticket.svg'
+import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
 
 interface TopBarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -36,11 +37,11 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
 }
 
 const RightIcon = () => {
-  const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
+  const signed = useRecoilValue(signedAtom)
 
   return (
     <div className="flex flex-row items-center">
-      {isLogged ? <TicketCount /> : <span className="w-[60px] text-body2 text-pink">로그인</span>}
+      {signed ? <TicketCount /> : <span className="w-[60px] text-body2 text-pink">로그인</span>}
     </div>
   )
 }

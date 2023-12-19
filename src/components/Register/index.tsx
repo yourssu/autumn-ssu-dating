@@ -2,6 +2,7 @@ import { FormEvent, useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 
 import AnimalStep from './atoms/AnimalStep'
 import GenderStep from './atoms/GenderStep'
@@ -12,12 +13,18 @@ import useMultistepForm from '../../hooks/useMultistepForm'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
+import { signedAtom } from '../../state/signedAtom'
+import { ticketAtom } from '../../state/ticketAtom'
 import { FormData } from '../../types/register.type'
 import { RegisterRequest } from '../../types/registerApi.type'
+import { setToken } from '../../utils/tokenUtils'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
 
 const Register = () => {
+  const setTicketCount = useSetRecoilState(ticketAtom)
+  const setSigned = useSetRecoilState(signedAtom)
+
   const { stateToast, showStateToast } = useToast()
   const { setRecoilStateToast } = useRecoilToast(registerToastAtom)
 
@@ -76,7 +83,11 @@ const Register = () => {
 
     try {
       const response = await registerProfile({ gender, profile })
-      // response.ticket으로 ticketcount 설정
+
+      setToken(response.accessToken, response.refreshToken)
+      setSigned(true)
+      setTicketCount(response.ticket)
+
       setRecoilStateToast({
         isShow: true,
         toastMessage:
@@ -91,7 +102,7 @@ const Register = () => {
           break
 
         case 404:
-          showStateToast('존재하지 않는 인증코드에요.')
+          showStateToast('로그인 정보가 올바르지 않습니다. 다시 로그인해 주세요.')
           break
 
         default:

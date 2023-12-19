@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios'
-
 import client from './client'
 
 import { UpdateRequest } from '../types/register.type'
@@ -11,9 +9,9 @@ export const registerProfile = async ({
 }: {
   gender: string
   profile: RegisterRequest
-}): Promise<AxiosResponse<RegisterResponse>> => {
+}): Promise<RegisterResponse> => {
   const response = await client.post(`/register/${gender === '여자' ? 'female' : 'male'}`, profile)
-  return response
+  return response.data
 }
 
 export const updateProfile = async (

@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 
 import { refresh } from './refresh'
 
-import { clearToken, getRefreshToken, setToken } from '../utils/tokenUtils'
+import { clearToken, getAccessToken, getRefreshToken, setToken } from '../utils/tokenUtils'
 
 interface AxiosCustomRequestConfig extends AxiosRequestConfig {
   retryCount: number
@@ -12,6 +12,18 @@ interface AxiosCustomRequestConfig extends AxiosRequestConfig {
 const MAX_RETRY_COUNT = 3
 const client = axios.create({
   baseURL: 'https://ssudate-server.yourssu.com/',
+})
+
+client.interceptors.request.use((config) => {
+  if (config.url === '/refresh') {
+    const refreshToken = getRefreshToken()
+    config.headers.Authorization = `Bearer ${refreshToken}`
+  } else {
+    const accessToken = getAccessToken()
+    config.headers.Authorization = `Bearer ${accessToken}`
+  }
+
+  return config
 })
 
 client.interceptors.response.use(

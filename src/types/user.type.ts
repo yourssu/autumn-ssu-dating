@@ -1,3 +1,4 @@
+import { GenderType, MbtiType } from './explore.type'
 import { AnimalServerType } from './register.type'
 
 export interface UserInfoResponse {
@@ -5,10 +6,10 @@ export interface UserInfoResponse {
   code: string
   contact: string
   createdAt: string
-  gender: string
+  gender: GenderType
   id: number
   introduce: string
-  mbti: string
+  mbti: MbtiType
   nickName: string
   ticket: number
   weight: number

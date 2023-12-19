@@ -12,7 +12,7 @@ const Redirect = () => {
   const accessToken = new URL(document.location.toString()).searchParams.get('accessToken')
   const refreshToken = new URL(document.location.toString()).searchParams.get('refreshToken')
   const navigate = useNavigate()
-  const setTicket = useSetRecoilState(ticketAtom)
+  const setTicketCount = useSetRecoilState(ticketAtom)
 
   useEffect(() => {
     if (code) {
@@ -30,10 +30,10 @@ const Redirect = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setTicket(data.ticket)
+      setTicketCount(data.ticket)
       navigate('/')
     }
-  }, [getAccessToken(), getRefreshToken(), isSuccess, data])
+  }, [getAccessToken, getRefreshToken, isSuccess, data])
 
   return <></>
 }

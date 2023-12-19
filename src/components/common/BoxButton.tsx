@@ -38,9 +38,9 @@ const BoxButton = ({
 
   return (
     <div
-      style={{ WebkitTapHighlightColor: 'transparent' }}
-      className={`${defaultStyle} ${disableStyle[isDisabled]} ${lineStyle[isLine]} ${sizeStyle[size]}`}
       {...props}
+      style={{ WebkitTapHighlightColor: 'transparent' }}
+      className={`${defaultStyle} ${disableStyle[isDisabled]} ${lineStyle[isLine]} ${sizeStyle[size]} ${props.className}`}
     >
       {children}
     </div>

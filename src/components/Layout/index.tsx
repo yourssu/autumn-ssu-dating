@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 import { LINK_TITLE } from '../../constant'
+import { signedAtom } from '../../state/signedAtom'
 import Spacing from '../common/Spacing'
 import TopBar from '../common/TopBar'
 
@@ -9,10 +11,10 @@ const Layout = () => {
   const { title, backNav } = LINK_TITLE[pathname + search]
 
   const isHome = pathname === '/'
-  const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
+  const signed = useRecoilValue(signedAtom)
 
   const bgUrl = isHome
-    ? !isLogged
+    ? !signed
       ? `bg-[url('/src/assets/bg_login_before.png')]`
       : `bg-[url('/src/assets/bg_login_after.png')]`
     : `bg-[url('/src/assets/bg_other.png')]`

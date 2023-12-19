@@ -9,6 +9,8 @@ import NotFound from './components/NotFound'
 import Redirect from './components/Redirect'
 import Register from './components/Register'
 import UpdateProfile from './components/Update'
+import UserPage from './components/User'
+import AuthRoute from './components/common/AuthRoute'
 
 const App = () => {
   return (
@@ -19,7 +21,11 @@ const App = () => {
             <Route path="" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/user/edit" element={<UpdateProfile />} />
+            <Route element={<AuthRoute />}>
+              <Route path="/user" element={<UserPage />}>
+                <Route path="edit" element={<UpdateProfile />} />
+              </Route>
+            </Route>
           </Route>
           <Route path="/kakao-redirect" element={<Redirect />} />
           <Route path="/*" element={<NotFound />} />

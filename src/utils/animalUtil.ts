@@ -42,3 +42,7 @@ export const animalClientToServer = (animal: AnimalType): AnimalServerType => {
 export const animalServerToClient = (animal: AnimalServerType): AnimalType => {
   return animalToClientTransfer[animal] as AnimalType
 }
+
+export const getImageSrc = (animal: Omit<AnimalServerType, 'ALL'>): string => {
+  return `/${animal.toLocaleLowerCase()}Icon.png`
+}

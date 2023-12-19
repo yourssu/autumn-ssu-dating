@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 
-import { useGetMyInfo } from '../../hooks/useGetMyInfo'
+import { getMyInfo } from '../../apis/getMyInfo'
 import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
-import { getAccessToken, getRefreshToken, setToken } from '../../utils/tokenUtils'
+import { setToken } from '../../utils/tokenUtils'
 
 const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('oauthName')
@@ -22,21 +22,16 @@ const Redirect = () => {
     }
   }, [code])
 
-  const { data, isSuccess } = useGetMyInfo()
-
   useEffect(() => {
     if (accessToken && refreshToken) {
       setToken(accessToken, refreshToken)
+      getMyInfo().then((data) => {
+        setTicketCount(data.ticket)
+        setSigned(true)
+        navigate('/')
+      })
     }
-  }, [accessToken, refreshToken])
-
-  useEffect(() => {
-    if (isSuccess && data) {
-      setTicketCount(data.ticket)
-      setSigned(true)
-      navigate('/')
-    }
-  }, [getAccessToken, getRefreshToken, isSuccess, data])
+  }, [accessToken, navigate, refreshToken, setSigned, setTicketCount])
 
   return <></>
 }

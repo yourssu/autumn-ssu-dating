@@ -13,7 +13,7 @@ const AuthRoute = () => {
     if (!signed) navigate('/')
   }, [signed, navigate])
 
-  return <Outlet />
+  return <>{signed && <Outlet />}</>
 }
 
 export default AuthRoute

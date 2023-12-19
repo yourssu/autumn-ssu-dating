@@ -7,6 +7,7 @@ import { List } from './atoms/List'
 import Profile from './atoms/Profile'
 
 import { signOut } from '../../apis/signOut'
+import { POLICY_LINK, PRIVACY_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
@@ -56,14 +57,14 @@ const UserPage = () => {
       <List title="서비스 정보">
         <List.Item
           onClick={() => {
-            window.open('link1', '_blank', 'noreferrer')
+            window.open(POLICY_LINK, '_blank', 'noreferrer')
           }}
         >
           이용약관
         </List.Item>
         <List.Item
           onClick={() => {
-            window.open('link2', '_blank', 'noreferrer')
+            window.open(PRIVACY_LINK, '_blank', 'noreferrer')
           }}
         >
           개인정보 처리방침

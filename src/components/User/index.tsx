@@ -7,6 +7,7 @@ import { List } from './atoms/List'
 import Profile from './atoms/Profile'
 
 import { signOut } from '../../apis/signOut'
+import { withdraw } from '../../apis/withdraw'
 import { POLICY_LINK, PRIVACY_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import { signedAtom } from '../../state/signedAtom'
@@ -27,6 +28,19 @@ const UserPage = () => {
     clearToken()
     resetSigned()
     resetTicketCount()
+  }
+
+  const onClickWithdraw = async () => {
+    if (
+      window.confirm(
+        '정말 탈퇴하시겠어요?\n등록한 프로필과 남은 이용권은 삭제되며, 복구가 불가능합니다.'
+      )
+    ) {
+      await withdraw()
+      clearToken()
+      resetSigned()
+      resetTicketCount()
+    }
   }
 
   useEffect(() => {
@@ -75,7 +89,7 @@ const UserPage = () => {
         <List.Item onClick={onClickSignOut} hasButton={false}>
           로그아웃
         </List.Item>
-        <List.Item onClick={() => {}} hasButton={false}>
+        <List.Item onClick={onClickWithdraw} hasButton={false}>
           <p className="text-caption text-gray">회원탈퇴</p>
         </List.Item>
       </List>

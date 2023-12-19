@@ -6,6 +6,7 @@ import Explore from './components/Explore'
 import Home from './components/Home'
 import Layout from './components/Layout'
 import NotFound from './components/NotFound'
+import Redirect from './components/Redirect'
 import Register from './components/Register'
 import UserPage from './components/User'
 
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/user" element={<UserPage />} />
           </Route>
+          <Route path="/kakao-redirect" element={<Redirect />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

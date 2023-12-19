@@ -29,7 +29,6 @@ const Redirect = () => {
   }, [accessToken, refreshToken])
 
   useEffect(() => {
-    console.log(isSuccess, data)
     if (isSuccess && data) {
       setTicket(data.ticket)
       navigate('/')

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 
 import ContactButton from './ContactButton'
@@ -10,8 +11,10 @@ import { ANIMAL_OPTIONS_FEMALE, ANIMAL_OPTIONS_MALE } from '../../../constant'
 import { usePostContact } from '../../../hooks/usePostContact'
 import useRecoilToast from '../../../hooks/useRecoilToast'
 import { exploreToastAtom } from '../../../state/exploreToastAtom'
+import { signedAtom } from '../../../state/signedAtom'
 import { ticketAtom } from '../../../state/ticketAtom'
 import { AnimalType, ContactOpenType, GenderType, MbtiType } from '../../../types/explore.type'
+import BoxButton from '../../common/BoxButton'
 import Checkbox from '../../common/Checkbox'
 import Spacing from '../../common/Spacing'
 import TypeButton from '../../common/TypeButton'
@@ -42,6 +45,9 @@ const PopupModal = ({
   const ticketCount = useRecoilValue(ticketAtom)
   const { setRecoilStateToast } = useRecoilToast(exploreToastAtom)
   const { mutate: postContact, data, isSuccess } = usePostContact()
+  const signed = useRecoilValue(signedAtom)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isSuccess) {
@@ -128,52 +134,69 @@ const PopupModal = ({
         ) : (
           <Spacing direction="vertical" size={8} />
         )}
-        <div className="flex w-[226px] justify-center">
-          {contactOpen === 'closed' ? (
-            <>
-              <Spacing direction="vertical" size={29} />
-              <Checkbox
-                checkCase="연락처 확인"
-                isChecked={isChecked}
-                onImgClick={() => {
-                  if (ticketCount > 0) {
-                    setIsChecked((prev) => !prev)
-                  } else {
-                    setRecoilStateToast({
-                      isShow: true,
-                      toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                    })
-                  }
-                }}
-                onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (ticketCount > 0) {
-                    setIsChecked(e.target.checked)
-                  } else {
-                    setRecoilStateToast({
-                      isShow: true,
-                      toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
-                    })
-                  }
-                }}
-              ></Checkbox>
-            </>
-          ) : (
-            <>
-              <div className="h-[53px] w-[211px] animate-flip-up bg-[url('/bubble.png')] bg-cover animate-normal animate-duration-[500ms] animate-once animate-ease-linear"></div>
-            </>
-          )}
-        </div>
-        <Spacing direction="vertical" size={4} />
-        <ContactButton
-          contactOpen={contactOpen}
-          isChecked={isChecked}
-          contact={data?.contact}
-          onClick={() => {
-            if (!contact) {
-              postContact({ nickName: nickname })
-            }
-          }}
-        />
+        {signed ? (
+          <>
+            <div className="flex w-[226px] justify-center">
+              {contactOpen === 'closed' ? (
+                <>
+                  <Spacing direction="vertical" size={29} />
+                  <Checkbox
+                    checkCase="연락처 확인"
+                    isChecked={isChecked}
+                    onImgClick={() => {
+                      if (ticketCount > 0) {
+                        setIsChecked((prev) => !prev)
+                      } else {
+                        setRecoilStateToast({
+                          isShow: true,
+                          toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
+                        })
+                      }
+                    }}
+                    onLabelClick={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      if (ticketCount > 0) {
+                        setIsChecked(e.target.checked)
+                      } else {
+                        setRecoilStateToast({
+                          isShow: true,
+                          toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
+                        })
+                      }
+                    }}
+                  ></Checkbox>
+                </>
+              ) : (
+                <>
+                  <div className="h-[53px] w-[211px] animate-flip-up bg-[url('/bubble.png')] bg-cover animate-normal animate-duration-[500ms] animate-once animate-ease-linear"></div>
+                </>
+              )}
+            </div>
+            <Spacing direction="vertical" size={4} />
+            <ContactButton
+              contactOpen={contactOpen}
+              isChecked={isChecked}
+              contact={data?.contact}
+              onClick={() => {
+                if (!contact) {
+                  postContact({ nickName: nickname })
+                }
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <Spacing direction="vertical" size={32} />
+            <BoxButton
+              isLine={'filled'}
+              isDisabled={'abled'}
+              onClick={() => {
+                navigate('/')
+              }}
+            >
+              <button>로그인하고 연락처 확인하기</button>
+            </BoxButton>
+          </>
+        )}
       </div>
     </TypeButton>
   )

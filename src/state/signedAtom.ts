@@ -3,8 +3,8 @@ import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
 
-export const ticketListAtom = atom<string[]>({
-  key: 'ticketList',
-  default: [],
+export const signedAtom = atom<boolean>({
+  key: 'signed',
+  default: false,
   effects_UNSTABLE: [persistAtom],
 })

@@ -5,6 +5,7 @@ export interface FormData {
   mbti: string
   introduce: string
   contact: string
+  oauthName: string
 }
 
 export interface FormStepProps extends FormData {

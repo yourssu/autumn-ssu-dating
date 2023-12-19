@@ -29,3 +29,5 @@ export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
   { src: '/hamsterIcon.png', label: '햄스터', animals: 'HAMSTER' },
   { src: '/ppussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
+
+export const LOGIN_LINK = 'https://ssudate-server.yourssu.com/oauth2/authorization/kakao'

@@ -1,66 +1,62 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
+import AnimalSlide from './atoms/AnimalSlide'
 import Policy from './atoms/Policy'
 
-import { authCode } from '../../apis/authApi'
-import myPageIcon from '../../assets/myPageIcon.svg'
+import { postReferralCode } from '../../apis/postReferralCode'
 import ticket from '../../assets/ticket.svg'
+import { LOGIN_LINK } from '../../constant'
 import useRecoilToast from '../../hooks/useRecoilToast'
 import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
-import { ticketListAtom } from '../../state/ticketListAtom'
-import { getAnimalOptions } from '../../utils/animalUtil'
+import { ticketAtom } from '../../state/ticketAtom'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
 import ToastMessage from '../common/ToastMessage'
-import TypeButton from '../common/TypeButton'
 
 const Home = () => {
   const isLogged = false // 로그인 기능 추가 후 로그인 여부로 수정 예정
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex h-full select-none flex-col items-center justify-center">
       {isLogged ? <AfterLogin /> : <BeforeLogin />}
     </div>
   )
 }
 
 const AfterLogin = () => {
-  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [ticketCount, setTicketCount] = useRecoilState(ticketAtom)
 
   const { stateToast, showStateToast } = useToast()
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
 
-  const animalOptions = getAnimalOptions()
-  const animalCardRef = useRef<HTMLDivElement>(null)
-
   const navigate = useNavigate()
 
   async function verifyCode() {
     try {
-      const response = await authCode(code)
-      setTicketList((prevTicketList) => [...prevTicketList, response.data.code])
-      showStateToast('인증 완료! 이용권 한 장이 부여됩니다.')
+      const response = await postReferralCode(code)
+      setTicketCount(response.data.ticket)
+      showStateToast('추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.')
       setCode('')
     } catch (error) {
       const authError = error as AxiosError
       switch (authError.response?.status) {
         case 400:
-          showStateToast('10자리의 인증코드를 입력해주세요.')
+          showStateToast('10자리의 추천인 코드를 입력해주세요.')
           break
 
         case 404:
-          showStateToast('존재하지 않는 인증코드예요.')
+          showStateToast('존재하지 않는 추천인 코드예요.')
           break
 
         default:
-          showStateToast('인증코드를 다시 한번 확인해주세요.')
+          showStateToast('추천인 코드를 다시 한번 확인해주세요.')
           break
       }
     }
@@ -70,39 +66,8 @@ const AfterLogin = () => {
     hideRecoilStateToast()
   }, [recoilStateToast, hideRecoilStateToast])
 
-  useEffect(() => {
-    let scrollInterval = 1
-    const scrollBox = animalCardRef.current as HTMLDivElement
-    const scrollWidth = scrollBox.scrollWidth
-    const clientWidth = scrollBox.clientWidth
-
-    const timer = setInterval(() => {
-      const scrollLeft = scrollBox.scrollLeft
-      animalCardRef.current?.scrollTo(scrollLeft + scrollInterval, 0)
-
-      if (scrollBox.scrollLeft === 0 || scrollBox.scrollLeft + clientWidth == scrollWidth) {
-        scrollInterval *= -1
-      }
-    }, 20)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [])
-
   return (
     <>
-      <div className="flex w-screen justify-end px-[23px]">
-        <img
-          src={myPageIcon as string}
-          alt="마이페이지"
-          title="마이페이지"
-          onClick={() => {
-            navigate('/user')
-          }}
-        />
-      </div>
-      <Spacing direction="vertical" size={10} />
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
         {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>
@@ -114,7 +79,7 @@ const AfterLogin = () => {
           onChange={(e) => {
             setCode((e.target as HTMLInputElement).value)
           }}
-          placeholder="인증코드를 입력해주세요."
+          placeholder="추천인 코드를 입력해주세요."
         />
         <Spacing direction="horizontal" size={8} />
         <BoxButton isLine="line" size="extraSmall">
@@ -122,7 +87,7 @@ const AfterLogin = () => {
             className="h-full w-full rounded-2xl text-body2 focus:outline-none"
             onClick={verifyCode}
           >
-            인증하기
+            이용권 받기
           </button>
         </BoxButton>
       </div>
@@ -131,29 +96,20 @@ const AfterLogin = () => {
         <img src={ticket as string} className="h-[22px]" alt="티켓 아이콘" />
         <Spacing direction="horizontal" size={4} />
         <p>
-          이용권 x <span className="text-pink">{ticketList.length}</span>
+          이용권 x <span className="text-pink">{ticketCount}</span>
         </p>
       </div>
       <Spacing direction="vertical" size={40} />
-      <div
-        className="grid w-full grid-flow-col gap-x-5 overflow-scroll scrollbar-hide"
-        ref={animalCardRef}
-      >
-        {animalOptions.map((option, index) => (
-          <TypeButton key={index}>
-            <img src={option.src} />
-          </TypeButton>
-        ))}
-      </div>
+      <AnimalSlide />
       <Spacing direction="vertical" size={48} />
       <BoxButton size="large">
         <button
           className="h-full w-full rounded-[12px]"
           onClick={() => {
-            navigate('/register')
+            navigate('/user')
           }}
         >
-          프로필 등록하기
+          내 프로필 보기
         </button>
       </BoxButton>
       <Spacing direction="vertical" size={16} />
@@ -175,26 +131,28 @@ const AfterLogin = () => {
 }
 
 const BeforeLogin = () => {
-  const navigate = useNavigate()
-
   return (
     <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
         {'돌아온 뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={437} />
-      <BoxButton size="large">
+      <div className="flex w-screen max-w-[350px] flex-col items-center px-4">
+        <a href="/explore" className="underline underline-offset-2">
+          그냥 둘러볼래요
+        </a>
+        <Spacing direction="vertical" size={12} />
         <button
-          className="h-full w-full rounded-[12px]"
+          className="h-[56px] w-full rounded-[8px] bg-[#ffe812] text-body1"
           onClick={() => {
-            navigate('/login') // 백엔드에서 제공하는 로그인 링크로 수정
+            window.location.assign(LOGIN_LINK)
           }}
         >
-          SSU개팅 진행하기
+          카카오톡으로 로그인
         </button>
-      </BoxButton>
-      <Spacing direction="vertical" size={16} />
-      <Policy />
+        <Spacing direction="vertical" size={16} />
+        <Policy />
+      </div>
     </>
   )
 }

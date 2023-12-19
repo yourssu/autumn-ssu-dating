@@ -7,17 +7,17 @@ import useRecoilToast from './useRecoilToast'
 import { postContact } from '../apis/postContact'
 import { queryClient } from '../main'
 import { exploreToastAtom } from '../state/exploreToastAtom'
-import { ticketListAtom } from '../state/ticketListAtom'
+import { ticketAtom } from '../state/ticketAtom'
 
 export const usePostContact = () => {
-  const [ticketList, setTicketList] = useRecoilState(ticketListAtom)
+  const [ticketCount, setTicketCount] = useRecoilState(ticketAtom)
   const { setRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
   return useMutation(postContact, {
     onSuccess: () => {
       queryClient.invalidateQueries(['getAnimals'])
-      const currentTicketList = ticketList.slice(1)
-      setTicketList(currentTicketList)
+      const currentTicketCount = ticketCount - 1
+      setTicketCount(currentTicketCount)
     },
     onError: (error) => {
       const authError = error as AxiosError

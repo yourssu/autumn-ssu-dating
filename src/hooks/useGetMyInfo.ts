@@ -5,6 +5,6 @@ import { UserInfoResponse } from '../types/user.type'
 
 export const useGetMyInfo = () => {
   return useQuery<UserInfoResponse>([getMyInfo], () => getMyInfo(), {
-    staleTime: 60000 * 5,
+    staleTime: 0,
   })
 }

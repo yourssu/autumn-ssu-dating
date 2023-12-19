@@ -5,6 +5,7 @@ import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
 import PopupModal from './atoms/PopupModal'
+import TicketPopupModal from './atoms/TicketPopupModal'
 
 import Loading from '../../assets/loading.gif'
 import useExploreFilter from '../../hooks/useExploreFilter'
@@ -22,7 +23,15 @@ const Explore = () => {
   const { isPopup, handleClosePopup, handlePopup, handlePopupSelected, currentPopupSelected } =
     usePopup()
 
+  const {
+    isPopup: isTicketPopup,
+    handleOpenPopup: handleOpenTicketPopup,
+    handlePopup: handleTicketPopup,
+    handleClosePopup: handleCloseTicketPopup,
+  } = usePopup()
+
   const bgRef = useRef<HTMLDivElement>(null)
+  const bgTicketRef = useRef<HTMLDivElement>(null)
 
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(exploreToastAtom)
 
@@ -103,6 +112,15 @@ const Explore = () => {
         )}
         <Spacing direction="vertical" size={32} />
       </div>
+      {isTicketPopup ? (
+        <div
+          className="absolute top-0 flex h-[100dvh] w-screen flex-col items-center justify-center bg-[rgba(4,9,27,0.50)]"
+          ref={bgTicketRef}
+          onClick={(e) => handleTicketPopup(bgTicketRef, e)}
+        >
+          <TicketPopupModal onClickClose={handleCloseTicketPopup}></TicketPopupModal>
+        </div>
+      ) : null}
       {isPopup ? (
         <div
           className="absolute top-0 flex h-[100dvh] w-screen flex-col items-center justify-center bg-[rgba(4,9,27,0.50)]"
@@ -118,6 +136,7 @@ const Explore = () => {
             isPopup={isPopup}
             onClickClose={handleClosePopup}
             weight={currentPopupSelected.weight}
+            onClickTicketOpen={handleOpenTicketPopup}
           ></PopupModal>
         </div>
       ) : null}

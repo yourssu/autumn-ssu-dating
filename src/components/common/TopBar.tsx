@@ -19,7 +19,7 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
   const navigate = useNavigate()
   return (
     <div
-      className="fixed top-0 flex h-[44px] w-screen flex-row items-center justify-between"
+      className="fixed top-0 flex h-[44px] w-screen select-none flex-row items-center justify-between"
       {...props}
     >
       <div className="flex h-[50px] w-[50px] items-center justify-center">

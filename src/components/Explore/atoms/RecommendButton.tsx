@@ -11,7 +11,7 @@ const RecommendButton = ({ recommendOpen, ...props }: RecommendButtonProps) => {
     <span {...props}>
       <BoxButton isLine={recommendOpen === 'opened' ? 'line' : 'filled'} size="middle">
         {recommendOpen === 'opened' ? (
-          <div className="self-start">
+          <div className="animate-fade self-start animate-normal animate-duration-300 animate-once animate-ease-linear">
             <Spacing direction="vertical" size={12} />
             <span className="text-caption text-pink">추천인코드 입력(1회 한정)</span>
             <Spacing direction="vertical" size={8} />

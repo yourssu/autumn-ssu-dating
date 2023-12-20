@@ -4,7 +4,7 @@ import { getMyInfo } from '../apis/getMyInfo'
 import { UserInfoResponse } from '../types/user.type'
 
 export const useGetMyInfo = () => {
-  return useQuery<UserInfoResponse>([getMyInfo], () => getMyInfo(), {
+  return useQuery<UserInfoResponse>(['getMyInfo'], () => getMyInfo(), {
     staleTime: 0,
   })
 }

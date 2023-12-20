@@ -4,6 +4,7 @@ import { AnimalServerType } from './register.type'
 export interface UserInfoResponse {
   animals: AnimalServerType
   code: string
+  codeInputChance: number
   contact: string
   createdAt: string
   gender: GenderType

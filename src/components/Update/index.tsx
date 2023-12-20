@@ -19,8 +19,12 @@ import ToastMessage from '../common/ToastMessage'
 
 const UpdateProfile = () => {
   const { data: originData, isLoading, isError } = useGetMyInfo()
-  const [formData, setFormData] = useState<UpdateRequest>({})
-
+  const [formData, setFormData] = useState<UpdateRequest>({
+    nickName: '',
+    mbti: '',
+    introduce: '',
+    contact: '',
+  })
   const navigate = useNavigate()
 
   const { stateToast, showStateToast } = useToast()

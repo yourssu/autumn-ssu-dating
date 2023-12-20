@@ -12,7 +12,7 @@ export interface CurrentExploreFilterType {
   femaleAnimal: FemaleAnimalType
 }
 
-export type ContactOpenType = 'opened' | 'closed'
+export type OpenType = 'opened' | 'closed'
 
 export type AnimalTabMode = 'image' | 'text'
 
@@ -39,4 +39,5 @@ export type CurrentPopupSelectedType = {
   gender: GenderType
   animal: AnimalType
   content: string
+  weight: number
 }

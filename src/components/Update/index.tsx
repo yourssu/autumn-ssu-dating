@@ -163,7 +163,7 @@ const UpdateProfile = () => {
               />
             </div>
           </div>
-
+          <Spacing direction="vertical" size={8} />
           <BoxButton isDisabled={canUpdate ? 'abled' : 'disabled'} isLine="filled" size="large">
             <button
               type="submit"

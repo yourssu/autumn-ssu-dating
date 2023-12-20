@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 
 import { refresh } from './refresh'
 
-import { clearToken, getAccessToken, getRefreshToken, setToken } from '../utils/tokenUtils'
+import { getAccessToken, getRefreshToken, setToken } from '../utils/tokenUtils'
 
 interface AxiosCustomRequestConfig extends AxiosRequestConfig {
   retryCount: number
@@ -52,11 +52,11 @@ client.interceptors.response.use(
 
           return client(originRequest)
         } else {
-          clearToken()
+          localStorage.clear()
           window.location.assign('/')
         }
       } catch {
-        clearToken()
+        localStorage.clear()
         window.location.assign('/')
       }
     }

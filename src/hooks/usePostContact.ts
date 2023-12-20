@@ -8,6 +8,7 @@ import { postContact } from '../apis/postContact'
 import { queryClient } from '../main'
 import { exploreToastAtom } from '../state/exploreToastAtom'
 import { ticketAtom } from '../state/ticketAtom'
+import { ServerError } from '../types/error.type'
 
 export const usePostContact = () => {
   const [ticketCount, setTicketCount] = useRecoilState(ticketAtom)
@@ -20,13 +21,13 @@ export const usePostContact = () => {
       setTicketCount(currentTicketCount)
     },
     onError: (error) => {
-      const authError = error as AxiosError
+      const authError = error as AxiosError<ServerError>
 
       switch (authError.response?.status) {
         case 400:
           setRecoilStateToast({
             isShow: true,
-            toastMessage: '이미 가지고 있는 연락처에요!',
+            toastMessage: authError.response.data.message,
           })
           break
 

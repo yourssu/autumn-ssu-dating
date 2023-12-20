@@ -40,6 +40,7 @@ const Contact = () => {
               gender={item.gender.toLowerCase() as GenderType}
               content={item.introduce}
               contact={item.contact}
+              weight={item.weight}
               onButtonClick={handlePopupSelected}
               handleContact={handleContact}
             ></InformationTypeButton>
@@ -60,8 +61,7 @@ const Contact = () => {
             content={currentPopupSelected.content}
             isPopup={isPopup}
             contact={contact}
-            // 머지 후 작업
-            weight={0}
+            weight={currentPopupSelected.weight}
             onClickClose={handleClosePopup}
           ></PopupModal>
         </div>

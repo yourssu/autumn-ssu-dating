@@ -17,6 +17,7 @@ export const usePostContact = () => {
   return useMutation(postContact, {
     onSuccess: () => {
       queryClient.invalidateQueries(['getAnimals'])
+      queryClient.invalidateQueries(['getContact'])
       const currentTicketCount = ticketCount - 1
       setTicketCount(currentTicketCount)
     },

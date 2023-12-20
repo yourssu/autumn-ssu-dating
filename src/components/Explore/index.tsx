@@ -73,43 +73,46 @@ const Explore = () => {
           <div className="w-scren flex h-[calc(100%-180px)] items-center justify-center">
             <img src={Loading} className="h-[100px] w-[100px]" alt="loading" title="loading"></img>
           </div>
-        ) : null}
-
-        {currentExploreFilter.gender === 'female' ? (
-          <div className="flex w-screen justify-center">
-            <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
-              {data?.map((item, index) => (
-                <InformationTypeButton
-                  nickname={item.nickName}
-                  mbti={item.mbti}
-                  key={index}
-                  animal={animalServerToClient(item.animals)}
-                  gender={item.gender.toLowerCase() as GenderType}
-                  content={item.introduce}
-                  weight={item.weight}
-                  onButtonClick={handlePopupSelected}
-                ></InformationTypeButton>
-              ))}
-            </div>
-          </div>
         ) : (
-          <div className="flex w-screen justify-center">
-            <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
-              {data?.map((item, index) => (
-                <InformationTypeButton
-                  nickname={item.nickName}
-                  mbti={item.mbti}
-                  key={index}
-                  animal={animalServerToClient(item.animals)}
-                  gender={item.gender.toLowerCase() as GenderType}
-                  content={item.introduce}
-                  onButtonClick={handlePopupSelected}
-                  weight={item.weight}
-                ></InformationTypeButton>
-              ))}
-            </div>
-          </div>
+          <>
+            {currentExploreFilter.gender === 'female' ? (
+              <div className="flex w-screen justify-center">
+                <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
+                  {data?.map((item, index) => (
+                    <InformationTypeButton
+                      nickname={item.nickName}
+                      mbti={item.mbti}
+                      key={index}
+                      animal={animalServerToClient(item.animals)}
+                      gender={item.gender.toLowerCase() as GenderType}
+                      content={item.introduce}
+                      weight={item.weight}
+                      onButtonClick={handlePopupSelected}
+                    ></InformationTypeButton>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="flex w-screen justify-center">
+                <div className="flex w-[342px] flex-wrap justify-start gap-5 self-center">
+                  {data?.map((item, index) => (
+                    <InformationTypeButton
+                      nickname={item.nickName}
+                      mbti={item.mbti}
+                      key={index}
+                      animal={animalServerToClient(item.animals)}
+                      gender={item.gender.toLowerCase() as GenderType}
+                      content={item.introduce}
+                      onButtonClick={handlePopupSelected}
+                      weight={item.weight}
+                    ></InformationTypeButton>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
+
         <Spacing direction="vertical" size={32} />
       </div>
       {isTicketPopup ? (

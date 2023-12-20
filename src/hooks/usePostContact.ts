@@ -26,7 +26,7 @@ export const usePostContact = () => {
         case 400:
           setRecoilStateToast({
             isShow: true,
-            toastMessage: '이용권이 필요한 기능입니다. 이용권 구매 후 사용해주세요!',
+            toastMessage: '이미 가지고 있는 연락처에요!',
           })
           break
 

@@ -9,6 +9,7 @@ export interface UsersResponse {
   introduce: string
   mbti: MbtiType
   nickName: string
+  weight: number
 }
 
 export type AnimalsResponse = UsersResponse[]

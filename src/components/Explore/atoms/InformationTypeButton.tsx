@@ -14,6 +14,7 @@ interface InformationTypeButtonProps extends React.HTMLAttributes<HTMLDivElement
   animal: AnimalType
   content: string
   gender: GenderType
+  weight: number
   onButtonClick: (e: CurrentPopupSelectedType) => void
 }
 
@@ -24,6 +25,7 @@ const InformationTypeButton = ({
   content,
   gender,
   onButtonClick,
+  weight,
   ...props
 }: InformationTypeButtonProps) => {
   return (
@@ -37,6 +39,7 @@ const InformationTypeButton = ({
           gender,
           animal,
           content,
+          weight,
         })
       }
       {...props}

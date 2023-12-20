@@ -10,6 +10,7 @@ const usePopup = () => {
     gender: 'female',
     animal: '뿌슝이',
     content: 'ppussung',
+    weight: 0,
   })
 
   const handlePopup = (
@@ -28,6 +29,10 @@ const usePopup = () => {
     setIsPopup(true)
   }
 
+  const handleOpenPopup = () => {
+    setIsPopup(true)
+  }
+
   const handleClosePopup = () => {
     setIsPopup(false)
   }
@@ -36,6 +41,7 @@ const usePopup = () => {
     isPopup,
     setIsPopup,
     handlePopup,
+    handleOpenPopup,
     handleClosePopup,
     handlePopupSelected,
     currentPopupSelected,

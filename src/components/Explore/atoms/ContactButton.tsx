@@ -1,12 +1,12 @@
 import CopyButton from '../../../assets/copy.svg'
 import useRecoilToast from '../../../hooks/useRecoilToast'
 import { exploreToastAtom } from '../../../state/exploreToastAtom'
-import { ContactOpenType } from '../../../types/explore.type'
+import { OpenType } from '../../../types/explore.type'
 import BoxButton from '../../common/BoxButton'
 import Spacing from '../../common/Spacing'
 
 interface ContactButtonProps extends React.HTMLAttributes<HTMLDivElement> {
-  contactOpen: ContactOpenType
+  contactOpen: OpenType
   contact?: string
   isChecked: boolean
 }
@@ -17,20 +17,17 @@ const ContactButton = ({ contactOpen, contact, isChecked, ...props }: ContactBut
   return (
     <span {...props}>
       <BoxButton
+        className="flex-row"
         isLine={contactOpen === 'opened' ? 'line' : 'filled'}
-        isDisabled={contactOpen === 'opened' ? 'disabled' : isChecked ? 'abled' : 'disabled'}
+        isDisabled={isChecked ? 'abled' : 'disabled'}
       >
         {contactOpen === 'closed' && !contact ? (
           <button>연락처 확인하기</button>
         ) : (
           <>
-            <button
-              disabled={contactOpen === 'opened'}
-              className="relative flex items-center justify-center"
-            ></button>
+            <button className="relative flex items-center justify-center"></button>
             <span>{contact}</span>
             <Spacing direction="horizontal" size={8}></Spacing>
-
             <img
               className="h-[14px] w-[14px] cursor-pointer"
               src={CopyButton as string}

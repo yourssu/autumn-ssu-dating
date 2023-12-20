@@ -15,6 +15,8 @@ interface InformationTypeButtonProps extends React.HTMLAttributes<HTMLDivElement
   content: string
   gender: GenderType
   weight: number
+  contact?: string
+  handleContact?: (contact: string) => void
   onButtonClick: (e: CurrentPopupSelectedType) => void
 }
 
@@ -24,6 +26,8 @@ const InformationTypeButton = ({
   animal,
   content,
   gender,
+  contact,
+  handleContact,
   onButtonClick,
   weight,
   ...props
@@ -32,7 +36,7 @@ const InformationTypeButton = ({
     <TypeButton
       width={161}
       height={140}
-      onClick={() =>
+      onClick={() => {
         onButtonClick({
           nickname,
           mbti,
@@ -41,7 +45,10 @@ const InformationTypeButton = ({
           content,
           weight,
         })
-      }
+        if (handleContact && contact) {
+          handleContact(contact)
+        }
+      }}
       {...props}
     >
       <div className="flex h-[104px] w-[129px] flex-col justify-start">

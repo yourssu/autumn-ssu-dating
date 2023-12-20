@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
 
+import Contact from './components/Contact'
 import Explore from './components/Explore'
 import Home from './components/Home'
 import Layout from './components/Layout'
@@ -24,6 +25,7 @@ const App = () => {
             <Route element={<AuthRoute />}>
               <Route path="/user" element={<UserPage />} />
               <Route path="/user/edit" element={<UpdateProfile />} />
+              <Route path="/user/contact" element={<Contact />} />
             </Route>
           </Route>
           <Route path="/kakao-redirect" element={<Redirect />} />

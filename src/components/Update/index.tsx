@@ -21,7 +21,6 @@ const UpdateProfile = () => {
   const { data: originData, isLoading, isError } = useGetMyInfo()
   const [formData, setFormData] = useState<UpdateRequest>({})
 
-  // const { setRecoilStateToast } = useRecoilToast()
   const navigate = useNavigate()
 
   const { stateToast, showStateToast } = useToast()

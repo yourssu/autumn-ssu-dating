@@ -7,6 +7,7 @@ import { useRecoilValue, useRecoilState } from 'recoil'
 import AnimalSlide from './atoms/AnimalSlide'
 import Policy from './atoms/Policy'
 
+import { getMyInfo } from '../../apis/getMyInfo'
 import { postReferralCode } from '../../apis/postReferralCode'
 import ticket from '../../assets/ticket.svg'
 import { LOGIN_LINK } from '../../constant'
@@ -37,6 +38,7 @@ const AfterLogin = () => {
   const { recoilStateToast, hideRecoilStateToast } = useRecoilToast(registerToastAtom)
 
   const [code, setCode] = useState<string>('')
+  const [codeChance, setCodeChance] = useState<number>(0)
 
   const navigate = useNavigate()
 
@@ -68,6 +70,10 @@ const AfterLogin = () => {
     hideRecoilStateToast()
   }, [recoilStateToast, hideRecoilStateToast])
 
+  useEffect(() => {
+    getMyInfo().then((data) => setCodeChance(data.codeInputChance))
+  }, [ticketCount])
+
   return (
     <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
@@ -84,10 +90,15 @@ const AfterLogin = () => {
           placeholder="추천인 코드를 입력해주세요."
         />
         <Spacing direction="horizontal" size={8} />
-        <BoxButton isLine="line" size="extraSmall">
+        <BoxButton
+          isLine={codeChance ? 'line' : 'filled'}
+          isDisabled={codeChance ? 'abled' : 'disabled'}
+          size="extraSmall"
+        >
           <button
             className="h-full w-full rounded-2xl text-body2 focus:outline-none"
             onClick={verifyCode}
+            disabled={!codeChance}
           >
             이용권 받기
           </button>

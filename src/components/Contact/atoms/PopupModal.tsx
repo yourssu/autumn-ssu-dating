@@ -93,6 +93,14 @@ const PopupModal = ({
               title="공간 분리용 동그라미"
             />
             <Spacing direction="horizontal" size={4} />
+            <span>{gender === 'female' ? '여자' : '남자'}</span>
+            <Spacing direction="horizontal" size={4} />
+            <img
+              src={EllipseSeperator as string}
+              alt="공간 분리용 동그라미"
+              title="공간 분리용 동그라미"
+            />
+            <Spacing direction="horizontal" size={4} />
             <span>{animal}</span>
           </div>
           <Spacing direction="vertical" size={16} />
@@ -105,5 +113,4 @@ const PopupModal = ({
   )
 }
 
-// PopupModal.displayName = 'PopupModal'
 export default PopupModal

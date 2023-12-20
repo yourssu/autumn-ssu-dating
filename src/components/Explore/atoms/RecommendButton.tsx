@@ -7,6 +7,7 @@ import { postReferralCode } from '../../../apis/postReferralCode'
 import useRecoilToast from '../../../hooks/useRecoilToast'
 import { exploreToastAtom } from '../../../state/exploreToastAtom'
 import { ticketAtom } from '../../../state/ticketAtom'
+import { ServerError } from '../../../types/error.type'
 import { OpenType } from '../../../types/explore.type'
 import BoxButton from '../../common/BoxButton'
 import Spacing from '../../common/Spacing'
@@ -29,12 +30,12 @@ const RecommendButton = ({ recommendOpen, ...props }: RecommendButtonProps) => {
         toastMessage: '추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.',
       })
     } catch (error) {
-      const authError = error as AxiosError
+      const authError = error as AxiosError<ServerError>
       switch (authError.response?.status) {
         case 400:
           setRecoilStateToast({
             isShow: true,
-            toastMessage: '10자리의 추천인 코드를 입력해주세요.',
+            toastMessage: authError.response.data.message,
           })
           break
 

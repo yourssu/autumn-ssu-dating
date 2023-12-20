@@ -36,6 +36,7 @@ const RecommendButton = ({ recommendOpen, ...props }: RecommendButtonProps) => {
                 <div className="flex w-full items-end">
                   <input
                     value={code}
+                    style={{ WebkitAppearance: 'none', WebkitBorderRadius: 0 }}
                     className="h-[27px] w-[152px] border-b-[1px] py-[4px] text-body2 text-pink focus:outline-none"
                     onClick={(e) => {
                       e.stopPropagation()

@@ -151,7 +151,7 @@ const PopupModal = ({
                 </>
               ) : (
                 <>
-                  <div className="h-[53px] w-[211px] animate-flip-up bg-[url('/bubble.png')] bg-cover animate-normal animate-duration-[500ms] animate-once animate-ease-linear"></div>
+                  <div className="h-[53px] w-[187px] animate-flip-up bg-[url('/bubble.png')] bg-cover animate-normal animate-duration-[500ms] animate-once animate-ease-linear"></div>
                 </>
               )}
             </div>

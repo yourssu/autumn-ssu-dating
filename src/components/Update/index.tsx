@@ -76,7 +76,7 @@ const UpdateProfile = () => {
     if (originData !== undefined) {
       setFormData(originData)
       setMbtiValueObject(
-        originData.mbti.split('').reduce((accumulator, value, index) => {
+        originData.mbti.split('').reduce((accumulator: { [key: string]: string }, value, index) => {
           accumulator[index.toString()] = value
           return accumulator
         }, {})

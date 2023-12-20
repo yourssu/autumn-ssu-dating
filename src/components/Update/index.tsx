@@ -19,9 +19,12 @@ import ToastMessage from '../common/ToastMessage'
 
 const UpdateProfile = () => {
   const { data: originData, isLoading, isError } = useGetMyInfo()
-  const [formData, setFormData] = useState<UpdateRequest>({})
-
-  // const { setRecoilStateToast } = useRecoilToast()
+  const [formData, setFormData] = useState<UpdateRequest>({
+    nickName: '',
+    mbti: '',
+    introduce: '',
+    contact: '',
+  })
   const navigate = useNavigate()
 
   const { stateToast, showStateToast } = useToast()
@@ -76,7 +79,7 @@ const UpdateProfile = () => {
     if (originData !== undefined) {
       setFormData(originData)
       setMbtiValueObject(
-        originData.mbti.split('').reduce((accumulator, value, index) => {
+        originData.mbti.split('').reduce((accumulator: { [key: string]: string }, value, index) => {
           accumulator[index.toString()] = value
           return accumulator
         }, {})

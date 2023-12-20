@@ -150,5 +150,4 @@ const PopupModal = ({ nickname, mbti, animal, content, gender, onClickClose }: P
   )
 }
 
-// PopupModal.displayName = 'PopupModal'
 export default PopupModal

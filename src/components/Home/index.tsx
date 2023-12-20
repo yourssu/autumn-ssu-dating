@@ -15,6 +15,7 @@ import useToast from '../../hooks/useToast'
 import { registerToastAtom } from '../../state/registerToastAtom'
 import { signedAtom } from '../../state/signedAtom'
 import { ticketAtom } from '../../state/ticketAtom'
+import { ServerError } from '../../types/error.type'
 import BoxButton from '../common/BoxButton'
 import InputField from '../common/InputField'
 import Spacing from '../common/Spacing'
@@ -46,10 +47,10 @@ const AfterLogin = () => {
       showStateToast('추천인 코드 인증 완료! 이용권 한 장이 충전됐어요.')
       setCode('')
     } catch (error) {
-      const authError = error as AxiosError
+      const authError = error as AxiosError<ServerError>
       switch (authError.response?.status) {
         case 400:
-          showStateToast('자기 자신의 코드는 등록할 수 없습니다.')
+          showStateToast(authError.response.data.message)
           break
 
         case 404:

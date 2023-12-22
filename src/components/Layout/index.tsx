@@ -8,9 +8,10 @@ import TopBar from '../common/TopBar'
 
 const Layout = () => {
   const { pathname, search } = useLocation()
-  const { title, backNav } = LINK_TITLE[pathname + search]
 
   const isHome = pathname === '/'
+  const { title, backNav } = isHome ? { title: '', backNav: '' } : LINK_TITLE[pathname + search]
+
   const signed = useRecoilValue(signedAtom)
 
   const bgUrl = isHome

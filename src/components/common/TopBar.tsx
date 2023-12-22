@@ -18,6 +18,8 @@ const TopBar = ({ backNav, title, ...props }: TopBarProps) => {
   const hasRightIcon = backNav !== '/user' && window.location.pathname !== '/register'
 
   const navigate = useNavigate()
+
+  if (!title) return
   return (
     <div
       className="fixed top-0 flex h-[44px] w-screen select-none flex-row items-center justify-between"

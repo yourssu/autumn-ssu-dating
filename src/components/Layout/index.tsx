@@ -8,7 +8,7 @@ const Layout = () => {
   const { pathname, search } = useLocation()
 
   const isHome = pathname === '/'
-  const { title, backNav } = isHome ? { title: '', backNav: '' } : LINK_TITLE[pathname + search]
+  const { title = '', backNav = '' } = LINK_TITLE[pathname + search] || {}
 
   const bgUrl = isHome
     ? `bg-[url('/src/assets/bg_palePink.png')]`

@@ -11,8 +11,8 @@ const Layout = () => {
   const { title = '', backNav = '' } = LINK_TITLE[pathname + search] || {}
 
   const bgUrl = isHome
-    ? `bg-[url('/src/assets/bg_palePink.png')]`
-    : `bg-[url('/src/assets/bg.png')]`
+    ? `bg-[url('/src/assets/bg_palePink.webp')]`
+    : `bg-[url('/src/assets/bg.webp')]`
 
   return (
     <div className={`${bgUrl} h-[100dvh] w-screen overflow-hidden bg-cover`}>

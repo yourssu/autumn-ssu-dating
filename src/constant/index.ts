@@ -11,21 +11,21 @@ export const LINK_TITLE: { [key: string]: { title: string; backNav?: string } } 
 }
 
 export const ANIMAL_OPTIONS_MALE: FormStepOption[] = [
-  { src: '/dogIcon.png', label: '강아지', animals: 'DOG' },
-  { src: '/bearIcon.png', label: '곰', animals: 'BEAR' },
-  { src: '/foxIcon.png', label: '여우', animals: 'FOX' },
-  { src: '/wolfIcon.png', label: '늑대', animals: 'WOLF' },
-  { src: '/dinoIcon.png', label: '공룡', animals: 'DINO' },
-  { src: '/pussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
+  { src: '/dogIcon.webp', label: '강아지', animals: 'DOG' },
+  { src: '/bearIcon.webp', label: '곰', animals: 'BEAR' },
+  { src: '/foxIcon.webp', label: '여우', animals: 'FOX' },
+  { src: '/wolfIcon.webp', label: '늑대', animals: 'WOLF' },
+  { src: '/dinoIcon.webp', label: '공룡', animals: 'DINO' },
+  { src: '/pussungIcon.webp', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
 
 export const ANIMAL_OPTIONS_FEMALE: FormStepOption[] = [
-  { src: '/dogIcon.png', label: '강아지', animals: 'DOG' },
-  { src: '/catIcon.png', label: '고양이', animals: 'CAT' },
-  { src: '/rabbitIcon.png', label: '토끼', animals: 'RABBIT' },
-  { src: '/foxIcon.png', label: '여우', animals: 'FOX' },
-  { src: '/hamsterIcon.png', label: '햄스터', animals: 'HAMSTER' },
-  { src: '/pussungIcon.png', label: '뿌슝이', animals: 'PUSSUNG' },
+  { src: '/dogIcon.webp', label: '강아지', animals: 'DOG' },
+  { src: '/catIcon.webp', label: '고양이', animals: 'CAT' },
+  { src: '/rabbitIcon.webp', label: '토끼', animals: 'RABBIT' },
+  { src: '/foxIcon.webp', label: '여우', animals: 'FOX' },
+  { src: '/hamsterIcon.webp', label: '햄스터', animals: 'HAMSTER' },
+  { src: '/pussungIcon.webp', label: '뿌슝이', animals: 'PUSSUNG' },
 ]
 
 export const LOGIN_LINK = 'https://ssudate-server.yourssu.com/oauth2/authorization/kakao'

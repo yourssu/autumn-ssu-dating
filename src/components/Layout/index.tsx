@@ -1,8 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
 import { LINK_TITLE } from '../../constant'
-import { signedAtom } from '../../state/signedAtom'
 import Spacing from '../common/Spacing'
 import TopBar from '../common/TopBar'
 
@@ -12,13 +10,9 @@ const Layout = () => {
   const isHome = pathname === '/'
   const { title, backNav } = isHome ? { title: '', backNav: '' } : LINK_TITLE[pathname + search]
 
-  const signed = useRecoilValue(signedAtom)
-
   const bgUrl = isHome
-    ? !signed
-      ? `bg-[url('/src/assets/bg_login_before.png')]`
-      : `bg-[url('/src/assets/bg_login_after.png')]`
-    : `bg-[url('/src/assets/bg_other.png')]`
+    ? `bg-[url('/src/assets/bg_palePink.png')]`
+    : `bg-[url('/src/assets/bg.png')]`
 
   return (
     <div className={`${bgUrl} h-[100dvh] w-screen overflow-hidden bg-cover`}>

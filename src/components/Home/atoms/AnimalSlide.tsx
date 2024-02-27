@@ -34,7 +34,7 @@ const AnimalSlide = () => {
     >
       {animalOptions.map((option, index) => (
         <TypeButton key={index}>
-          <img src={option.src} />
+          <img src={option.src} alt={option.label} />
         </TypeButton>
       ))}
     </div>

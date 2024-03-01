@@ -20,6 +20,7 @@ const ImageButton = ({ src, label, animals, onClick }: ImageButtonProps) => {
         src={src}
         className={`${isGender ? 'h-[88px] w-[88px]' : 'h-[109px] w-[108px]'}`}
         title={animals || label}
+        alt={label}
       />
       <p title={animals || label} className="text-black">
         {label}

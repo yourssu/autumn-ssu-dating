@@ -32,6 +32,7 @@ const Checkbox = ({
         className="h-[16px] w-[16px]"
         src={isChecked ? (checkedIcon as string) : (uncheckedIcon as string)}
         onClick={onImgClick}
+        alt={'체크박스'}
       />
       <Spacing direction="horizontal" size={4} />
       <label className="text-caption text-pink" style={{ WebkitTapHighlightColor: 'transparent' }}>

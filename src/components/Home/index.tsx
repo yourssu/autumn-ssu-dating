@@ -77,7 +77,7 @@ const AfterLogin = () => {
   return (
     <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
-        {'돌아온 뿌슝이의\n동물 SSU개팅'}
+        {'뿌슝이의\n동물 SSU개팅'}
       </p>
       <Spacing direction="vertical" size={15} />
       <div className="flex">
@@ -147,9 +147,11 @@ const BeforeLogin = () => {
   return (
     <>
       <p className="whitespace-pre-line text-center text-titleBold text-pink">
-        {'돌아온 뿌슝이의\n동물 SSU개팅'}
+        {'뿌슝이의\n동물 SSU개팅'}
       </p>
-      <Spacing direction="vertical" size={437} />
+      <Spacing direction="vertical" size={97} />
+      <AnimalSlide />
+      <Spacing direction="vertical" size={105} />
       <div className="flex w-screen max-w-[350px] flex-col items-center px-4">
         <a href="/explore" className="underline underline-offset-2">
           그냥 둘러볼래요

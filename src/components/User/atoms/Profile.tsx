@@ -16,7 +16,7 @@ const Profile = () => {
     <>
       {isSuccess && (
         <div className="flex flex-col items-center text-pink">
-          <img className="h-[106px] w-[106px]" src={getImageSrc(data.animals)} />
+          <img className="h-[106px] w-[106px]" src={getImageSrc(data.animals)} alt={data.animals} />
           <p className="text-button">{data.nickName}</p>
           <div className="flex text-body2">
             <span>{data.mbti}</span>

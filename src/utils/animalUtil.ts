@@ -44,5 +44,5 @@ export const animalServerToClient = (animal: AnimalServerType): AnimalType => {
 }
 
 export const getImageSrc = (animal: Omit<AnimalServerType, 'ALL'>): string => {
-  return `/${animal.toLocaleLowerCase()}Icon.png`
+  return `/${animal.toLocaleLowerCase()}Icon.webp`
 }

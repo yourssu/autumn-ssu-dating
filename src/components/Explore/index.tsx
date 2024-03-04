@@ -4,10 +4,10 @@ import AnimalTabBar from './atoms/AnimalTabBar'
 import FloatingButton from './atoms/FloatingButton'
 import GenderTabBar from './atoms/GenderTabBar'
 import InformationTypeButton from './atoms/InformationTypeButton'
+import { ExploreLoading } from './atoms/Loading'
 import PopupModal from './atoms/PopupModal'
 import TicketPopupModal from './atoms/TicketPopupModal'
 
-import Loading from '../../assets/loading.gif'
 import useExploreFilter from '../../hooks/useExploreFilter'
 import { useGetAnimals } from '../../hooks/useGetAnimals'
 import usePopup from '../../hooks/usePopup'
@@ -71,7 +71,7 @@ const Explore = () => {
 
         {isLoading || isFetching ? (
           <div className="w-scren flex h-[calc(100%-180px)] items-center justify-center">
-            <img src={Loading} className="h-[100px] w-[100px]" alt="loading" title="loading"></img>
+            <ExploreLoading />
           </div>
         ) : (
           <>

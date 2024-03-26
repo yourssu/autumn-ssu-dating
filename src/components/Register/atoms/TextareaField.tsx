@@ -4,7 +4,7 @@ interface TextareaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaEl
 
 const TextareaField = ({ height = 127, ...props }: TextareaFieldProps) => {
   const defaultStyle =
-    'p-4 bg-white rounded-xl text-pink placeholder-gray font-body1 resize-none focus:outline-none focus:shadow-inputField'
+    'p-4 bg-white rounded-xl text-pink placeholder-gray text-body1 resize-none focus:outline-none focus:shadow-inputField'
   const shadowStyle = !props.value && 'shadow-inputField'
 
   return (

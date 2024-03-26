@@ -5,7 +5,7 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const InputField = ({ width = 193, height = 48, ...props }: InputFieldProps) => {
   const defaultStyle =
-    'px-4 bg-white rounded-xl flex justify-start items-center focus:outline-none text-pink placeholder-gray text-body2 focus:shadow-inputField'
+    'px-4 bg-white rounded-xl flex justify-start items-center focus:outline-none text-pink placeholder-gray text-body1 focus:shadow-inputField'
   const shadowStyle = !props.value && 'shadow-inputField'
 
   return (

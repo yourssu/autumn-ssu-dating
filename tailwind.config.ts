@@ -41,7 +41,7 @@ const config: Config = {
         body1: [
           '16px',
           {
-            fontWeight: '600',
+            fontWeight: '400',
             lineHeight: '20.8px',
           },
         ],

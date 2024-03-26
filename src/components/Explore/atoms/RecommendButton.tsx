@@ -37,7 +37,7 @@ const RecommendButton = ({ recommendOpen, ...props }: RecommendButtonProps) => {
                   <input
                     value={code}
                     style={{ WebkitAppearance: 'none', WebkitBorderRadius: 0 }}
-                    className="h-[27px] w-[152px] border-b-[1px] py-[4px] text-body2 text-pink focus:outline-none"
+                    className="h-[27px] w-[152px] border-b-[1px] py-[4px] text-body1 text-pink focus:outline-none"
                     onClick={(e) => {
                       e.stopPropagation()
                     }}
